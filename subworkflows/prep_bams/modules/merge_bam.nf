@@ -17,10 +17,7 @@ process MERGE_BAM {
     script:
     """
     samtools merge -@ ${task.cpus} -f merged_raw.bam ${bams}
-    samtools view -H merged_raw.bam \
-        | sed 's/SM:[^\\t]*/SM:${tissue}/g' \
-        > new_header.sam
-    samtools reheader new_header.sam merged_raw.bam > ${tissue}.${chunk_name}.bam
+    samtools reheader -c "sed 's/SM:[^\\t]*/SM:${tissue}/g'" merged_raw.bam > ${tissue}.${chunk_name}.bam
     samtools index ${tissue}.${chunk_name}.bam
     """
 
