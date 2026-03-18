@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 
-include { PREP_BAMS     } from './subworkflows/prep_bams/main'
-include { CALL_VARIANTS } from './subworkflows/call_variants/main'
+include { prep_bams     } from './subworkflows/prep_bams/main'
+include { call_variants } from './subworkflows/call_variants/main'
 
 workflow {
 
@@ -22,13 +22,13 @@ workflow {
 
     // ── Merge BAMs for all chunks ────────────────────────────────────────────
     chunks_ch = placenta_ch.mix(heart_ch)
-    PREP_BAMS(chunks_ch)
+    prep_bams(chunks_ch)
 
     // ── Split merged output by tissue ────────────────────────────────────────
-    merged_placenta = PREP_BAMS.out.merged_bams.filter { it[0] == "placenta" }
-    merged_heart    = PREP_BAMS.out.merged_bams.filter { it[0] == "heart"    }
+    merged_placenta = prep_bams.out.merged_bams.filter { it[0] == "placenta" }
+    merged_heart    = prep_bams.out.merged_bams.filter { it[0] == "heart"    }
 
     // ── Somatic variant calling: each heart chunk vs merged placenta ─────────
-    CALL_VARIANTS(merged_heart, merged_placenta)
+    call_variants(merged_heart, merged_placenta)
 
 }

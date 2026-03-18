@@ -1,6 +1,6 @@
 include { MUTECT2 } from './modules/mutect2'
 
-workflow CALL_VARIANTS {
+workflow call_variants {
 
     take:
     merged_heart    // [tissue="heart",    chunk_name, bam, bai]

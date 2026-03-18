@@ -1,7 +1,7 @@
 include { INDEX_BAM } from './modules/index_bam'
 include { MERGE_BAM } from './modules/merge_bam'
 
-workflow PREP_BAMS {
+workflow prep_bams {
 
     take:
     chunks_ch   // [tissue, chunk_name, [sample_list]]
