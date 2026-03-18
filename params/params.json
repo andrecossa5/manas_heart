@@ -1,8 +1,8 @@
 {
-    "heart_csv":         "data/heart_samples_test.csv",
-    "placenta_csv":      "data/placenta_samples_test.csv",
-    "bam_folder":        "data",
-    "ref":               null,
+    "heart_csv":         "/Users/cossa/Desktop/projects/manas_heart/data/heart_samples_test.csv",
+    "placenta_csv":      "/Users/cossa/Desktop/projects/manas_heart/data/placenta_samples_test.csv",
+    "bam_folder":        "/Users/cossa/Desktop/projects/manas_heart/data/bams",
+    "ref":               "/Users/cossa/Desktop/projects/manas_heart/data/resources/ref.fa",
     "germline_resource": null,
-    "output_folder":     null
+    "output_folder":     "/Users/cossa/Desktop/projects/manas_heart/results"
 }

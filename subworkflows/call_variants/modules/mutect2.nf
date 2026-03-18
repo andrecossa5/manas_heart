@@ -24,6 +24,7 @@ process MUTECT2 {
 
     script:
     def germline_arg = params.germline_resource ? "--germline-resource ${params.germline_resource}" : ""
+    
     """
     gatk Mutect2 \\
         --java-options "-Xmx${(task.memory.toGiga() * 0.85).intValue()}g" \\
