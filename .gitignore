@@ -6,9 +6,14 @@ trace.txt
 report.html
 timeline.html
 dag.dot
+data/**/*.bam
+data/**/*.bai
+results/
 
 # Params / secrets
 *.local.config
 
 # macOS
 .DS_Store
+
+

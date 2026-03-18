@@ -1,7 +1,7 @@
 {
-    "heart_csv":         "heart_samples.csv",
-    "placenta_csv":      "placenta_samples.csv",
-    "bam_folder":        "/lustre/scratch125/cellgen/behjati/ac87/manas_heart/work",
+    "heart_csv":         "data/heart_samples_test.csv",
+    "placenta_csv":      "data/placenta_samples_test.csv",
+    "bam_folder":        "data",
     "ref":               null,
     "germline_resource": null,
     "output_folder":     null
