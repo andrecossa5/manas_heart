@@ -1,0 +1,7 @@
+{
+    "base_directory": "/lustre/scratch126/cellgen/behjati/md39/foetal_project/run1/Tree",
+    "sample_file": "/lustre/scratch126/cellgen/behjati/md39/foetal_project/run1/Tree/all_samples.txt",
+    "PASS": "PASS",
+    "CLPM": 0,
+    "ASMD": 140
+}

@@ -1,0 +1,139 @@
+Sample,Organ,Histo,Bulk_phenotype,Site,Original_ID,Project_ID,Chunk
+PD53943w_lo0230,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.0
+PD53943w_lo0229,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.0
+PD53943w_lo0228,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.0
+PD53943w_lo0227,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.0
+PD53943w_lo0226,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.1
+PD53943w_lo0225,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.1
+PD53943w_lo0224,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.1
+PD53943w_lo0223,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.1
+PD53943w_lo0221,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.2
+PD53943w_lo0220,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.2
+PD53943w_lo0219,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.2
+PD53943w_lo0218,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.2
+PD53943w_lo0217,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.3
+PD53943w_lo0216,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.3
+PD53943w_lo0215,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.3
+PD53943v_lo0280,HEART PD53943V B1-C2-S60-61,Left IVS,Heart,Heart,Heart,3254,Left IVS.0
+PD53943v_lo0257,HEART PD53943V B1-C2-S54-55,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.0
+PD53943v_lo0255,HEART PD53943V B1-C2-S54-55,Right ventricle,Heart,Heart,Heart,3254,Right ventricle.0
+PD53943v_lo0242,HEART PD53943V B1-C2-S52-53,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.0
+PD53943v_lo0240,HEART PD53943V B1-C2-S52-53,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.0
+PD53943v_lo0239,HEART PD53943V B1-C2-S52-53,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.0
+PD53943v_lo0224,HEART PD53943V B1-C2-S38-39,Right trabeculae,Heart,Heart,Heart,3254,Right trabeculae.0
+PD53943v_lo0223,HEART PD53943V B1-C2-S36-37,Apex,Heart,Heart,Heart,3254,Apex.0
+PD53943v_lo0222,HEART PD53943V B1-C2-S36-37,Apex,Heart,Heart,Heart,3254,Apex.0
+PD53943v_lo0215,HEART PD53943V B1-C2-S36-37,Apex,Heart,Heart,Heart,3254,Apex.0
+PD53943v_lo0206,HEART PD53943V B1-C2-S32-33,Left trabeculae,Heart,Heart,Heart,3254,Left trabeculae.0
+PD53943v_lo0201,HEART PD53943V B1-C2-S30-31,Apex,Heart,Heart,Heart,3254,Apex.0
+PD53943v_lo0173,HEART PD53943V B1-C2-S26-27,Left IVS,Heart,Heart,Heart,3254,Left IVS.0
+PD53943v_lo0172,HEART PD53943V B1-C2-S26-27,Left IVS,Heart,Heart,Heart,3254,Left IVS.0
+PD53943v_lo0160,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.1
+PD53943v_lo0158,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.1
+PD53943v_lo0157,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.1
+PD53943v_lo0155,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254,Left ventricle.1
+PD53943v_lo0153,HEART PD53943V B1-C2-S24-25,Left IVS,Heart,Heart,Heart,3254,Left IVS.0
+PD53943v_lo0152,HEART PD53943V B1-C2-S24-25,Left IVS,Heart,Heart,Heart,3254,Left IVS.1
+PD53943v_lo0151,HEART PD53943V B1-C2-S24-25,Right IVS,Heart,Heart,Heart,3254,Right IVS.0
+PD53943v_lo0150,HEART PD53943V B1-C2-S24-25,Right IVS,Heart,Heart,Heart,3254,Right IVS.0
+PD53943v_lo0149,HEART PD53943V B1-C2-S24-25,Right ventricle,Heart,Heart,Heart,3254,Right ventricle.0
+PD53943v_lo0148,HEART PD53943V B1-C2-S24-25,Right ventricle,Heart,Heart,Heart,3254,Right ventricle.0
+PD53943v_lo0147,HEART PD53943V B1-C2-S24-25,Right ventricle,Heart,Heart,Heart,3254,Right ventricle.0
+PD53943v_lo0143,HEART PD53943V B1-C2-S10-11,DMP,Heart,Heart,Heart,3254,DMP.0
+PD53943v_lo0141,HEART PD53943V B1-C2-S10-11,DMP,Heart,Heart,Heart,3254,DMP.0
+PD53943v_lo0138,HEART PD53943V B1-C2-S10-11,Left IVS,Heart,Heart,Heart,3254,Left IVS.1
+PD53943v_lo0137,HEART PD53943V B1-C2-S10-11,Left IVS,Heart,Heart,Heart,3254,Left IVS.1
+PD53943v_lo0136,HEART PD53943V B1-C2-S10-11,Right IVS,Heart,Heart,Heart,3254,Right IVS.0
+PD53943v_lo0135,HEART PD53943V B1-C2-S10-11,RIGHT IVS,Heart,Heart,Heart,3254,RIGHT IVS.0
+PD53943v_lo0134,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.0
+PD53943v_lo0133,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.0
+PD53943v_lo0132,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.0
+PD53943v_lo0131,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.0
+PD53943v_lo0130,HEART PD53943V B1-C2-S10-11,Arotic valve,Heart,Heart,Heart,3254,Arotic valve.0
+PD53943v_lo0129,HEART PD53943V B1-C2-S10-11,Arotic valve,Heart,Heart,Heart,3254,Arotic valve.0
+PD53943v_lo0128,HEART PD53943V B1-C2-S8-9,Left IVS,Heart,Heart,Heart,3254,Left IVS.1
+PD53943v_lo0127,HEART PD53943V B1-C2-S8-9,Left IVS,Heart,Heart,Heart,3254,Left IVS.2
+PD53943v_lo0126,HEART PD53943V B1-C2-S8-9,Right IVS,Heart,Heart,Heart,3254,Right IVS.0
+PD53943v_lo0125,HEART PD53943V B1-C2-S8-9,RIGHT IVS,Heart,Heart,Heart,3254,RIGHT IVS.0
+PD53943v_lo0123,HEART PD53943V B1-C2-S8-9,Left atria,Heart,Heart,Heart,3254,Left atria.0
+PD53943v_lo0122,HEART PD53943V B1-C2-S8-9,Arotic valve,Heart,Heart,Heart,3254,Arotic valve.0
+PD53943v_lo0120,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254,DMP.0
+PD53943v_lo0119,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254,DMP.0
+PD53943v_lo0118,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254,DMP.0
+PD53943v_lo0117,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254,DMP.0
+PD53943v_lo0116,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254,DMP.0
+PD53943v_lo0114,HEART PD53943V B1-C2-S8-9,Left IVS,Heart,Heart,Heart,3254,Left IVS.2
+PD53943v_lo0113,HEART PD53943V B1-C2-S8-9,Right IVS,Heart,Heart,Heart,3254,Right IVS.0
+PD53943v_lo0112,HEART PD53943V B1-C2-S8-9,RIGHT IVS,Heart,Heart,Heart,3254,RIGHT IVS.0
+PD53943v_lo0111,HEART PD53943V B1-C2-S8-9,Left atria,Heart,Heart,Heart,3254,Left atria.0
+PD53943v_lo0108,HEART PD53943V B1-C2-S8-9,Left atria,Heart,Heart,Heart,3254,Left atria.0
+PD53943v_lo0106,HEART PD53943V B1-C2-S8-9,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.1
+PD53943v_lo0104,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254,Aorta.0
+PD53943v_lo0103,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254,Aorta.0
+PD53943v_lo0102,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254,Aorta.0
+PD53943v_lo0101,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254,Aorta.0
+PD53943v_lo0100,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254,Aorta.0
+PD53943v_lo0099,HEART PD53943V B1-C2-S8-9,Arotic valve,Heart,Heart,Heart,3254,Arotic valve.0
+PD53943v_lo0098,HEART PD53943V B1-C2-S8-9,Arotic valve,Heart,Heart,Heart,3254,Arotic valve.0
+PD53943v_lo0097,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254,Left IVS.2
+PD53943v_lo0096,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254,Left IVS.2
+PD53943v_lo0095,HEART PD53943V B1-C2-S6-7,Right IVS,Heart,Heart,Heart,3254,Right IVS.0
+PD53943v_lo0094,HEART PD53943V B1-C2-S6-7,RIGHT IVS,Heart,Heart,Heart,3254,RIGHT IVS.0
+PD53943v_lo0093,HEART PD53943V B1-C2-S6-7,Left atria,Heart,Heart,Heart,3254,Left atria.0
+PD53943v_lo0091,HEART PD53943V B1-C2-S6-7,Left atria,Heart,Heart,Heart,3254,Left atria.0
+PD53943v_lo0088,HEART PD53943V B1-C2-S6-7,Aorta,Heart,Heart,Heart,3254,Aorta.0
+PD53943v_lo0085,HEART PD53943V B1-C2-S6-7,Arotic valve,Heart,Heart,Heart,3254,Arotic valve.0
+PD53943v_lo0083,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254,Left IVS.3
+PD53943v_lo0082,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254,Left IVS.3
+PD53943v_lo0080,HEART PD53943V B1-C2-S6-7,RIGHT IVS,Heart,Heart,Heart,3254,RIGHT IVS.0
+PD53943v_lo0079,HEART PD53943V B1-C2-S6-7,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.1
+PD53943v_lo0078,HEART PD53943V B1-C2-S6-7,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.1
+PD53943v_lo0077,HEART PD53943V B1-C2-S6-7,Pulmonary trunk,Heart,Heart,Heart,3254,Pulmonary trunk.1
+PD53943v_lo0076,HEART PD53943V B1-C2-S6-7,Arotic valve,Heart,Heart,Heart,3254,Arotic valve.0
+PD53943v_lo0071,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.3
+PD53943v_lo0070,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.4
+PD53943v_lo0069,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.4
+PD53943v_lo0068,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.4
+PD53943v_lo0067,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.4
+PD53943v_lo0066,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.5
+PD53943v_lo0065,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.5
+PD53943v_lo0064,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.5
+PD53943v_lo0063,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.5
+PD53943v_lo0062,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.6
+PD53943v_lo0061,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.6
+PD53943v_lo0060,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.6
+PD53943v_lo0059,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.6
+PD53943v_lo0058,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.7
+PD53943v_lo0054,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.7
+PD53943v_lo0053,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.7
+PD53943v_lo0052,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.7
+PD53943v_lo0051,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137,Myocardium.8
+PD53943v_lo0050,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.8
+PD53943v_lo0049,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.8
+PD53943v_lo0048,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.8
+PD53943v_lo0047,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.9
+PD53943v_lo0045,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.9
+PD53943v_lo0044,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.9
+PD53943v_lo0043,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.9
+PD53943v_lo0042,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.10
+PD53943v_lo0040,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.10
+PD53943v_lo0039,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.10
+PD53943v_lo0037,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.10
+PD53943v_lo0035,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.11
+PD53943v_lo0034,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.11
+PD53943v_lo0033,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.11
+PD53943v_lo0032,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.11
+PD53943v_lo0031,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.12
+PD53943v_lo0030,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.12
+PD53943v_lo0029,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.12
+PD53943v_lo0028,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.12
+PD53943v_lo0027,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.13
+PD53943v_lo0026,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.13
+PD53943v_lo0024,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137,Myocardium.13
+PD53943v_lo0023,Heart,Myocardium,Heart,Heart,Heart,3186,Myocardium.13
+PD53943v_lo0022,Heart,Myocardium,Heart,Heart,Heart,3186,Myocardium.14
+PD53943v_lo0021,Heart,Myocardium,Heart,Heart,Heart,3186,Myocardium.14
+PD53943v_lo0020,Heart,Myocardium,Heart,Heart,Heart,3186,Myocardium.14
+PD53943v_lo0019,Heart,Myocardium,Heart,Heart,Heart,3186,Myocardium.14
+PD53943v_lo0018,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3152,Myocardium.15
+PD53943v_lo0017,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3152,Myocardium.15

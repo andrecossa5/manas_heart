@@ -1,0 +1,1605 @@
+Sample,Organ,Histo,Bulk_phenotype,Site,Original_ID,Project_ID
+PD53943ab_lo0002,Umbilical_cord,Vascular smooth muscle,Umbilical cord,Umbilical cord,Umbilical cord,2855
+PD53943ab_lo0008,Umbilical_cord,Blood,Umbilical cord,Umbilical cord,Umbilical cord,2855
+PD53943ab_lo0010,Umbilical_cord,Whartons jelly,Umbilical cord,Umbilical cord,Umbilical cord,2855
+PD53943ab_lo0001,Umbilical_cord,Vascular smooth muscle,Umbilical cord,Umbilical cord,Umbilical cord,2855
+PD53943ac_lo0138,HEAD PD53943ac_B1-C2-S2,Optic nerve ,Head,Head,Head,3137
+PD53943ac_lo0141,HEAD PD53943ac_B1-C2-S2,Ganglion,Head,Head,Head,3137
+PD53943ac_lo0147,HEAD PD53943ac_B1-C2-S2,Ganglion,Head,Head,Head,3137
+PD53943ac_lo0151,HEAD PD53943ac_B1-C2-S2,Ganglion,Head,Head,Head,3137
+PD53943ac_lo0140,HEAD PD53943ac_B1-C2-S2,Ganglion,Head,Head,Head,3137
+PD53943ac_lo0160,TBD PD53943ac B3-C2-S3,Paraganglion,Head,Head,Head,3137
+PD53943ac_lo0161,TBD PD53943ac B3-C2-S3,Paraganglion,Head,Head,Head,3137
+PD53943ac_lo0162,TBD PD53943ac B3-C2-S3,Paraganglion,Head,Head,Head,3137
+PD53943ac_lo0155,HEAD PD53943ac_B1-C2-S2,Optic nerve ,Head,Head,Head,3137
+PD53943ac_lo0164,TBD PD53943ac B3-C2-S3,Paraganglion,Head,Head,Head,3137
+PD53943ac_lo0165,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0166,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0167,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0168,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0169,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0170,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0171,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0172,HEAD PD53943ac_B1-C2-S3,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0180,HEAD PD53943ac_B1-C2-S3,Cartilage,Head,Head,Head,3137
+PD53943ac_lo0184,HEAD PD53943ac_B1-C2-S3,Adnexal structures,Head,Head,Head,3137
+PD53943ac_lo0193,HEAD PD53943ac_B1-C2-S2,Cartilage,Head,Head,Head,3137
+PD53943ac_lo0194,HEAD PD53943ac_B1-C2-S2,Cartilage,Head,Head,Head,3137
+PD53943ac_lo0195,HEAD PD53943ac_B1-C2-S2,Adnexal structures,Head,Head,Head,3137
+PD53943ac_lo0196,HEAD PD53943ac_B1-C2-S2,Adnexal structures,Head,Head,Head,3137
+PD53943ac_lo0200,HEAD PD53943ac_B1-C2-S2,Adnexal structures,Head,Head,Head,3137
+PD53943ac_lo0210,HEAD PD53943ac_B1-C2-S2,Respiratory epitheilum,Head,Head,Head,3137
+PD53943ac_lo0215,HEAD PD53943ac_B1-C2-S2,Respiratory epitheilum,Head,Head,Head,3137
+PD53943ac_lo0216,HEAD PD53943ac_B1-C2-S2,Respiratory epitheilum,Head,Head,Head,3137
+PD53943ac_lo0224,HEAD PD53943ac_B1-C2-S2,Squamous epithelium,Head,Head,Head,3137
+PD53943ac_lo0235,HEAD PD53943ac_B1-C2-S2,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0236,HEAD PD53943ac_B1-C2-S2,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0240,HEAD PD53943ac_B1-C2-S2,Epidermis,Head,Head,Head,3137
+PD53943ac_lo0002,Head,Retinal pigmented epithelium,Head,Head,Head,2855
+PD53943ac_lo0006,Head,Retinal pigmented epithelium,Head,Head,Head,2855
+PD53943ac_lo0008,Head,Retinal pigmented epithelium,Head,Head,Head,2855
+PD53943ac_lo0009,Head,Retinal pigmented epithelium,Head,Head,Head,2855
+PD53943ac_lo0163,TBD PD53943ac B3-C2-S3,Paraganglion,Head,Head,Head,3137
+PD53943ac_lo0054,Head,Cartilage,Head,Head,Head,2855
+PD53943ac_lo0082,Head,Respiratory epitheilum,Head,Head,Head,2855
+PD53943ac_lo0088,Head,Respiratory epitheilum,Head,Head,Head,2855
+PD53943ac_lo0100,Head,Cartilage,Head,Head,Head,2855
+PD53943ac_lo0117,Head,Ganglion,Head,Head,Head,2855
+PD53943ac_lo0001,Head,Retinal pigmented epithelium,Head,Head,Head,2855
+PD53943ac_lo0010,Head,Retinal pigmented epithelium,Head,Head,Head,2855
+PD53943ad_lo0082,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0083,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0072,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0073,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0074,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0054,LEG PD53943ad_B1-C2-S2,Skeletal muscle,Leg,Right,leg right,3137
+PD53943ad_lo0076,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0078,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0079,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0080,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0081,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0002,Right_leg,Skeletal muscle,Leg,Right,leg right,2855
+PD53943ad_lo0007,Right_leg,Cartilage,Leg,Right,leg right,2855
+PD53943ad_lo0084,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0085,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0086,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0075,LEG PD53943ad_B1-C2-S3,Cartilage,Leg,Right,leg right,3137
+PD53943ad_lo0016,Right_leg,Epidermis,Leg,Right,leg right,2855
+PD53943ad_lo0117,Leg PD53943ad B1-C2-S2,Skeletal muscle ,Leg,Right,leg right,3254
+PD53943ad_lo0015,Right_leg,Epidermis,Leg,Right,leg right,2855
+PD53943ae_lo0055,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0056,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0016,Left_leg,Epidermis,Leg,Left,leg left,2855
+PD53943ae_lo0054,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0073,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0015,Left_leg,Epidermis,Leg,Left,leg left,2855
+PD53943ae_lo0014,Left_leg,Epidermis,Leg,Left,leg left,2855
+PD53943ae_lo0070,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0071,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0074,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0036,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0075,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0076,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0035,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0053,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0051,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0052,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0058,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0040,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0045,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0002,Left_leg,Skeletal muscle,Leg,Left,leg left,2855
+PD53943ae_lo0069,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0007,Left_leg,Cartilage,Leg,Left,leg left,2855
+PD53943ae_lo0038,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0041,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0042,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0037,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0044,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0001,Left_leg,Skeletal muscle,Leg,Left,leg left,2855
+PD53943ae_lo0065,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0043,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0062,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0063,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0060,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0066,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0077,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0078,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0064,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0061,LEG PD53943ae B1-C2-S3,Skeletal muscle,Leg,Left,leg left,3152
+PD53943ae_lo0080,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943ae_lo0081,LEG PD53943ae B1-C2-S3,Cartilage,Leg,Left,leg left,3152
+PD53943y_lo0042,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0041,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0040,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943ag_lo0013,LIVER PD53943ag_B1-C2-S2,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,3137
+PD53943ag_lo0014,LIVER PD53943ag_B1-C2-S2,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,3137
+PD53943ag_lo0017,LIVER PD53943ag_B1-C2-S2,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,3137
+PD53943ag_lo0018,LIVER PD53943ag_B1-C2-S2,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,3137
+PD53943ag_lo0016,LIVER PD53943ag_B1-C2-S2,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,3137
+PD53943ag_lo0004,Liver,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,2855
+PD53943ag_lo0005,Liver,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,2855
+PD53943ag_lo0019,LIVER PD53943ag_B1-C2-S2,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,3137
+PD53943ag_lo0015,LIVER PD53943ag_B1-C2-S2,Hepatocyte,Liver,Anterior (face),F147 anterior liver face,3137
+PD53943ag_lo0007,Liver,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,2855
+PD53943ag_lo0008,Liver,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,2855
+PD53943ah_lo0004,Distal_Bowel,Crypt,Intestine,Distal,F148 distal intestine,2855
+PD53943ah_lo0005,Distal_Bowel,Crypt,Intestine,Distal,F148 distal intestine,2855
+PD53943ah_lo0018,Bowel,Muscularis propria ,Intestine,Distal,F148 distal intestine,3137
+PD53943ah_lo0019,Bowel,Muscularis propria ,Intestine,Distal,F148 distal intestine,3137
+PD53943ah_lo0009,Distal_Bowel,Muscularis propria,Intestine,Distal,F148 distal intestine,2855
+PD53943ah_lo0001,Distal_Bowel,Crypt,Intestine,Distal,F148 distal intestine,2855
+PD53943ah_lo0020,Bowel,Muscularis propria ,Intestine,Distal,F148 distal intestine,3137
+PD53943ah_lo0021,Bowel,Muscularis propria ,Intestine,Distal,F148 distal intestine,3137
+PD53943ah_lo0017,Bowel,Muscularis propria ,Intestine,Distal,F148 distal intestine,3137
+PD53943ai_lo0001,Proximal_Bowel,Crypt,Intestine,Proximal,F148 proximal intestine,2855
+PD53943ai_lo0003,Proximal_Bowel,Crypt,Intestine,Proximal,F148 proximal intestine,2855
+PD53943ai_lo0005,Proximal_Bowel,Crypt,Intestine,Proximal,F148 proximal intestine,2855
+PD53943ai_lo0007,Proximal_Bowel,Crypt,Intestine,Proximal,F148 proximal intestine,2855
+PD53943ai_lo0004,Proximal_Bowel,Crypt,Intestine,Proximal,F148 proximal intestine,2855
+PD53943ai_lo0008,Proximal_Bowel,Crypt,Intestine,Proximal,F148 proximal intestine,2855
+PD53943aj_lo0001,Bladder,Urothelium,Bladder,Bladder,Bladder,2855
+PD53943aj_lo0003,Bladder,Urothelium,Bladder,Bladder,Bladder,2855
+PD53943i_lo0021,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0060,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0043,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0022,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0061,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0020,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0038,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0044,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0024,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0025,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0026,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0036,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0049,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0050,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0037,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0006,Left_thyroid,Thyroid follicle,Thyroid,Left,thyroid left,2855
+PD53943b_lo0014,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0012,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0013,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0009,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0010,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0011,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0025,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0026,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0027,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0015,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0029,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0030,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0033,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0034,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0007,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0008,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0038,Brain,Germinal Matrix,Brain,Left,Brain,2855
+PD53943b_lo0039,Brain,Caudate nucleus,Brain,Left,Brain,2855
+PD53943b_lo0041,Brain,Germinal Matrix,Brain,Left,Brain,2855
+PD53943b_lo0043,Brain,Germinal Matrix,Brain,Left,Brain,2855
+PD53943b_lo0044,Brain,Choroid plexus,Brain,Left,Brain,2855
+PD53943b_lo0046,Brain,Germinal Matrix,Brain,Left,Brain,2855
+PD53943b_lo0001,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0002,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0003,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0004,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0005,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0006,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0053,Brain,Cerebellar hemisphere,Brain,Left,Brain,2855
+PD53943b_lo0057,Brain,Choroid plexus,Brain,Right,Brain,2855
+PD53943b_lo0141,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0142,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0143,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0144,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0147,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0148,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0149,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0016,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0017,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0018,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0019,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0020,Brain,Cortical plate,Brain,Left,Brain,2855
+PD53943b_lo0021,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0022,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0023,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0159,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0160,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0161,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0162,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0028,Brain,Ventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0164,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0165,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0166,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0089,Brain,Subventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0035,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0037,Brain,Germinal Matrix,Brain,Left,Brain,2855
+PD53943b_lo0167,Brain,Caudate nucleus,Brain,Right,Brain,3137
+PD53943b_lo0168,Brain,Caudate nucleus,Brain,Right,Brain,3137
+PD53943b_lo0169,Brain,Caudate nucleus,Brain,Right,Brain,3137
+PD53943b_lo0171,Brain,Caudate nucleus,Brain,Right,Brain,3137
+PD53943b_lo0172,Brain,Caudate nucleus,Brain,Right,Brain,3137
+PD53943b_lo0173,Brain,Caudate nucleus,Brain,Right,Brain,3137
+PD53943b_lo0047,Brain,Germinal Matrix,Brain,Left,Brain,2855
+PD53943b_lo0048,Brain,Cerebellar hemisphere,Brain,Left,Brain,2855
+PD53943b_lo0049,Brain,Cerebellar hemisphere,Brain,Left,Brain,2855
+PD53943b_lo0050,Brain,Cerebellar hemisphere,Brain,Left,Brain,2855
+PD53943b_lo0051,Brain,Cerebellar hemisphere,Brain,Left,Brain,2855
+PD53943b_lo0052,Brain,Cerebellar hemisphere,Brain,Left,Brain,2855
+PD53943b_lo0155,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0156,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0157,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0059,Brain,Subventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0060,Brain,Cortical plate,Brain,Right,Brain,2855
+PD53943b_lo0061,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0062,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0063,Brain,Subventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0064,Brain,Cortical plate,Brain,Right,Brain,2855
+PD53943b_lo0150,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0151,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0152,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0153,Brain,Choroid plexus,Brain,Right,Brain,3186
+PD53943b_lo0069,Brain,Subventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0090,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0091,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0158,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0075,Brain,Caudate nucleus,Brain,Right,Brain,2855
+PD53943b_lo0024,Brain,Subventricular zone,Brain,Left,Brain,2855
+PD53943b_lo0081,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0082,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0163,Brain,Caudate nucleus,Brain,Right,Brain,3186
+PD53943b_lo0085,Brain,Cortical plate,Brain,Right,Brain,2855
+PD53943b_lo0086,Brain,Subventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0087,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0088,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0093,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0070,Brain,Cortical plate,Brain,Right,Brain,2855
+PD53943b_lo0071,Brain,Germinal Matrix,Brain,Right,Brain,2855
+PD53943b_lo0092,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0174,Brain,Caudate nucleus,Brain,Right,Brain,3137
+PD53943b_lo0095,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0079,Brain,Cortical plate,Brain,Right,Brain,2855
+PD53943b_lo0066,Brain,Subventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0067,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0083,Brain,Ventricular zone,Brain,Right,Brain,2855
+PD53943b_lo0065,Brain,Cortical plate,Brain,Right,Brain,2855
+PD53943b_lo0072,Brain,Germinal matrix,Brain,Right,Brain,2855
+PD53943b_lo0073,Brain,Germinal Matrix,Brain,Right,Brain,2855
+PD53943y_lo0038,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0037,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0036,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0035,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0034,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0030,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0028,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0025,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254
+PD53943y_lo0014,PLACNT PD53943Y B1-C2-S2,Mesenchymal core,Placenta,Top right,placenta top right,3254
+PD53943y_lo0012,PLACNT PD53943Y B1-C2-S2,Mesenchymal core,Placenta,Top right,placenta top right,3254
+PD53943y_lo0008,Placenta,Mesenchymal core,Placenta,Top right,placenta top right,2855
+PD53943y_lo0007,Placenta,Mesenchymal core,Placenta,Top right,placenta top right,2855
+PD53943y_lo0006,Placenta,Mesenchymal core,Placenta,Top right,placenta top right,2855
+PD53943y_lo0005,Placenta,Trophoblasts,Trophoblasts,Top right,placenta top right,2855
+PD53943y_lo0003,Placenta,Trophoblasts,Trophoblasts,Top right,placenta top right,2855
+PD53943e_lo0081,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0080,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0078,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0077,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0076,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0075,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0073,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0071,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0068,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0067,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0066,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0065,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0062,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0061,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0059,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0057,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0056,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0054,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0053,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0052,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0051,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0050,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0049,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0047,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0046,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0045,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0044,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0043,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0042,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0041,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0040,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0039,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0038,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0037,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0036,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943e_lo0035,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254
+PD53943i_lo0039,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0040,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0041,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0042,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0053,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0030,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0045,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0046,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0048,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0035,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0059,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0051,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0062,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0019,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0064,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0032,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0052,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0034,THYRD PD53943i B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0058,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0033,THYRD PD53943i B1-C2-S2-3,Thyroid follicle,Thyroid,Left,thyroid left,3137
+PD53943i_lo0056,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0063,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0065,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0010,Left_thyroid,Thyroid follicle,Thyroid,Left,thyroid left,2855
+PD53943i_lo0057,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943i_lo0054,Thyroid PD53943I B1-C2-S4-5,Thyroid follicle,Thyroid,Left,thyroid left,3254
+PD53943l_lo0018,Right_thyroid,Thyroid follicle,Thyroid,Right,thyroid right,2855
+PD53943l_lo0031,THYRD PD53943L B1-C2-S4-5,Thyroid follicle,Thyroid,Right,thyroid right,3137
+PD53943l_lo0019,Right_thyroid,Thyroid follicle,Thyroid,Right,thyroid right,2855
+PD53943h_lo0030,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0026,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0024,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0016,Thymus,Medulla,Thymus,Thymus,thymus,3186
+PD53943h_lo0043,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0031,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0025,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0023,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0036,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0021,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0022,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0028,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0029,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0013,Thymus,Cortex,Thymus,Thymus,thymus,3186
+PD53943h_lo0044,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0032,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0004,Thymus,Medulla,Thymus,Thymus,thymus,2855
+PD53943h_lo0012,Thymus,Cortex,Thymus,Thymus,thymus,3186
+PD53943h_lo0033,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0034,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0035,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0039,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0037,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0027,Thymus PD53943h B1-C2-S2-3,Medulla,Thymus,Thymus,thymus,3137
+PD53943h_lo0042,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943h_lo0038,Thymus PD53943h B1-C2-S2-3,Cortex,Thymus,Thymus,thymus,3137
+PD53943s_lo0040,STOMACH PD53943s_B1-C2-S2-3,Epithelium,Stomach,Stomach,stomach,3137
+PD53943s_lo0029,STOMACH PD53943s_B1-C2-S2-3,Muscularis propria ,Stomach,Stomach,stomach,3137
+PD53943s_lo0027,STOMACH PD53943s_B1-C2-S2-3,Muscularis propria ,Stomach,Stomach,stomach,3137
+PD53943s_lo0034,STOMACH PD53943s_B1-C2-S2-3,Muscularis propria ,Stomach,Stomach,stomach,3137
+PD53943s_lo0033,STOMACH PD53943s_B1-C2-S2-3,Muscularis propria ,Stomach,Stomach,stomach,3137
+PD53943s_lo0028,STOMACH PD53943s_B1-C2-S2-3,Muscularis propria ,Stomach,Stomach,stomach,3137
+PD53943s_lo0026,STOMACH PD53943s_B1-C2-S2-3,Muscularis propria ,Stomach,Stomach,stomach,3137
+PD53943s_lo0035,STOMACH PD53943s_B1-C2-S2-3,Epithelium,Stomach,Stomach,stomach,3137
+PD53943s_lo0038,STOMACH PD53943s_B1-C2-S2-3,Epithelium,Stomach,Stomach,stomach,3137
+PD53943s_lo0032,STOMACH PD53943s_B1-C2-S2-3,Muscularis propria ,Stomach,Stomach,stomach,3137
+PD53943s_lo0037,STOMACH PD53943s_B1-C2-S2-3,Epithelium,Stomach,Stomach,stomach,3137
+PD53943s_lo0036,STOMACH PD53943s_B1-C2-S2-3,Epithelium,Stomach,Stomach,stomach,3137
+PD53943s_lo0001,Stomach,Epithelium,Stomach,Stomach,stomach,2855
+PD53943s_lo0039,STOMACH PD53943s_B1-C2-S2-3,Epithelium,Stomach,Stomach,stomach,3137
+PD53943f_lo0017,Spinal_column,Skeletal muscle,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943f_lo0015,Spinal_column,Skeletal muscle,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943f_lo0011,Spinal_column,Cartilage,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943f_lo0013,Spinal_column,Cartilage,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943f_lo0005,Spinal_column,Grey matter,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943f_lo0003,Spinal_column,Grey matter,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943f_lo0004,Spinal_column,Grey matter,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943f_lo0001,Spinal_column,Grey matter,Spinal column + ribcage,Spinal column + ribcage,Spinal column + ribcage,2855
+PD53943an_lo0005,SKIN PD53943an_B1-C2-S2-3,Epidermis,Skin,Head right,skin brain right,3152
+PD53943an_lo0002,Skin_brain_right,Epidermis,Skin,Head right,skin brain right,2855
+PD53943an_lo0004,Skin_brain_right,Epidermis,Skin,Head right,skin brain right,2855
+PD53943an_lo0006,SKIN PD53943an_B1-C2-S2-3,Epidermis,Skin,Head right,skin brain right,3152
+PD53943an_lo0001,Skin_brain_right,Epidermis,Skin,Head right,skin brain right,2855
+PD53943ao_lo0010,SKIN PD53943ao_B1-C2-S4-5,Epidermis,Skin,Lower back left,skin lower back left,3152
+PD53943j_lo0005,Left_arm,Skeletal muscle,Arm,Left,arm left,2855
+PD53943j_lo0006,Left_arm,Skeletal muscle,Arm,Left,arm left,2855
+PD53943j_lo0039,Arm,Skeletal muscle,Arm,Left,arm left,3137
+PD53943j_lo0037,Arm,Skeletal muscle,Arm,Left,arm left,3137
+PD53943j_lo0004,Left_arm,Skeletal muscle,Arm,Left,arm left,2855
+PD53943m_lo0035,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0005,Right_arm,Skeletal muscle,Arm,Right,arm right,2855
+PD53943m_lo0034,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0039,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0036,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0037,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0038,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0006,Right_arm,Skeletal muscle,Arm,Right,arm right,2855
+PD53943ao_lo0008,SKIN PD53943ao_B1-C2-S2-3,Epidermis,Skin,Lower back left,skin lower back left,3152
+PD53943ao_lo0003,Skin_back_left,Epidermis,Skin,Lower back left,skin lower back left,2855
+PD53943ao_lo0009,SKIN PD53943ao_B1-C2-S2-3,Epidermis,Skin,Lower back left,skin lower back left,3152
+PD53943ap_lo0002,Skin_brain_left,Epidermis,Skin,Head left,skin brain left,2855
+PD53943ap_lo0007,SKIN PD53943ap_B1-C2-S2-3,Epidermis,Skin,Head left,skin brain left,3152
+PD53943ap_lo0004,Skin_brain_left,Epidermis,Skin,Head left,skin brain left,2855
+PD53943ap_lo0003,Skin_brain_left,Epidermis,Skin,Head left,skin brain left,2855
+PD53943aq_lo0006,SKIN PD53943aq_B1-C2-S2-3,Epidermis,Skin,Lower back right,skin lower back right,3152
+PD53943at_lo0002,Skin_ribcage_left,Epidermis,Skin,Bottom left ribcage,bottom of ribcage left,2855
+PD53943at_lo0001,Skin_ribcage_left,Epidermis,Skin,Bottom left ribcage,bottom of ribcage left,2855
+PD53943g_lo0028,Bone,Skeletal muscle,Ribcage,Front right,ribcage front right,3137
+PD53943g_lo0038,Bone,Skeletal muscle,Ribcage,Front right,ribcage front right,3186
+PD53943g_lo0035,Bone,Cartilage,Ribcage,Front right,ribcage front right,3186
+PD53943m_lo0040,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0042,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943m_lo0041,Arm,Skeletal muscle,Arm,Right,arm right,3137
+PD53943j_lo0044,Arm,Epidermis,Arm,Left,arm left,3137
+PD53943j_lo0007,Left_arm,Epidermis,Arm,Left,arm left,2855
+PD53943j_lo0010,Left_arm,Epidermis,Arm,Left,arm left,2855
+PD53943m_lo0052,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0011,Right_arm,Epidermis,Arm,Right,arm right,2855
+PD53943m_lo0048,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0050,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0009,Right_arm,Epidermis,Arm,Right,arm right,2855
+PD53943m_lo0053,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0054,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0055,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0056,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0004,Right_arm,Epidermis,Arm,Right,arm right,2855
+PD53943m_lo0046,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943m_lo0013,Right_arm,Epidermis,Arm,Right,arm right,2855
+PD53943m_lo0047,Arm,Epidermis,Arm,Right,arm right,3137
+PD53943j_lo0012,Left_arm,Cartilage,Arm,Left,arm left,2855
+PD53943j_lo0013,Left_arm,Cartilage,Arm,Left,arm left,2855
+PD53943j_lo0011,Left_arm,Cartilage,Arm,Left,arm left,2855
+PD53943j_lo0055,Arm,Cartilage,Arm,Left,arm left,3137
+PD53943j_lo0047,Arm,Cartilage,Arm,Left,arm left,3137
+PD53943m_lo0021,Arm,Cartilage,Arm,Right,arm right,3186
+PD53943m_lo0025,Arm,Cartilage,Arm,Right,arm right,3137
+PD53943m_lo0031,Arm,Cartilage,Arm,Right,arm right,3137
+PD53943m_lo0032,Arm,Cartilage,Arm,Right,arm right,3137
+PD53943m_lo0026,Arm,Cartilage,Arm,Right,arm right,3137
+PD53943m_lo0028,Arm,Cartilage,Arm,Right,arm right,3137
+PD53943n_lo0004,Right_adrenal,Foetal zone,Adrenal,Right,adrenal right,2855
+PD53943n_lo0007,Right_adrenal,Foetal zone,Adrenal,Right,adrenal right,2855
+PD53943n_lo0009,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0010,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943o_lo0180,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0146,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0151,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0166,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0179,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0044,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0145,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0152,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0153,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0091,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0045,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0142,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0095,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0147,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0093,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0150,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0041,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0060,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0061,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0167,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0168,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0169,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0140,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0171,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0094,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0328,KIDNEY PD53943o B1-C2-S4-5,Blastema,Kidney,Left,kidney left,3186
+PD53943o_lo0038,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0040,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0163,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0130,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0132,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0136,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0137,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0138,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0139,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0184,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0185,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0186,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0329,KIDNEY PD53943o B1-C2-S4-5,Blastema,Kidney,Left,kidney left,3186
+PD53943o_lo0188,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0189,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0190,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0191,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0192,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0193,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0194,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0195,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0196,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0197,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0198,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0200,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0187,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0202,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0203,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0204,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0162,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0210,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0211,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0212,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0214,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0215,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0216,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0217,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0172,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0201,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0175,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0176,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0177,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0178,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0082,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0007,Left_kidney,Glomerulus,Kidney,Left,kidney left,2855
+PD53943o_lo0009,Left_kidney,Blastema,Kidney,Left,kidney left,2855
+PD53943o_lo0181,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0182,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0183,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0276,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0278,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0279,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0281,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0282,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0283,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0284,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0285,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0286,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0287,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0288,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0289,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0290,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0291,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0292,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0293,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0294,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0295,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0296,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0297,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0298,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0299,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0300,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0302,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0303,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0304,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0305,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0307,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0308,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0173,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0174,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0079,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0080,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0081,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0128,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0129,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0317,KIDNEY PD53943o B1-C2-S4-5,Primitive tubule,Kidney,Left,kidney left,3186
+PD53943o_lo0319,KIDNEY PD53943o B1-C2-S4-5,Primitive tubule,Kidney,Left,kidney left,3186
+PD53943o_lo0320,KIDNEY PD53943o B1-C2-S4-5,Primitive tubule,Kidney,Left,kidney left,3186
+PD53943o_lo0321,KIDNEY PD53943o B1-C2-S4-5,Primitive tubule,Kidney,Left,kidney left,3186
+PD53943o_lo0322,KIDNEY PD53943o B1-C2-S4-5,Blastema,Kidney,Left,kidney left,3186
+PD53943o_lo0323,KIDNEY PD53943o B1-C2-S4-5,Blastema,Kidney,Left,kidney left,3186
+PD53943o_lo0324,KIDNEY PD53943o B1-C2-S4-5,Blastema,Kidney,Left,kidney left,3186
+PD53943o_lo0326,KIDNEY PD53943o B1-C2-S4-5,Blastema,Kidney,Left,kidney left,3186
+PD53943o_lo0143,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0037,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0238,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0239,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0240,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0241,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0242,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0047,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0048,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0154,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0155,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0156,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0157,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0158,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0159,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0160,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0161,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0058,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0206,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0256,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0064,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0065,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0066,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0170,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0074,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0075,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0077,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0078,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0222,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0224,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0225,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0227,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0083,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0084,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0010,Left_kidney,Blastema,Kidney,Left,kidney left,2855
+PD53943o_lo0011,Left_kidney,Primitive tubule,Kidney,Left,kidney left,2855
+PD53943o_lo0013,Left_kidney,Primitive tubule,Kidney,Left,kidney left,2855
+PD53943o_lo0017,Left_kidney,Glomerulus,Kidney,Left,kidney left,2855
+PD53943o_lo0019,Left_kidney,Glomerulus,Kidney,Left,kidney left,2855
+PD53943o_lo0020,Left_kidney,Blastema,Kidney,Left,kidney left,2855
+PD53943o_lo0236,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0237,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0252,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0096,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0097,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0098,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0099,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0243,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0245,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0246,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0247,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0248,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0249,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0250,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0251,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0125,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0253,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0254,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0114,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0115,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0258,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0259,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0260,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0261,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0262,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0218,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0220,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0221,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0327,KIDNEY PD53943o B1-C2-S4-5,Blastema,Kidney,Left,kidney left,3186
+PD53943o_lo0126,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0127,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0315,KIDNEY PD53943o B1-C2-S4-5,Primitive tubule,Kidney,Left,kidney left,3186
+PD53943o_lo0229,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3137
+PD53943o_lo0231,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0232,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0233,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0275,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0089,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0090,KIDNEY PD53943o B1-C2-S2-3,Blastema,Kidney,Left,kidney left,3137
+PD53943o_lo0234,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0235,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0109,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0110,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0111,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0112,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0268,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0316,KIDNEY PD53943o B1-C2-S4-5,Primitive tubule,Kidney,Left,kidney left,3186
+PD53943o_lo0101,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0102,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0104,KIDNEY PD53943o B1-C2-S2-3,Primitive tubule,Kidney,Left,kidney left,3137
+PD53943o_lo0105,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0106,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0107,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0108,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0124,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0265,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0266,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0267,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0057,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0314,KIDNEY PD53943o B1-C2-S4-5,Primitive tubule,Kidney,Left,kidney left,3186
+PD53943o_lo0116,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0117,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0118,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0120,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0121,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0122,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0123,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3137
+PD53943o_lo0052,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0053,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0054,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0055,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0313,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0086,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0270,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0271,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0085,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0263,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0087,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0088,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0051,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0073,KIDNEY PD53943o B1-C2-S2-3,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0264,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0310,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0312,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0272,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0269,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0255,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0274,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943o_lo0049,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0050,KIDNEY PD53943o B1-C2-S2-3,Urothelium,Kidney,Left,kidney left,3186
+PD53943o_lo0273,KIDNEY PD53943o B1-C2-S4-5,Glomerulus,Kidney,Left,kidney left,3186
+PD53943p_lo0064,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0063,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0061,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0005,Left_lung,Simple tubule structure,Lung,Left,lung left,2855
+PD53943p_lo0058,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0062,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0052,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0059,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0060,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0065,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0080,LUNG PD53943p_B1-C2-S2-3,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0057,LUNG PD53943p_B1-C2-S4-5,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0001,Left_lung,Simple tubule structure,Lung,Left,lung left,2855
+PD53943p_lo0078,LUNG PD53943p_B1-C2-S2-3,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0077,LUNG PD53943p_B1-C2-S2-3,Simple tubule structure,Lung,Left,lung left,3137
+PD53943p_lo0076,LUNG PD53943p_B1-C2-S2-3,Simple tubule structure,Lung,Left,lung left,3137
+PD53943q_lo0005,Right_lung,Simple tubule structure,Lung,Right,lung right,2855
+PD53943q_lo0001,Right_lung,Simple tubule structure,Lung,Right,lung right,2855
+PD53943q_lo0019,Lung,Simple tubule structure,Lung,Right,lung right,3186
+PD53943p_lo0067,LUNG PD53943p_B1-C2-S2-3,Mesenchymal stroma,Lung,Left,lung left,3137
+PD53943p_lo0069,LUNG PD53943p_B1-C2-S4-5,Mesenchymal stroma,Lung,Left,lung left,3137
+PD53943p_lo0010,Left_lung,Mesenchymal stroma,Lung,Left,lung left,2855
+PD53943p_lo0011,Left_lung,Mesenchymal stroma,Lung,Left,lung left,2855
+PD53943p_lo0072,LUNG PD53943p_B1-C2-S4-5,Mesenchymal stroma,Lung,Left,lung left,3137
+PD53943p_lo0070,LUNG PD53943p_B1-C2-S4-5,Mesenchymal stroma,Lung,Left,lung left,3137
+PD53943q_lo0010,Right_lung,Mesenchymal stroma,Lung,Right,lung right,2855
+PD53943q_lo0011,Right_lung,Mesenchymal stroma,Lung,Right,lung right,2855
+PD53943q_lo0012,Right_lung,Mesenchymal stroma,Lung,Right,lung right,2855
+PD53943q_lo0008,Right_lung,Mesenchymal stroma,Lung,Right,lung right,2855
+PD53943r_lo0021,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0020,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0018,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0015,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0024,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0019,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0017,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0014,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0022,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0004,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,2855
+PD53943r_lo0006,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,2855
+PD53943r_lo0016,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943r_lo0005,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,2855
+PD53943r_lo0013,Gonad parenchyma - Right gonad,Gonadal parenchyma,Gonad,Right,gonad right,3254
+PD53943g_lo0036,Bone,Cartilage,Ribcage,Front right,ribcage front right,3186
+PD53943g_lo0027,Bone,Skeletal muscle,Ribcage,Front right,ribcage front right,3137
+PD53943g_lo0032,Bone,Cartilage,Ribcage,Front right,ribcage front right,3137
+PD53943g_lo0037,Bone,Skeletal muscle,Ribcage,Front right,ribcage front right,3186
+PD53943k_lo0019,Left_ribcage,Cartilage,Ribcage,Front left,ribcage front left ,2855
+PD53943k_lo0029,Bone,Cartilage,Ribcage,Front left,ribcage front left ,3186
+PD53943k_lo0030,Bone,Cartilage,Ribcage,Front left,ribcage front left ,3186
+PD53943k_lo0031,Bone,Skeletal muscle,Ribcage,Front left,ribcage front left ,3186
+PD53943k_lo0023,Left_ribcage,Cartilage,Ribcage,Front left,ribcage front left ,2855
+PD53943k_lo0033,Bone,Skeletal muscle,Ribcage,Front left,ribcage front left ,3186
+PD53943k_lo0034,Bone,Skeletal muscle,Ribcage,Front left,ribcage front left ,3186
+PD53943k_lo0035,Bone,Skeletal muscle,Ribcage,Front left,ribcage front left ,3186
+PD53943k_lo0037,Bone,Cartilage,Ribcage,Front left,ribcage front left ,3186
+PD53943k_lo0038,Bone,Cartilage,Ribcage,Front left,ribcage front left ,3186
+PD53943t_lo0023,PANCREAS PD53943t_B1-C2-S2-3,Tubular structure,Pancreas,Pancreas,pancreas,3137
+PD53943t_lo0017,PANCREAS PD53943t_B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3137
+PD53943t_lo0014,Pancreas,Tubular structure,Pancreas,Pancreas,pancreas,2855
+PD53943t_lo0020,PANCREAS PD53943t_B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3137
+PD53943u_lo0003,Left_gonad,Gonadal parenchyma,Gonad,Left,gonad left,2855
+PD53943u_lo0002,Left_gonad,Gonadal parenchyma,Gonad,Left,gonad left,2855
+PD53943w_lo0230,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0229,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0228,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0227,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0226,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0225,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0224,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0223,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0221,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0220,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0219,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0218,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0217,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0216,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0215,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0280,HEART PD53943V B1-C2-S60-61,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0257,HEART PD53943V B1-C2-S54-55,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0255,HEART PD53943V B1-C2-S54-55,Right ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0242,HEART PD53943V B1-C2-S52-53,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0240,HEART PD53943V B1-C2-S52-53,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0239,HEART PD53943V B1-C2-S52-53,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0224,HEART PD53943V B1-C2-S38-39,Right trabeculae,Heart,Heart,Heart,3254
+PD53943v_lo0223,HEART PD53943V B1-C2-S36-37,Apex,Heart,Heart,Heart,3254
+PD53943v_lo0222,HEART PD53943V B1-C2-S36-37,Apex,Heart,Heart,Heart,3254
+PD53943v_lo0215,HEART PD53943V B1-C2-S36-37,Apex,Heart,Heart,Heart,3254
+PD53943v_lo0206,HEART PD53943V B1-C2-S32-33,Left trabeculae,Heart,Heart,Heart,3254
+PD53943v_lo0201,HEART PD53943V B1-C2-S30-31,Apex,Heart,Heart,Heart,3254
+PD53943v_lo0173,HEART PD53943V B1-C2-S26-27,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0172,HEART PD53943V B1-C2-S26-27,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0160,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0158,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0157,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0155,HEART PD53943V B1-C2-S24-25,Left ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0153,HEART PD53943V B1-C2-S24-25,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0152,HEART PD53943V B1-C2-S24-25,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0151,HEART PD53943V B1-C2-S24-25,Right IVS,Heart,Heart,Heart,3254
+PD53943v_lo0150,HEART PD53943V B1-C2-S24-25,Right IVS,Heart,Heart,Heart,3254
+PD53943v_lo0149,HEART PD53943V B1-C2-S24-25,Right ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0148,HEART PD53943V B1-C2-S24-25,Right ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0147,HEART PD53943V B1-C2-S24-25,Right ventricle,Heart,Heart,Heart,3254
+PD53943v_lo0143,HEART PD53943V B1-C2-S10-11,DMP,Heart,Heart,Heart,3254
+PD53943v_lo0141,HEART PD53943V B1-C2-S10-11,DMP,Heart,Heart,Heart,3254
+PD53943v_lo0138,HEART PD53943V B1-C2-S10-11,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0137,HEART PD53943V B1-C2-S10-11,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0136,HEART PD53943V B1-C2-S10-11,Right IVS,Heart,Heart,Heart,3254
+PD53943v_lo0135,HEART PD53943V B1-C2-S10-11,RIGHT IVS,Heart,Heart,Heart,3254
+PD53943v_lo0134,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0133,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0132,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0131,HEART PD53943V B1-C2-S10-11,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0130,HEART PD53943V B1-C2-S10-11,Arotic valve,Heart,Heart,Heart,3254
+PD53943v_lo0129,HEART PD53943V B1-C2-S10-11,Arotic valve,Heart,Heart,Heart,3254
+PD53943v_lo0128,HEART PD53943V B1-C2-S8-9,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0127,HEART PD53943V B1-C2-S8-9,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0126,HEART PD53943V B1-C2-S8-9,Right IVS,Heart,Heart,Heart,3254
+PD53943v_lo0125,HEART PD53943V B1-C2-S8-9,RIGHT IVS,Heart,Heart,Heart,3254
+PD53943v_lo0123,HEART PD53943V B1-C2-S8-9,Left atria,Heart,Heart,Heart,3254
+PD53943v_lo0122,HEART PD53943V B1-C2-S8-9,Arotic valve,Heart,Heart,Heart,3254
+PD53943v_lo0120,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254
+PD53943v_lo0119,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254
+PD53943v_lo0118,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254
+PD53943v_lo0117,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254
+PD53943v_lo0116,HEART PD53943V B1-C2-S8-9,DMP,Heart,Heart,Heart,3254
+PD53943v_lo0114,HEART PD53943V B1-C2-S8-9,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0113,HEART PD53943V B1-C2-S8-9,Right IVS,Heart,Heart,Heart,3254
+PD53943v_lo0112,HEART PD53943V B1-C2-S8-9,RIGHT IVS,Heart,Heart,Heart,3254
+PD53943v_lo0111,HEART PD53943V B1-C2-S8-9,Left atria,Heart,Heart,Heart,3254
+PD53943v_lo0108,HEART PD53943V B1-C2-S8-9,Left atria,Heart,Heart,Heart,3254
+PD53943v_lo0106,HEART PD53943V B1-C2-S8-9,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0104,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254
+PD53943v_lo0103,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254
+PD53943v_lo0102,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254
+PD53943v_lo0101,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254
+PD53943v_lo0100,HEART PD53943V B1-C2-S8-9,Aorta,Heart,Heart,Heart,3254
+PD53943v_lo0099,HEART PD53943V B1-C2-S8-9,Arotic valve,Heart,Heart,Heart,3254
+PD53943v_lo0098,HEART PD53943V B1-C2-S8-9,Arotic valve,Heart,Heart,Heart,3254
+PD53943v_lo0097,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0096,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0095,HEART PD53943V B1-C2-S6-7,Right IVS,Heart,Heart,Heart,3254
+PD53943v_lo0094,HEART PD53943V B1-C2-S6-7,RIGHT IVS,Heart,Heart,Heart,3254
+PD53943v_lo0093,HEART PD53943V B1-C2-S6-7,Left atria,Heart,Heart,Heart,3254
+PD53943v_lo0091,HEART PD53943V B1-C2-S6-7,Left atria,Heart,Heart,Heart,3254
+PD53943v_lo0088,HEART PD53943V B1-C2-S6-7,Aorta,Heart,Heart,Heart,3254
+PD53943v_lo0085,HEART PD53943V B1-C2-S6-7,Arotic valve,Heart,Heart,Heart,3254
+PD53943v_lo0083,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0082,HEART PD53943V B1-C2-S6-7,Left IVS,Heart,Heart,Heart,3254
+PD53943v_lo0080,HEART PD53943V B1-C2-S6-7,RIGHT IVS,Heart,Heart,Heart,3254
+PD53943v_lo0079,HEART PD53943V B1-C2-S6-7,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0078,HEART PD53943V B1-C2-S6-7,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0077,HEART PD53943V B1-C2-S6-7,Pulmonary trunk,Heart,Heart,Heart,3254
+PD53943v_lo0076,HEART PD53943V B1-C2-S6-7,Arotic valve,Heart,Heart,Heart,3254
+PD53943v_lo0071,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0070,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0069,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0068,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0067,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0066,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0065,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0064,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0063,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0062,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0061,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0060,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0059,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0058,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0054,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0053,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0052,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0051,HEART PD53943v B1-C2-4-5,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0050,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0049,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0048,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0047,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0045,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0044,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0043,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0042,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0040,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0039,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0037,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0035,Heart PD53943v B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0034,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0033,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0054,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0051,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0049,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0050,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0052,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0053,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0196,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0198,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0005,Right_kidney,Definitive zone,Kidney,Right,kidney right,2855
+PD53943w_lo0047,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0004,Right_kidney,Definitive zone,Kidney,Right,kidney right,2855
+PD53943w_lo0167,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0086,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0006,Right_kidney,Fetal zone,Kidney,Right,kidney right,2855
+PD53943w_lo0007,Right_kidney,Fetal zone,Kidney,Right,kidney right,2855
+PD53943w_lo0201,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0176,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943v_lo0032,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0029,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0026,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0033,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0034,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0081,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0048,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0083,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0084,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0087,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0082,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0090,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0254,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0028,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0091,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0094,KIDNEY PD53943w B1-C2-S2-3,Primitive tubule,Kidney,Right,kidney right,3137
+PD53943w_lo0097,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0098,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0099,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0199,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0200,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0104,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0085,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0089,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0253,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0058,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0059,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0001,Right_kidney,Neuroblast cluster,Kidney,Right,kidney right,2855
+PD53943w_lo0002,Right_kidney,Neuroblast cluster,Kidney,Right,kidney right,2855
+PD53943w_lo0166,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0003,Right_kidney,Neuroblast cluster,Kidney,Right,kidney right,2855
+PD53943w_lo0064,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0065,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0067,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0008,Right_kidney,Blastema,Kidney,Right,kidney right,2855
+PD53943w_lo0055,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0252,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0071,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0072,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0073,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0177,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0178,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0179,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0079,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0080,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0139,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0141,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0144,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0145,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0070,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0147,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0148,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0150,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0255,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943v_lo0031,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0309,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943v_lo0030,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0029,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0028,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943w_lo0100,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0101,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0118,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0146,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0203,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0056,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0057,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0206,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0207,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0060,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0062,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0165,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0063,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0168,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0169,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0068,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0202,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0172,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0173,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0174,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0175,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0074,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0075,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0076,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0015,Right_kidney,Glomerulus,Kidney,Right,kidney right,2855
+PD53943w_lo0180,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0181,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0182,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0035,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0036,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0038,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0039,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0040,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0041,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0042,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0044,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0046,KIDNEY PD53943w B1-C2-S2-3,Blastema,Kidney,Right,kidney right,3137
+PD53943w_lo0194,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0195,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0259,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0260,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0261,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0262,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0263,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0107,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0108,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0204,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0205,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0112,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0113,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0208,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0209,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0117,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0212,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0213,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0170,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0069,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0233,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0234,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0009,Right_kidney,Blastema,Kidney,Right,kidney right,2855
+PD53943w_lo0010,Right_kidney,Blastema,Kidney,Right,kidney right,2855
+PD53943w_lo0011,Right_kidney,Blastema,Kidney,Right,kidney right,2855
+PD53943w_lo0013,Right_kidney,Glomerulus,Kidney,Right,kidney right,2855
+PD53943w_lo0014,Right_kidney,Glomerulus,Kidney,Right,kidney right,2855
+PD53943w_lo0136,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0016,Right_kidney,Primitive tubule,Kidney,Right,kidney right,2855
+PD53943w_lo0017,Right_kidney,Primitive tubule,Kidney,Right,kidney right,2855
+PD53943w_lo0018,Right_kidney,Primitive tubule,Kidney,Right,kidney right,2855
+PD53943w_lo0019,Right_kidney,Primitive tubule,Kidney,Right,kidney right,2855
+PD53943w_lo0021,Right_kidney,Primitive tubule,Kidney,Right,kidney right,2855
+PD53943w_lo0250,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0251,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0304,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0305,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0306,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0152,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0256,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0257,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0258,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0273,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0119,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0120,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943v_lo0027,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0026,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0024,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3137
+PD53943v_lo0023,Heart,Myocardium,Heart,Heart,Heart,3186
+PD53943w_lo0109,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0110,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943v_lo0022,Heart,Myocardium,Heart,Heart,Heart,3186
+PD53943v_lo0021,Heart,Myocardium,Heart,Heart,Heart,3186
+PD53943w_lo0114,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0115,KIDNEY PD53943w B1-C2-S2-3,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0137,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0138,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0294,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0231,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0232,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0124,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0125,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0129,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0130,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0236,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0238,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0239,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0240,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0310,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0164,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0211,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0295,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0296,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0298,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0303,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0187,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0188,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0189,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0191,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0308,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0193,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943v_lo0020,Heart,Myocardium,Heart,Heart,Heart,3186
+PD53943w_lo0241,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0242,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0275,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0276,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0121,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0171,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0264,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943v_lo0019,Heart,Myocardium,Heart,Heart,Heart,3186
+PD53943v_lo0018,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3152
+PD53943w_lo0267,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0269,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943v_lo0017,PD53943v_HEART_B1-C2-S2-3,Myocardium,Heart,Heart,Heart,3152
+PD53943w_lo0133,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0271,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0135,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0244,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0245,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0248,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0184,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0279,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0280,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0235,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0282,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0131,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0132,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0270,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0284,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0163,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0274,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0293,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0291,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0266,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0185,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0278,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0265,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0161,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0158,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0192,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0283,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0307,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0281,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0292,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0289,KIDNEY PD53943w B1-C2-S4-5,Primitive tubule,Kidney,Right,kidney right,3186
+PD53943w_lo0123,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3137
+PD53943w_lo0277,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0156,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0159,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0154,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0286,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943w_lo0249,KIDNEY PD53943w B1-C2-S4-5,Glomerulus,Kidney,Right,kidney right,3186
+PD53943n_lo0011,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0012,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0013,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0014,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0015,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0016,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0017,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0018,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943e_lo0034,PLACNT PD53943E B1-C2-S2,Mesenchymal core,Placenta,Bottom right,placenta bottom right,3254
+PD53943e_lo0032,PLACNT PD53943E B1-C2-S2,Mesenchymal core,Placenta,Bottom right,placenta bottom right,3254
+PD53943e_lo0031,PLACNT PD53943E B1-C2-S2,Mesenchymal core,Placenta,Bottom right,placenta bottom right,3254
+PD53943e_lo0027,PLACNT PD53943E B1-C2-S2,Mesenchymal core,Placenta,Bottom right,placenta bottom right,3254
+PD53943e_lo0026,PLACNT PD53943E B1-C2-S2,Mesenchymal core,Placenta,Bottom right,placenta bottom right,3254
+PD53943e_lo0023,PLACNT PD53943E B1-C2-S2,Mesenchymal core,Placenta,Bottom right,placenta bottom right,3254
+PD53943e_lo0007,Placenta,Trophoblasts,Trophoblasts,Bottom right,placenta bottom right,2855
+PD53943e_lo0006,Placenta,Trophoblasts,Trophoblasts,Bottom right,placenta bottom right,2855
+PD53943e_lo0005,Placenta,Mesenchymal core,Placenta,Bottom right,placenta bottom right,2855
+PD53943e_lo0002,Placenta,Trophoblasts,Trophoblasts,Bottom right,placenta bottom right,2855
+PD53943d_lo0008,Placenta,Trophoblasts,Trophoblasts,Top left,placenta top left,2855
+PD53943d_lo0006,Placenta,Trophoblasts,Trophoblasts,Top left,placenta top left,2855
+PD53943d_lo0004,Placenta,Mesenchymal core,Placenta,Top left,placenta top left,2855
+PD53943d_lo0003,Placenta,Mesenchymal core,Placenta,Top left,placenta top left,2855
+PD53943d_lo0002,Placenta,Mesenchymal core,Placenta,Top left,placenta top left,2855
+PD53943af_lo0008,Placenta,Trophoblasts,Trophoblasts,Bottom left,placenta bottom left,2855
+PD53943af_lo0004,Placenta,Mesenchymal core,Placenta,Bottom left,placenta bottom left,2855
+PD53943aa,Blood,Blood,Blood,Blood,Blood,3187
+PD53943av,Blood,Blood,Blood,Blood,Blood,3187
+PD53943aw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ax,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ay,Blood,Blood,Blood,Blood,Blood,3187
+PD53943az,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ba,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943be,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bf,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bi,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bo,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943br,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bs,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bt,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943by,Blood,Blood,Blood,Blood,Blood,3187
+PD53943bz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ca,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ce,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cf,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ch,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ci,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ck,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943co,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cr,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cs,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ct,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cy,Blood,Blood,Blood,Blood,Blood,3187
+PD53943cz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943da,Blood,Blood,Blood,Blood,Blood,3187
+PD53943db,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943de,Blood,Blood,Blood,Blood,Blood,3187
+PD53943df,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943di,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943do,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dr,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ds,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dt,Blood,Blood,Blood,Blood,Blood,3187
+PD53943du,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dy,Blood,Blood,Blood,Blood,Blood,3187
+PD53943dz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ea,Blood,Blood,Blood,Blood,Blood,3187
+PD53943eb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ec,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ed,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ee,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ef,Blood,Blood,Blood,Blood,Blood,3187
+PD53943eg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943eh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ei,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ej,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ek,Blood,Blood,Blood,Blood,Blood,3187
+PD53943el,Blood,Blood,Blood,Blood,Blood,3187
+PD53943em,Blood,Blood,Blood,Blood,Blood,3187
+PD53943en,Blood,Blood,Blood,Blood,Blood,3187
+PD53943eo,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ep,Blood,Blood,Blood,Blood,Blood,3187
+PD53943eq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943er,Blood,Blood,Blood,Blood,Blood,3187
+PD53943es,Blood,Blood,Blood,Blood,Blood,3187
+PD53943et,Blood,Blood,Blood,Blood,Blood,3187
+PD53943eu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ev,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ew,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ex,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ez,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fa,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fe,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ff,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fi,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fo,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fr,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fs,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ft,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fy,Blood,Blood,Blood,Blood,Blood,3187
+PD53943fz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ga,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ge,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gf,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gi,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943go,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gr,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gs,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gt,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gy,Blood,Blood,Blood,Blood,Blood,3187
+PD53943gz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ha,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943he,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hf,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hi,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ho,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hr,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hs,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ht,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hy,Blood,Blood,Blood,Blood,Blood,3187
+PD53943hz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ia,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ib,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ic,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ie,Blood,Blood,Blood,Blood,Blood,3187
+PD53943if,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ig,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ih,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ii,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ij,Blood,Blood,Blood,Blood,Blood,3187
+PD53943il,Blood,Blood,Blood,Blood,Blood,3187
+PD53943im,Blood,Blood,Blood,Blood,Blood,3187
+PD53943in,Blood,Blood,Blood,Blood,Blood,3187
+PD53943io,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ip,Blood,Blood,Blood,Blood,Blood,3187
+PD53943iq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ir,Blood,Blood,Blood,Blood,Blood,3187
+PD53943is,Blood,Blood,Blood,Blood,Blood,3187
+PD53943it,Blood,Blood,Blood,Blood,Blood,3187
+PD53943iu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943iv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943iw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ix,Blood,Blood,Blood,Blood,Blood,3187
+PD53943iy,Blood,Blood,Blood,Blood,Blood,3187
+PD53943iz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ja,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943je,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jf,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ji,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jo,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943js,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jt,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ju,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jy,Blood,Blood,Blood,Blood,Blood,3187
+PD53943jz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ka,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kd,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ke,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kf,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ki,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kl,Blood,Blood,Blood,Blood,Blood,3187
+PD53943km,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kn,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ko,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kr,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ks,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kt,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ku,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kw,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kx,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ky,Blood,Blood,Blood,Blood,Blood,3187
+PD53943kz,Blood,Blood,Blood,Blood,Blood,3187
+PD53943la,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lb,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lc,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ld,Blood,Blood,Blood,Blood,Blood,3187
+PD53943le,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lf,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lg,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lh,Blood,Blood,Blood,Blood,Blood,3187
+PD53943li,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lj,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lk,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ll,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lm,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ln,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lo,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lp,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lq,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lr,Blood,Blood,Blood,Blood,Blood,3187
+PD53943ls,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lt,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lu,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lv,Blood,Blood,Blood,Blood,Blood,3187
+PD53943lw,Gut,Gut,Gut_outlier,Gut,Gut,3186
+PD53943lx,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ly,Gut,Gut,Gut,Gut,Gut,3186
+PD53943lz,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ma,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mb,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mc,Gut,Gut,Gut,Gut,Gut,3186
+PD53943md,Gut,Gut,Gut,Gut,Gut,3186
+PD53943me,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mf,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mg,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mh,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mi,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mj,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mk,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943ml,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mm,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mn,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mo,Gut,Gut,Gut_Organoid,Gut,Gut,3186
+PD53943mp,Gut,Gut,Gut_outlier,Gut,Gut,3186
+PD53943mq,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mr,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ms,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mt,Gut,Gut,Gut_outlier,Gut,Gut,3186
+PD53943mu,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mv,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mw,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mx,Gut,Gut,Gut_outlier,Gut,Gut,3186
+PD53943my,Gut,Gut,Gut,Gut,Gut,3186
+PD53943mz,Gut,Gut,Gut,Gut,Gut,3186
+PD53943na,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nb,Gut,Gut,Gut_outlier,Gut,Gut,3186
+PD53943nc,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nd,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ne,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nf,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ng,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nh,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ni,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nj,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nk,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nl,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nm,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nn,Gut,Gut,Gut,Gut,Gut,3186
+PD53943no,Gut,Gut,Gut,Gut,Gut,3186
+PD53943np,Gut,Gut,Gut_outlier,Gut,Gut,3186
+PD53943nq,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nr,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ns,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nt,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nu,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nv,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nw,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nx,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ny,Gut,Gut,Gut,Gut,Gut,3186
+PD53943nz,Gut,Gut,Gut,Gut,Gut,3186
+PD53943oa,Gut,Gut,Gut,Gut,Gut,3186
+PD53943ob,Gut,Gut,Gut,Gut,Gut,3186
+PD53943af_lo0001,Placenta,Mesenchymal core,Placenta,Bottom left,placenta bottom left,2855
+PD53943n_lo0019,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0037,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0038,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0039,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0040,ADRENAL PD53943n B1-C2-S4-5,Foetal zone,Adrenal,Right,adrenal right,3581
+PD53943t_lo00026,PANCREAS PD53943t B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3506
+PD53943t_lo00027,PANCREAS PD53943t B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3506
+PD53943t_lo00032,PANCREAS PD53943t B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3506
+PD53943t_lo00034,PANCREAS PD53943t B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3506
+PD53943t_lo00036,PANCREAS PD53943t B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3506
+PD53943t_lo00037,PANCREAS PD53943t B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3506
+PD53943t_lo00038,PANCREAS PD53943t B1-C2-S2-3,Glandular structure,Pancreas,Pancreas,pancreas,3506
+PD53943ag_lo0020,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0021,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0022,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0023,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0024,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0025,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0026,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0027,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0028,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0029,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0030,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0031,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0032,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0033,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0034,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943ag_lo0035,LIVER PD53943ag B1_C2_S2,Haematopoietic cell enriched,Liver,Anterior (face),F147 anterior liver face,3506
+PD53943u_lo0006,Left_Gonad PD53943u B1-C2-S2-3,Gonadal parenchyma,Gonad,Left,gonad left,3506
+PD53943u_lo0007,Left_Gonad PD53943u B1-C2-S2-3,Gonadal parenchyma,Gonad,Left,gonad left,3506
+PD53943u_lo0008,Left_Gonad PD53943u B1-C2-S2-3,Gonadal parenchyma,Gonad,Left,gonad left,3506
+PD53943u_lo0009,Left_Gonad PD53943u B1-C2-S2-3,Gonadal parenchyma,Gonad,Left,gonad left,3506
+PD53943u_lo0010,Left_Gonad PD53943u B1-C2-S2-3,Gonadal parenchyma,Gonad,Left,gonad left,3506
+PD53943u_lo0011,Left_Gonad PD53943u B1-C2-S2-3,Gonadal parenchyma,Gonad,Left,gonad left,3506
+PD53943ah_lo0029,Distal_Bowel PD53943ah_B1-C2-S2-3,Crypt,Intestine,Distal,F148 distal intestine,3506
+PD53943ah_lo0031,Distal_Bowel PD53943ah_B1-C2-S2-3,Crypt,Intestine,Distal,F148 distal intestine,3506
+PD53943x_lo0018,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0019,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0022,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0023,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0024,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0025,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0026,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0028,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0030,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0031,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0032,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0033,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0034,ADRENAL PD53943x B1-C2-S2-3,Foetal zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0015,Adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0013,Adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0014,Adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0003,Left_adrenal,Foetal zone,Adrenal,Left,adrenal left,2855
+PD53943x_lo0011,Adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0012,Adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0011,Left_adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0012,Left_adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0013,Left_adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0014,Left_adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943x_lo0015,Left_adrenal,Foetal zone,Adrenal,Left,adrenal left,3137
+PD53943n_lo0005,Right_adrenal,Definitive zone,Adrenal,Right,adrenal right,2855
+PD53943n_lo0002,Right_adrenal,Definitive zone,Adrenal,Right,adrenal right,2855
+PD53943x_lo0001,Left_adrenal,Definitive zone,Adrenal,Left,adrenal left,2855
+PD53943x_lo0007,Left_adrenal,Definitive zone,Adrenal,Left,adrenal left,2855
+PD53943n_lo0020,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0021,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0022,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0023,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0024,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0025,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0026,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0027,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0028,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0029,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0030,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0031,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0032,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0033,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0034,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0035,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0041,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943n_lo0042,ADRENAL PD53943n B1-C2-S4-5,Definitive zone,Adrenal,Right,adrenal right,3581
+PD53943x_lo0016,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0017,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0020,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0021,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0029,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0035,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0036,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0037,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0038,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0039,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0040,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0041,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0042,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0043,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0044,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
+PD53943x_lo0045,ADRENAL PD53943x B1-C2-S2-3,Definitive zone,Adrenal,Left,adrenal left,3581
