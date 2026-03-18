@@ -6,6 +6,7 @@ trace.txt
 report.html
 timeline.html
 dag.dot
+data/
 data/**/*.bam
 data/**/*.bai
 results/
