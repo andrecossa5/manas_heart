@@ -27,8 +27,7 @@ workflow prep_bams {
     INDEX_BAM(bams_ch)
 
     // Group indexed BAMs back by tissue + chunk
-    grouped_ch = INDEX_BAM.out
-        .groupTuple(by: [0, 1])
+    grouped_ch = INDEX_BAM.out.groupTuple(by: [0, 1])
     // → [tissue, chunk_name, [bams], [bais]]
 
     // Merge grouped BAMs and reheader SM tags
