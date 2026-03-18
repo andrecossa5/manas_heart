@@ -20,6 +20,7 @@ workflow prep_bams {
             def bam = file("${params.bam_folder}/${tissue}/${sample}*.bam", followLinks: true)
                 .findAll { it.name.endsWith('.bam') }
                 .first()
+                .toRealPath()
             tuple(tissue, chunk_name, bam)
         }
 
