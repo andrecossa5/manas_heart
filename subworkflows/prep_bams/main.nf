@@ -17,7 +17,7 @@ workflow prep_bams {
     // Resolve BAM path from bam_folder glob
     bams_ch = samples_ch
         .map { tissue, chunk_name, sample ->
-            def bam = file("${params.bam_folder}/${tissue}/${sample}*.bam")
+            def bam = file("${params.bam_folder}/${tissue}/${sample}*.bam", followLinks: true)
                 .findAll { it.name.endsWith('.bam') }
                 .first()
             tuple(tissue, chunk_name, bam)
