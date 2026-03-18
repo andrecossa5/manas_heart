@@ -1,0 +1,14 @@
+# Nextflow
+.nextflow/
+.nextflow.log*
+work/
+trace.txt
+report.html
+timeline.html
+dag.dot
+
+# Params / secrets
+*.local.config
+
+# macOS
+.DS_Store
