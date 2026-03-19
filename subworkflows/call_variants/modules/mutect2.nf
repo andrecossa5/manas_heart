@@ -17,9 +17,9 @@ process MUTECT2 {
 
     stub:
     """
-    touch ${heart_chunk}_unfiltered.vcf.gz
-    touch ${heart_chunk}_unfiltered.vcf.gz.tbi
-    touch ${heart_chunk}_unfiltered.vcf.gz.stats
+    touch "${heart_chunk}_unfiltered.vcf.gz"
+    touch "${heart_chunk}_unfiltered.vcf.gz".tbi"
+    touch "${heart_chunk}_unfiltered.vcf.gz".stats"
     """
 
     script:
@@ -28,13 +28,13 @@ process MUTECT2 {
     """
     gatk Mutect2 \\
         --java-options "-Xmx${(task.memory.toGiga() * 0.85).intValue()}g" \\
-        -R ${ref} \\
-        -I ${heart_bam}    --tumor-sample  heart \\
-        -I ${placenta_bam} --normal-sample placenta \\
+        -R "${ref}" \\
+        -I "${heart_bam}"    --tumor-sample  heart \\
+        -I "${placenta_bam}" --normal-sample placenta \\
         ${germline_arg} \\
-        -O ${heart_chunk}_unfiltered.vcf.gz \\
-        --stats ${heart_chunk}_unfiltered.vcf.gz.stats
-    gatk IndexFeatureFile -I ${heart_chunk}_unfiltered.vcf.gz
+        -O "${heart_chunk}_unfiltered.vcf.gz" \\
+        --stats "${heart_chunk}_unfiltered.vcf.gz.stats"
+    gatk IndexFeatureFile -I "${heart_chunk}_unfiltered.vcf.gz"
     """
 
 }
