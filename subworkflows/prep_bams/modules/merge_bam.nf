@@ -16,7 +16,7 @@ process MERGE_BAM {
 
     script:
     """
-    samtools merge -@ ${task.cpus} -f merged_raw.bam ${bams}
+    samtools merge -@ ${task.cpus} -o merged_raw.bam *.bam
     samtools reheader -c "sed 's/SM:[^\\t]*/SM:${tissue}/g'" merged_raw.bam > "${tissue}.${chunk_name}.bam"
     samtools index "${tissue}.${chunk_name}.bam"
     """
