@@ -10,8 +10,8 @@ process MERGE_BAM {
 
     stub:
     """
-    touch ${tissue}.${chunk_name}.bam
-    touch ${tissue}.${chunk_name}.bam.bai
+    touch "${tissue}.${chunk_name}.bam"
+    touch "${tissue}.${chunk_name}.bam.bai"
     """
 
     script:

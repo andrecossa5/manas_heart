@@ -18,8 +18,8 @@ process MUTECT2 {
     stub:
     """
     touch "${heart_chunk}_unfiltered.vcf.gz"
-    touch "${heart_chunk}_unfiltered.vcf.gz".tbi"
-    touch "${heart_chunk}_unfiltered.vcf.gz".stats"
+    touch "${heart_chunk}_unfiltered.vcf.gz.tbi"
+    touch "${heart_chunk}_unfiltered.vcf.gz.stats"
     """
 
     script:
