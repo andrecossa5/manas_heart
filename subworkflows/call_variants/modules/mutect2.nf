@@ -10,16 +10,11 @@ process MUTECT2 {
     tuple path(ref), path(ref_fai), path(ref_dict)
 
     output:
-    tuple val(heart_chunk),
-          path("${heart_chunk}_unfiltered.vcf.gz"),
-          path("${heart_chunk}_unfiltered.vcf.gz.tbi"),
-          path("${heart_chunk}_unfiltered.vcf.gz.stats"), emit: unfiltered_vcf
+    tuple val(heart_chunk), path("${heart_chunk}_unfiltered.vcf.gz"), emit: unfiltered_vcf
 
     stub:
     """
     touch "${heart_chunk}_unfiltered.vcf.gz"
-    touch "${heart_chunk}_unfiltered.vcf.gz.tbi"
-    touch "${heart_chunk}_unfiltered.vcf.gz.stats"
     """
 
     script:
@@ -32,9 +27,7 @@ process MUTECT2 {
         -I "${heart_bam}"    --tumor-sample  heart \\
         -I "${placenta_bam}" --normal-sample placenta \\
         ${germline_arg} \\
-        -O "${heart_chunk}_unfiltered.vcf.gz" \\
-        --stats "${heart_chunk}_unfiltered.vcf.gz.stats"
-    gatk IndexFeatureFile -I "${heart_chunk}_unfiltered.vcf.gz"
+        -O "${heart_chunk}_unfiltered.vcf.gz"
     """
 
 }
