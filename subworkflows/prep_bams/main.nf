@@ -1,5 +1,5 @@
-include { INDEX_BAM } from './modules/index_bam'
-include { MERGE_BAM } from './modules/merge_bam'
+include { INDEX_BAM    } from './modules/index_bam'
+include { REHEADER_BAM } from './modules/reheader_bam'
 
 workflow prep_bams {
 
@@ -27,15 +27,14 @@ workflow prep_bams {
     // Index each BAM
     INDEX_BAM(bams_ch)
 
-    // Group indexed BAMs back by tissue + chunk
-    grouped_ch = INDEX_BAM.out.groupTuple(by: [0, 1])
-    // → [tissue, chunk_name, [bams], [bais]]
+    // Reheader each BAM: set SM tag to tissue name
+    REHEADER_BAM(INDEX_BAM.out)
 
-    // Merge grouped BAMs and reheader SM tags
-    MERGE_BAM(grouped_ch)
+    // Group reheadered BAMs back by tissue + chunk
+    grouped_ch = REHEADER_BAM.out.groupTuple(by: [0, 1])
+    // → [tissue, chunk_name, [rh_bam1, rh_bam2, ...], [rh_bai1, rh_bai2, ...]]
 
     emit:
-    merged_bams = MERGE_BAM.out
-    // → [tissue, chunk_name, merged_bam, merged_bai]
+    merged_bams = grouped_ch
 
 }

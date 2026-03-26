@@ -8,14 +8,14 @@ include { GATHER_STATS     } from './modules/gather_stats'
 workflow call_variants {
 
     take:
-    merged_heart    // [tissue="heart",    chunk_name, bam, bai]
-    merged_placenta // [tissue="placenta", chunk_name, bam, bai]
+    merged_heart    // [tissue="heart",    chunk_name, [bams], [bais]]
+    merged_placenta // [tissue="placenta", chunk_name, [bams], [bais]]
 
     main:
 
-    // Drop tissue field; keep [chunk_name, bam, bai] for each channel
-    heart_ch    = merged_heart.map    { tissue, chunk, bam, bai -> tuple(chunk, bam, bai) }
-    placenta_ch = merged_placenta.map { tissue, chunk, bam, bai -> tuple(chunk, bam, bai) }
+    // Drop tissue field; keep [chunk_name, [bams], [bais]] for each channel
+    heart_ch    = merged_heart.map    { tissue, chunk, bams, bais -> tuple(chunk, bams, bais) }
+    placenta_ch = merged_placenta.map { tissue, chunk, bams, bais -> tuple(chunk, bams, bais) }
 
     // Reference as value channel
     ref_ch = Channel.value(
@@ -44,7 +44,7 @@ workflow call_variants {
     scattered_ch = heart_ch
         .combine(placenta_ch)
         .combine(interval_ch)
-    // → [heart_chunk, heart_bam, heart_bai, placenta_chunk, placenta_bam, placenta_bai, interval_name, interval_file]
+    // → [heart_chunk, [heart_bams], [heart_bais], placenta_chunk, [placenta_bams], [placenta_bais], interval_name, interval_file]
 
     MUTECT2(scattered_ch, ref_ch)
 
