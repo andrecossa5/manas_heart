@@ -10,6 +10,7 @@ data/
 data/**/*.bam
 data/**/*.bai
 results/
+.vscode
 
 # Params / secrets
 *.local.config

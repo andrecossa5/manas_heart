@@ -1,6 +1,8 @@
-Sample,Organ,Histo,Bulk_phenotype,Site,Original_ID,Project_ID,Chunk
-PD53943e_lo0068,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254,Placenta.0
-PD53943e_lo0037,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254,Placenta.0
-PD53943e_lo0043,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254,Placenta.0
-PD53943e_lo0038,PLACNT PD53943E B1-C2-S2,Trophoblasts,Trophoblasts,Bottom right,Trophoblasts,3254,Placenta.0
-PD53943y_lo0034,PLACNT PD53943Y B1-C2-S2,Trophoblasts,Trophoblasts,Top right,placenta top right,3254,Placenta.0
+Sample_ID,Histo,regions,chunk
+PD53943y_lo0028,Top_right,Top_right,Placenta
+PD53943y_lo0035,Top_right,Top_right,Placenta
+PD53943e_lo0068,Bottom_right,Bottom_right,Placenta
+PD53943e_lo0038,Bottom_right,Bottom_right,Placenta
+PD53943d_lo0008,Top_left,Top_left,Placenta
+PD53943d_lo0006,Top_left,Top_left,Placenta
+PD53943af_lo0008,Bottom_left,Bottom_left,Placenta
