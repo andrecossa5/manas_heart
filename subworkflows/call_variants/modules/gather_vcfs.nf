@@ -2,7 +2,7 @@ process GATHER_VCFS {
 
     tag "${heart_chunk}"
 
-    publishDir "${params.output_folder}", mode: 'copy'
+    publishDir "${params.output_folder}/vcfs", mode: 'copy'
 
     input:
     tuple val(heart_chunk), path(vcfs)

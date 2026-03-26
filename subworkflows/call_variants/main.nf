@@ -1,6 +1,9 @@
 include { CREATE_INTERVALS } from './modules/create_intervals'
 include { MUTECT2          } from './modules/mutect2'
 include { GATHER_VCFS      } from './modules/gather_vcfs'
+include { FILTER_MUTS      } from './modules/filter_muts'
+include { GATHER_TABLE     } from './modules/gather_table'
+include { GATHER_STATS     } from './modules/gather_stats'
 
 workflow call_variants {
 
@@ -52,8 +55,19 @@ workflow call_variants {
 
     GATHER_VCFS(gathered_ch)
 
+    // Filter each gathered VCF
+    FILTER_MUTS(GATHER_VCFS.out.unfiltered_vcf)
+
+    // Collect all TSVs and stats across chunks, then gather into single files
+    all_tsvs  = FILTER_MUTS.out.tsv.map   { chunk, tsv   -> tsv   }.collect()
+    all_stats = FILTER_MUTS.out.stats.map  { chunk, stats -> stats }.collect()
+
+    GATHER_TABLE(all_tsvs)
+    GATHER_STATS(all_stats)
+
     emit:
-    unfiltered_vcf = GATHER_VCFS.out.unfiltered_vcf
-    // → [heart_chunk, vcf.gz]
+    unfiltered_vcf  = GATHER_VCFS.out.unfiltered_vcf
+    filtered_tsv    = GATHER_TABLE.out
+    filtered_stats  = GATHER_STATS.out
 
 }

@@ -24,11 +24,11 @@ def parse_args():
     p.add_argument('--chunk', help='Chunk name (inferred from filename if omitted)')
     p.add_argument('--ad-placenta-max', type=int,   default=100,     metavar='N',
                    help='Max alt AD allowed in placenta [%(default)s]')
-    p.add_argument('--ad-heart-min',    type=int,   default=1,     metavar='N',
+    p.add_argument('--ad-heart-min',    type=int,   default=3,     metavar='N',
                    help='Min alt AD in heart [%(default)s]')
     p.add_argument('--dp-min',          type=int,   default=10,    metavar='N',
                    help='Min DP required in both heart and placenta [%(default)s]')
-    p.add_argument('--af-heart-max',    type=float, default=0.5,  metavar='F',
+    p.add_argument('--af-heart-max',    type=float, default=0.75,  metavar='F',
                    help='Max alt AF in heart [%(default)s]')
     p.add_argument('--mmq-min',         type=int,   default=20,    metavar='Q',
                    help='Min alt allele median mapping quality [%(default)s]')
@@ -36,6 +36,8 @@ def parse_args():
                    help='Min alt allele median base quality [%(default)s]')
     p.add_argument('--sb-pval-min',     type=float, default=0.001, metavar='P',
                    help='Min Fisher strand bias p-value — discard if < this [%(default)s]')
+    p.add_argument('--alt2-ad-ratio-max', type=float, default=0.2,  metavar='F',
+                   help='Max ALT2/ALT1 AD ratio in heart for multiallelic records [%(default)s]')
     p.add_argument('--mpos-min',        type=int,   default=3,     metavar='N',
                    help='Min median distance from read end [%(default)s]')
     p.add_argument('--output', '-o', default=None,
@@ -64,10 +66,12 @@ def main():
 
         counters['total'] += 1
 
-        # --- discard immediately if multi-allelic ---
+        # --- discard multiallelic only if ALT2 AD > 1/5 of ALT1 AD in heart ---
         if len(v.ALT) > 1:
-            counters['multiallelic'] += 1
-            continue
+            _ad = v.format('AD')
+            if int(_ad[0, 2]) > int(_ad[0, 1]) * args.alt2_ad_ratio_max:
+                counters['multiallelic'] += 1
+                continue
 
         # --- INFO filters (cheap, no FORMAT parsing yet) ---
         mmq  = v.INFO.get('MMQ')   # Number=R: (ref_MMQ, alt_MMQ)
@@ -135,28 +139,28 @@ def main():
 
         counters['passed'] += 1
         records.append({
-            'chunk':       chunk,
-            'CHROM':       v.CHROM,
-            'POS':         v.POS,
-            'REF':         v.REF,
-            'ALT':         v.ALT[0],
+            'chunk':        chunk,
+            'CHROM':        v.CHROM,
+            'POS':          v.POS,
+            'REF':          v.REF,
+            'ALT':          v.ALT[0],
             'AD_placenta':  ad_placenta_alt,
             'AD_heart':     ad_heart_alt,
             'DP_heart':     dp_heart,
             'DP_placenta':  dp_placenta,
-            'AF_placenta': round(af_placenta, 4),
-            'AF_heart':    round(af_heart, 4),
-            'median_MQ':   int(alt_mmq),
-            'median_BQ':   int(alt_mbq),
-            'SB_pval':     round(sb_pval, 6),
-            'MPOS':        int(alt_mpos),
+            'AF_placenta':  af_placenta,
+            'AF_heart':     af_heart,
+            'median_BQ':    int(alt_mbq),
+            'median_MQ':    int(alt_mmq),
+            'SB_pval':      sb_pval,
+            'MPOS':         int(alt_mpos),
         })
 
     vcf.close()
 
     # --- build dataframe ---
     cols = ['chunk', 'CHROM', 'POS', 'REF', 'ALT',
-            'AD_placenta', 'AD_heart', f'AD_{chunk}',
+            'AD_placenta', 'AD_heart',
             'DP_heart', 'DP_placenta', 'AF_placenta', 'AF_heart',
             'median_MQ', 'median_BQ', 'SB_pval', 'MPOS']
     df = pd.DataFrame(records, columns=cols)
@@ -168,7 +172,6 @@ def main():
 
     # --- stats file ---
     stats = pd.DataFrame([
-        ('chunk',          chunk),
         ('total',          counters['total']),
         ('multiallelic',   counters['multiallelic']),
         ('failed_mmq',     counters['mmq']),

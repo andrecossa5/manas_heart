@@ -4,5 +4,15 @@
     "bam_folder":        "/Users/cossa/Desktop/projects/manas_heart/data/bams",
     "ref":               "/Users/cossa/Desktop/projects/manas_heart/data/resources/ref.fa",
     "germline_resource": null,
-    "output_folder":     "/Users/cossa/Desktop/projects/manas_heart/results"
+    "output_folder":     "/Users/cossa/Desktop/projects/manas_heart/results",
+    "scatter_count":     50,
+    "ad_placenta_max":   10,
+    "ad_heart_min":      3,
+    "dp_min":            10,
+    "af_heart_max":      0.75,
+    "mmq_min":           20,
+    "mbq_min":           20,
+    "sb_pval_min":       0.001,
+    "mpos_min":          5,
+    "alt2_ad_ratio_max": 0.2
 }

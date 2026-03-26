@@ -21,28 +21,6 @@ path_data = os.path.join(path_main, 'data')
 path_input = os.path.join(path_main, 'data/input')
 path_filtered = os.path.join(path_main, 'results/filtered.1')
 
-# Creata a table of with all filtered mutations
-L = []
-for file in os.listdir(path_filtered):
-    if file.endswith('.tsv'):
-        chunk = file.replace('_filtered.tsv', '')
-        L.append(pd.read_csv(os.path.join(path_filtered, file), sep='\t').drop(columns=[f'AD_{chunk}']))
-df = pd.concat(L, ignore_index=True)
-df['region'] = df['chunk'].map(lambda x: x.split('.')[0])
-df.to_csv(os.path.join(path_main, 'results/filtered.1/ALL_FILTERED.tsv'), sep='\t', index=False)
-
-# Creata a table of with all filtering stats
-L = []
-for file in os.listdir(path_filtered):
-    if file.endswith('.stats'):
-        chunk = file.replace('_filtered.stats', '')
-        L.append(pd.read_csv(os.path.join(path_filtered, file), sep='\t').assign(chunk=chunk))
-stats = pd.concat(L, ignore_index=True)
-stats = stats.query('filter!="chunk"')
-stats['n_records'] = stats['n_records'].astype(int)
-stats.to_csv(os.path.join(path_main, 'results/filtered.1/ALL_FILTERED.stats'), sep='\t', index=False)
-stats.groupby('filter')['n_records'].mean().sort_values(ascending=False)
-
 
 ##
 
