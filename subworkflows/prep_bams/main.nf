@@ -14,13 +14,13 @@ workflow prep_bams {
             samples.collect { sample -> tuple(tissue, chunk_name, sample) }
         }
 
-    // Resolve BAM path from bam_folder glob
+    // Resolve BAM path by listing the directory (handles symlinks on Lustre)
     bams_ch = samples_ch
         .map { tissue, chunk_name, sample ->
-            def bam = file("${params.bam_folder}/${tissue}/${sample}*.bam", followLinks: true)
-                .findAll { it.name.endsWith('.bam') }
+            def bam = file("${params.bam_folder}/${tissue}")
+                .listFiles()
+                .findAll { it.name.startsWith(sample) && it.name.endsWith('.bam') }
                 .first()
-                .toRealPath()
             tuple(tissue, chunk_name, bam)
         }
 
