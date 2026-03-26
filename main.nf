@@ -5,13 +5,12 @@ include { call_variants } from './subworkflows/call_variants/main'
 
 workflow {
 
-    // ── Placenta: Trophoblasts only, all samples merged into one chunk ──────
+    // ── Placenta: all samples grouped by chunk ───────────────────────────────
     placenta_ch = Channel.fromPath(params.placenta_csv)
         .splitCsv(header: true)
-        .filter  { row -> row.Histo == 'Trophoblasts' }
-        .map     { row -> tuple("placenta", row.Histo, row.Sample_ID) }
+        .map     { row -> tuple("placenta", row.chunk, row.Sample_ID) }
         .groupTuple(by: [0, 1])
-    // → ["placenta", "Trophoblasts", [s1, s2, ...]]
+    // → ["placenta", "Placenta", [s1, s2, ...]]
 
     // ── Heart: group samples by Chunk field ─────────────────────────────────
     heart_ch = Channel.fromPath(params.heart_csv)
