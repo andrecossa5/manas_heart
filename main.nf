@@ -9,14 +9,14 @@ workflow {
     placenta_ch = Channel.fromPath(params.placenta_csv)
         .splitCsv(header: true)
         .filter  { row -> row.Histo == 'Trophoblasts' }
-        .map     { row -> tuple("placenta", row.Histo, row.Sample) }
+        .map     { row -> tuple("placenta", row.Histo, row.Sample_ID) }
         .groupTuple(by: [0, 1])
     // → ["placenta", "Trophoblasts", [s1, s2, ...]]
 
     // ── Heart: group samples by Chunk field ─────────────────────────────────
     heart_ch = Channel.fromPath(params.heart_csv)
         .splitCsv(header: true)
-        .map     { row -> tuple("heart", row.Chunk, row.Sample) }
+        .map     { row -> tuple("heart", row.chunk, row.Sample_ID) }
         .groupTuple(by: [0, 1])
     // → ["heart", "Myocardium.0", [s1, s2, s3, s4]], ["heart", "Myocardium.1", [...]], ...
 
