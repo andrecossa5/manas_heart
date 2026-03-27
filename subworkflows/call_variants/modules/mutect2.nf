@@ -20,16 +20,18 @@ process MUTECT2 {
     script:
     def germline_arg = params.germline_resource ? "--germline-resource ${params.germline_resource}" : ""
     def heart_i    = (heart_bams    instanceof List ? heart_bams    : [heart_bams])
-                     .collect { "-I ${it} --tumor-sample  heart"    }.join(" \\\n        ")
+                     .collect { "-I ${it}" }.join(" \\\n        ")
     def placenta_i = (placenta_bams instanceof List ? placenta_bams : [placenta_bams])
-                     .collect { "-I ${it} --normal-sample placenta" }.join(" \\\n        ")
+                     .collect { "-I ${it}" }.join(" \\\n        ")
 
     """
     gatk Mutect2 \\
         --java-options "-Xmx${(task.memory.toGiga() * 0.85).intValue()}g" \\
         -R "${ref}" \\
         ${heart_i} \\
+        --tumor-sample  heart \\
         ${placenta_i} \\
+        --normal-sample placenta \\
         -L "${interval_file}" \\
         ${germline_arg} \\
         -O "${heart_chunk}.${interval_name}.unfiltered.vcf.gz"
