@@ -36,7 +36,7 @@ def parse_args():
                    help='Min alt allele median base quality [%(default)s]')
     p.add_argument('--sb-pval-min',     type=float, default=0.001, metavar='P',
                    help='Min Fisher strand bias p-value — discard if < this [%(default)s]')
-    p.add_argument('--alt2-ad-ratio-max', type=float, default=0.2,  metavar='F',
+    p.add_argument('--alt2-ad-ratio-max', type=float, default=0.5,  metavar='F',
                    help='Max ALT2/ALT1 AD ratio in heart for multiallelic records [%(default)s]')
     p.add_argument('--mpos-min',        type=int,   default=3,     metavar='N',
                    help='Min median distance from read end [%(default)s]')
@@ -105,7 +105,7 @@ def main():
         if ad_placenta_alt > args.ad_placenta_max:
             counters['ad_placenta'] += 1
             continue
-        if ad_heart_alt <= args.ad_heart_min:
+        if ad_heart_alt < args.ad_heart_min:
             counters['ad_heart'] += 1
             continue
 
@@ -114,7 +114,7 @@ def main():
         af_heart    = float(af[0, 0])
         af_placenta = float(af[1, 0])
 
-        if af_heart >= args.af_heart_max:
+        if af_heart > args.af_heart_max:
             counters['af_heart'] += 1
             continue
 

@@ -1,5 +1,5 @@
 """
-Create the final table of somatic mutations.
+Analyze filtered calls.
 """
 
 import os
@@ -19,7 +19,7 @@ plu.set_rcParams()
 path_main = '/Users/cossa/Desktop/projects/manas_heart'
 path_data = os.path.join(path_main, 'data')
 path_input = os.path.join(path_main, 'data/input')
-path_filtered = os.path.join(path_main, 'results/filtered.1')
+path_filtered = os.path.join(path_main, 'results')
 
 
 ##
@@ -32,7 +32,7 @@ df_samples = pd.read_csv(os.path.join(path_input, 'heart_samples.csv'))
 df_samples = df_samples.rename(columns={'Chunk': 'chunk', 'Sample': 'Sample_ID'})
 
 # Filtered mutations
-df = pd.read_csv(os.path.join(path_filtered, 'ALL_FILTERED.tsv'), sep='\t')
+df = pd.read_csv(os.path.join(path_filtered, 'ALL_FILTERED.tsv.gz'), sep='\t')
 df['mutation_id'] = df.apply(lambda x: f"{x['CHROM']}_{x['POS']}_{x['REF']}_{x['ALT']}", axis=1)
 
 # Original muts
@@ -42,7 +42,7 @@ df_LCM = pd.read_csv(os.path.join(path_data, 'Heart_metadata.csv'))
 samples_merged = df_samples['Sample_ID'].unique()
 samples_LCM = df_LCM['Sample_ID'].unique()
 common = list(set(samples_merged) & set(samples_LCM))
-df_LCM = df_LCM.query('NV>=3 and Sample_ID in @common')
+df_LCM = df_LCM.query('NV>=4 and Sample_ID in @common')
 
 # Checks
 assert df['chunk'].isin(df_samples['chunk']).all()
@@ -59,16 +59,11 @@ df['PASS'] = (df['AD_heart']>=3) & \
              (df['DP_heart']>=10) & \
              (df['DP_placenta']>=10) & \
              (df['SB_pval']>=0.01) & \
-             (df['median_BQ']>=20) & \
              (df['AD_placenta']<2)
 df_filtered = df[df['PASS']].copy()
 df_filtered
 df['PASS'].value_counts(normalize=True)
-
-df['AF_heart'].describe()
-df['AF_placenta'].hist()
-df['AF_heart'].hist()
-plt.show()
+df_filtered['AF_heart'].min()
 
 # Single LCM
 total_merged_set = set(df['mutation_id'].unique())
@@ -78,6 +73,10 @@ print(f"Fraction of total mutations in LCM: {len(total_merged_set & LCM_set) / l
 print(f"Fraction of filtered mutations in LCM: {len(filtered_merged_set & LCM_set) / len(filtered_merged_set):.4%}")
 print(f"Fraction of LCM mutations in total: {len(total_merged_set & LCM_set) / len(LCM_set):.4%}")
 print(f"Fraction of LCM mutations in filtered: {(len(filtered_merged_set & LCM_set) / len(LCM_set)):.4%}")
+
+missing = LCM_set - total_merged_set
+df_LCM.query('mutation_id in @missing')[['NV', 'VAF']].describe()
+df['AD_heart'].describe()
 
 
 ##
@@ -99,8 +98,7 @@ grouped_merged['PASS'] = (grouped_merged['AD_heart']>=3) & \
                          (grouped_merged['DP_heart']>=10) & \
                          (grouped_merged['DP_placenta']>=10) & \
                          (grouped_merged['SB_pval']>=0.01) & \
-                         (grouped_merged['median_BQ']>=30) & \
-                         (grouped_merged['AD_placenta']==0)
+                         (grouped_merged['AD_placenta']<2)
 
 grouped_merged = grouped_merged[grouped_merged['PASS']].copy()
 grouped_merged['AF_heart'] = grouped_merged['AD_heart'] / ( grouped_merged['DP_heart'] + 10**-18 )
