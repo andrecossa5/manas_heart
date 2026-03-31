@@ -3,10 +3,10 @@ Prep input metadata.
 """
 
 import os
-import numpy as np
 import pandas as pd
 import matplotlib
 import plotting_utils as plu
+import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import linkage, leaves_list
 from sklearn.metrics import pairwise_distances
 matplotlib.use('macOSX')
@@ -20,6 +20,7 @@ plu.set_rcParams()
 path_main = '/Users/cossa/Desktop/projects/manas_heart'
 path_data = os.path.join(path_main, 'data')
 path_input = os.path.join(path_main, 'data/input')
+path_figures = os.path.join(path_main, 'figures')
 
 # Read all files
 
@@ -68,6 +69,14 @@ meta['chunk'] = meta['regions'].copy()
 
 # Counts
 meta['regions'].value_counts()
+
+
+# Viz
+fig , ax = plt.subplots(figsize=(3.5,3.5))
+plu.counts_plot(meta, 'regions', ax=ax)
+plu.format_ax(ax, xlabel='', ylabel='n samples', rotx=90, reduced_spines=True)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'samples_per_region.pdf'))
 
 
 ##
@@ -157,6 +166,7 @@ meta.to_csv(os.path.join(path_input, 'heart_samples.csv'), index=False)
 ##
 
 
+
 # Placenta
 old_meta = pd.read_csv(os.path.join(path_input, 'All_Samples_Fetal_Natalie.csv'))
 old_meta = old_meta.query('Histo == "Trophoblasts"')
@@ -183,6 +193,21 @@ meta['Histo'] = meta['regions']
     meta[['Sample_ID', 'Histo', 'regions', 'chunk']]
     .to_csv(os.path.join(path_input, 'placenta_samples.csv'), index=False)
 )
+
+
+##
+
+
+# Visualize
+meta = pd.read_csv(os.path.join(path_input, 'heart_samples.csv'))
+meta_p = pd.read_csv(os.path.join(path_input, 'placenta_samples.csv'))
+meta = pd.concat([meta, meta_p], ignore_index=True)
+
+fig , ax = plt.subplots(figsize=(3.5,3.5))
+plu.counts_plot(meta, 'chunk', ax=ax)
+plu.format_ax(ax, xlabel='', ylabel='n samples', rotx=90, reduced_spines=True)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'samples_per_chunk.pdf'))
 
 
 ##

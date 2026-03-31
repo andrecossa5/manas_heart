@@ -86,10 +86,10 @@ def main():
         alt_mbq  = mbq[1]  if hasattr(mbq,  '__len__') else mbq
         alt_mpos = mpos[0] if hasattr(mpos, '__len__') else mpos
 
-        if alt_mmq < args.mmq_min:
+        if alt_mmq <= args.mmq_min:
             counters['mmq'] += 1
             continue
-        if alt_mbq < args.mbq_min:
+        if alt_mbq <= args.mbq_min:
             counters['mbq'] += 1
             continue
         if alt_mpos < args.mpos_min:
