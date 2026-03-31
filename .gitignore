@@ -1,4 +1,5 @@
 # Nextflow
+figures/
 .nextflow/
 .nextflow.log*
 work/
