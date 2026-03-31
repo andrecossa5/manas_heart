@@ -34,6 +34,7 @@ process MUTECT2 {
         --normal-sample placenta \\
         -L "${interval_file}" \\
         ${germline_arg} \\
+        --genotype-germline-sites \
         -O "${heart_chunk}.${interval_name}.unfiltered.vcf.gz"
     """
 

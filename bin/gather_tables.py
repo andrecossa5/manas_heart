@@ -8,11 +8,13 @@ Modes:
   stats  — concatenate *_filtered.stats files into ALL_FILTERED.stats
 
 Usage:
-    gather_tables.py --mode muts  --output ALL_FILTERED.tsv   *.tsv
-    gather_tables.py --mode stats --output ALL_FILTERED.stats *.stats
+    gather_tables.py --mode muts  --output ALL_FILTERED.tsv.gz *.tsv
+    gather_tables.py --mode stats --output ALL_FILTERED.stats  *.stats
 """
 
 import sys
+import csv
+import gzip
 import argparse
 import pandas as pd
 
@@ -27,16 +29,31 @@ def parse_args():
     return p.parse_args()
 
 
-def gather_muts(files):
-    L = []
-    for f in files:
-        L.append(pd.read_csv(f, sep='\t'))
-    out = pd.concat(L, ignore_index=True)
-    out['region'] = out['chunk'].map(lambda x: x.split('.')[0])
-    return out
+def gather_muts(files, output):
+    """Stream all TSVs into a single gzip TSV — O(1) memory."""
+    open_fn = gzip.open if output.endswith('.gz') else open
+    n_rows = 0
+    writer = None
+
+    with open_fn(output, 'wt') as out_fh:
+        for f in files:
+            in_open = gzip.open if f.endswith('.gz') else open
+            with in_open(f, 'rt', newline='') as in_fh:
+                reader = csv.DictReader(in_fh, delimiter='\t')
+                if writer is None:
+                    fieldnames = reader.fieldnames + ['region']
+                    writer = csv.DictWriter(out_fh, fieldnames=fieldnames,
+                                            delimiter='\t')
+                    writer.writeheader()
+                for row in reader:
+                    row['region'] = row['chunk'].split('.')[0]
+                    writer.writerow(row)
+                    n_rows += 1
+
+    print(f'Wrote {n_rows:,} rows to {output}', file=sys.stderr)
 
 
-def gather_stats(files):
+def gather_stats(files, output):
     L = []
     for f in files:
         chunk = f.replace('_filtered.stats', '').split('/')[-1]
@@ -44,20 +61,16 @@ def gather_stats(files):
         L.append(df)
     out = pd.concat(L, ignore_index=True)
     out['n_records'] = out['n_records'].astype(int)
-    return out
+    out.to_csv(output, sep='\t', index=False)
+    print(f'Wrote {len(out):,} rows to {output}', file=sys.stderr)
 
 
 def main():
     args = parse_args()
-
     if args.mode == 'muts':
-        out = gather_muts(args.files)
+        gather_muts(args.files, args.output)
     else:
-        out = gather_stats(args.files)
-
-    compression = 'gzip' if args.output.endswith('.gz') else None
-    out.to_csv(args.output, sep='\t', index=False, compression=compression)
-    print(f'Wrote {len(out):,} rows to {args.output}', file=sys.stderr)
+        gather_stats(args.files, args.output)
 
 
 if __name__ == '__main__':

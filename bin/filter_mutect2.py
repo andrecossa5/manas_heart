@@ -11,10 +11,19 @@ Usage:
 
 import sys
 import os
+import csv
+import gzip
+import math
 import argparse
 import pandas as pd
 from cyvcf2 import VCF
 from scipy.stats import fisher_exact
+
+_PL_MISSING = 2147483647   # cyvcf2 sentinel for missing integer FORMAT values
+
+def _safe_pl(x):
+    x = int(x)
+    return None if x == _PL_MISSING else x
 
 
 def parse_args():
@@ -22,7 +31,7 @@ def parse_args():
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('vcf', help='Input unfiltered VCF (.vcf.gz)')
     p.add_argument('--chunk', help='Chunk name (inferred from filename if omitted)')
-    p.add_argument('--ad-placenta-max', type=int,   default=100,     metavar='N',
+    p.add_argument('--ad-placenta-max', type=int,   default=1000,     metavar='N',
                    help='Max alt AD allowed in placenta [%(default)s]')
     p.add_argument('--ad-heart-min',    type=int,   default=3,     metavar='N',
                    help='Min alt AD in heart [%(default)s]')
@@ -59,8 +68,23 @@ def main():
 
     counters = dict(total=0, multiallelic=0, mmq=0, mbq=0, mpos=0,
                     ad_placenta=0, ad_heart=0, af_heart=0, dp=0, sb=0, passed=0)
-    records = []
+
+    cols = ['chunk', 'CHROM', 'POS', 'REF', 'ALT',
+            'AD_placenta', 'AD_heart',
+            'DP_heart', 'DP_placenta', 'AF_placenta', 'AF_heart',
+            'median_MQ', 'median_BQ', 'SB_pval', 'MPOS',
+            'NLOD',
+            'PL_heart_ref', 'PL_heart_het', 'PL_heart_hom',
+            'PL_placenta_ref', 'PL_placenta_het', 'PL_placenta_hom']
+
+    out_tsv   = args.output or f'{chunk}_filtered.tsv.gz'
+    out_stats = out_tsv.replace('_filtered.tsv.gz', '_filtered.stats')
+
     vcf = VCF(args.vcf)
+    out_fh = gzip.open(out_tsv, 'wt', newline='')
+    writer = csv.DictWriter(out_fh, fieldnames=cols, delimiter='\t')
+
+    writer.writeheader()
 
     for v in vcf:
 
@@ -77,6 +101,7 @@ def main():
         mmq  = v.INFO.get('MMQ')   # Number=R: (ref_MMQ, alt_MMQ)
         mbq  = v.INFO.get('MBQ')   # Number=R: (ref_MBQ, alt_MBQ)
         mpos = v.INFO.get('MPOS')  # Number=A: scalar or (alt_MPOS,)
+        nlod = v.INFO.get('NLOD')  # Number=A: normal log odds per alt allele
 
         if mmq is None or mbq is None or mpos is None:
             continue
@@ -86,10 +111,10 @@ def main():
         alt_mbq  = mbq[1]  if hasattr(mbq,  '__len__') else mbq
         alt_mpos = mpos[0] if hasattr(mpos, '__len__') else mpos
 
-        if alt_mmq <= args.mmq_min:
+        if alt_mmq < args.mmq_min:
             counters['mmq'] += 1
             continue
-        if alt_mbq <= args.mbq_min:
+        if alt_mbq < args.mbq_min:
             counters['mbq'] += 1
             continue
         if alt_mpos < args.mpos_min:
@@ -127,6 +152,22 @@ def main():
             counters['dp'] += 1
             continue
 
+        # PL  Number=G → shape (n_samples, n_genotypes)
+        # Biallelic: indices [0,1,2] = PL(0/0), PL(0/1), PL(1/1)
+        # Multiallelic (passed alt2 AD ratio filter): index [2] = PL(0/2) ≠ PL(1/1) → set all to None
+        # Missing values: cyvcf2 encodes missing integers as 2147483647 → set to None
+        if len(v.ALT) == 1:
+            pl = v.format('PL')
+            pl_heart_ref      = _safe_pl(pl[0, 0])
+            pl_heart_het      = _safe_pl(pl[0, 1])
+            pl_heart_hom      = _safe_pl(pl[0, 2])
+            pl_placenta_ref   = _safe_pl(pl[1, 0])
+            pl_placenta_het   = _safe_pl(pl[1, 1])
+            pl_placenta_hom   = _safe_pl(pl[1, 2])
+        else:
+            pl_heart_ref = pl_heart_het = pl_heart_hom = None
+            pl_placenta_ref = pl_placenta_het = pl_placenta_hom = None
+
         # --- Strand bias: Fisher's exact on heart FORMAT SB ---
         # SB  Number=4 → shape (n_samples, 4): ref_fwd, ref_rev, alt_fwd, alt_rev
         sb = v.format('SB')[0]
@@ -138,7 +179,7 @@ def main():
             continue
 
         counters['passed'] += 1
-        records.append({
+        writer.writerow({
             'chunk':        chunk,
             'CHROM':        v.CHROM,
             'POS':          v.POS,
@@ -154,21 +195,17 @@ def main():
             'median_MQ':    int(alt_mmq),
             'SB_pval':      sb_pval,
             'MPOS':         int(alt_mpos),
+            'NLOD':         (lambda x: None if math.isnan(x) else x)(float(nlod[0]) if hasattr(nlod, '__len__') else float(nlod)),
+            'PL_heart_ref':       pl_heart_ref,
+            'PL_heart_het':       pl_heart_het,
+            'PL_heart_hom':       pl_heart_hom,
+            'PL_placenta_ref':    pl_placenta_ref,
+            'PL_placenta_het':    pl_placenta_het,
+            'PL_placenta_hom':    pl_placenta_hom,
         })
 
     vcf.close()
-
-    # --- build dataframe ---
-    cols = ['chunk', 'CHROM', 'POS', 'REF', 'ALT',
-            'AD_placenta', 'AD_heart',
-            'DP_heart', 'DP_placenta', 'AF_placenta', 'AF_heart',
-            'median_MQ', 'median_BQ', 'SB_pval', 'MPOS']
-    df = pd.DataFrame(records, columns=cols)
-
-    out_tsv   = args.output or f'{chunk}_filtered.tsv'
-    out_stats = out_tsv.replace('_filtered.tsv', '_filtered.stats')
-
-    df.to_csv(out_tsv, sep='\t', index=False)
+    out_fh.close()
 
     # --- stats file ---
     stats = pd.DataFrame([
@@ -186,7 +223,7 @@ def main():
     ], columns=['filter', 'n_records'])
     stats.to_csv(out_stats, sep='\t', index=False)
 
-    print(f'Wrote {len(df):,} records to {out_tsv}', file=sys.stderr)
+    print(f'Wrote {counters["passed"]:,} records to {out_tsv}', file=sys.stderr)
     print(f'Wrote stats to {out_stats}', file=sys.stderr)
 
 

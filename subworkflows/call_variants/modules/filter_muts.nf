@@ -1,18 +1,18 @@
 process FILTER_MUTS {
 
-    tag "${heart_chunk}"
+    tag "${heart_chunk}.${interval_name}"
 
     input:
-    tuple val(heart_chunk), path(vcf)
+    tuple val(heart_chunk), val(interval_name), path(vcf)
 
     output:
-    tuple val(heart_chunk), path("${heart_chunk}_filtered.tsv"),    emit: tsv
-    tuple val(heart_chunk), path("${heart_chunk}_filtered.stats"),   emit: stats
+    tuple val(heart_chunk), val(interval_name), path("${heart_chunk}.${interval_name}_filtered.tsv.gz"),   emit: tsv
+    tuple val(heart_chunk), val(interval_name), path("${heart_chunk}.${interval_name}_filtered.stats"),    emit: stats
 
     stub:
     """
-    touch "${heart_chunk}_filtered.tsv"
-    touch "${heart_chunk}_filtered.stats"
+    touch "${heart_chunk}.${interval_name}_filtered.tsv.gz"
+    touch "${heart_chunk}.${interval_name}_filtered.stats"
     """
 
     script:
@@ -29,7 +29,7 @@ process FILTER_MUTS {
         --sb-pval-min       ${params.sb_pval_min} \\
         --mpos-min          ${params.mpos_min} \\
         --alt2-ad-ratio-max ${params.alt2_ad_ratio_max} \\
-        -o ${heart_chunk}_filtered.tsv
+        -o ${heart_chunk}.${interval_name}_filtered.tsv.gz
     """
 
 }
