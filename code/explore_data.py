@@ -55,8 +55,10 @@ assert df['chunk'].isin(df_samples['chunk']).all()
 
 ##
 
-
-df['AD_placenta'].max()
+# df['DP_placenta'].max() 5855
+# df['DP_heart'].max() 4808
+# df['AD_heart'].max() 58
+# df['AD_placenta'].max() 10
 
 # Explore 
 # df[['AD_placenta', 'AD_heart', 'DP_heart', 'DP_placenta', 'AF_placenta', 'AF_heart']].describe()

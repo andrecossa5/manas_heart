@@ -2,6 +2,8 @@ process FILTER_MUTS {
 
     tag "${heart_chunk}.${interval_name}"
 
+    publishDir "${params.output_folder}/muts", mode: 'copy'
+
     input:
     tuple val(heart_chunk), val(interval_name), path(vcf)
 
