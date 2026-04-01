@@ -156,8 +156,8 @@ def main():
         # Biallelic: indices [0,1,2] = PL(0/0), PL(0/1), PL(1/1)
         # Multiallelic (passed alt2 AD ratio filter): index [2] = PL(0/2) ≠ PL(1/1) → set all to None
         # Missing values: cyvcf2 encodes missing integers as 2147483647 → set to None
-        if len(v.ALT) == 1:
-            pl = v.format('PL')
+        pl = v.format('PL')
+        if pl is not None and len(v.ALT) == 1:
             pl_heart_ref      = _safe_pl(pl[0, 0])
             pl_heart_het      = _safe_pl(pl[0, 1])
             pl_heart_hom      = _safe_pl(pl[0, 2])
