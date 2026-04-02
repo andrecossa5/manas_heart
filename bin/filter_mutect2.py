@@ -19,11 +19,12 @@ import pandas as pd
 from cyvcf2 import VCF
 from scipy.stats import fisher_exact
 
-_PL_MISSING = 2147483647   # cyvcf2 sentinel for missing integer FORMAT values
 
-def _safe_pl(x):
-    x = int(x)
-    return None if x == _PL_MISSING else x
+def _safe_float(x):
+    if x is None:
+        return None
+    v = float(x[0]) if hasattr(x, '__len__') else float(x)
+    return None if math.isnan(v) else v
 
 
 def parse_args():
@@ -50,7 +51,7 @@ def parse_args():
     p.add_argument('--mpos-min',        type=int,   default=3,     metavar='N',
                    help='Min median distance from read end [%(default)s]')
     p.add_argument('--output', '-o', default=None,
-                   help='Output TSV path (default: <chunk>_filtered.tsv)')
+                   help='Output TSV path (default: <chunk>_filtered.tsv.gz)')
     return p.parse_args()
 
 
@@ -73,9 +74,7 @@ def main():
             'AD_placenta', 'AD_heart',
             'DP_heart', 'DP_placenta', 'AF_placenta', 'AF_heart',
             'median_MQ', 'median_BQ', 'SB_pval', 'MPOS',
-            'NLOD',
-            'PL_heart_ref', 'PL_heart_het', 'PL_heart_hom',
-            'PL_placenta_ref', 'PL_placenta_het', 'PL_placenta_hom']
+            'TLOD', 'NLOD', 'POPAF']
 
     out_tsv   = args.output or f'{chunk}_filtered.tsv.gz'
     out_stats = out_tsv.replace('_filtered.tsv.gz', '_filtered.stats')
@@ -101,7 +100,6 @@ def main():
         mmq  = v.INFO.get('MMQ')   # Number=R: (ref_MMQ, alt_MMQ)
         mbq  = v.INFO.get('MBQ')   # Number=R: (ref_MBQ, alt_MBQ)
         mpos = v.INFO.get('MPOS')  # Number=A: scalar or (alt_MPOS,)
-        nlod = v.INFO.get('NLOD')  # Number=A: normal log odds per alt allele
 
         if mmq is None or mbq is None or mpos is None:
             continue
@@ -152,22 +150,6 @@ def main():
             counters['dp'] += 1
             continue
 
-        # PL  Number=G → shape (n_samples, n_genotypes)
-        # Biallelic: indices [0,1,2] = PL(0/0), PL(0/1), PL(1/1)
-        # Multiallelic (passed alt2 AD ratio filter): index [2] = PL(0/2) ≠ PL(1/1) → set all to None
-        # Missing values: cyvcf2 encodes missing integers as 2147483647 → set to None
-        pl = v.format('PL')
-        if pl is not None and len(v.ALT) == 1:
-            pl_heart_ref      = _safe_pl(pl[0, 0])
-            pl_heart_het      = _safe_pl(pl[0, 1])
-            pl_heart_hom      = _safe_pl(pl[0, 2])
-            pl_placenta_ref   = _safe_pl(pl[1, 0])
-            pl_placenta_het   = _safe_pl(pl[1, 1])
-            pl_placenta_hom   = _safe_pl(pl[1, 2])
-        else:
-            pl_heart_ref = pl_heart_het = pl_heart_hom = None
-            pl_placenta_ref = pl_placenta_het = pl_placenta_hom = None
-
         # --- Strand bias: Fisher's exact on heart FORMAT SB ---
         # SB  Number=4 → shape (n_samples, 4): ref_fwd, ref_rev, alt_fwd, alt_rev
         sb = v.format('SB')[0]
@@ -195,13 +177,9 @@ def main():
             'median_MQ':    int(alt_mmq),
             'SB_pval':      sb_pval,
             'MPOS':         int(alt_mpos),
-            'NLOD':         (lambda x: None if math.isnan(x) else x)(float(nlod[0]) if hasattr(nlod, '__len__') else float(nlod)),
-            'PL_heart_ref':       pl_heart_ref,
-            'PL_heart_het':       pl_heart_het,
-            'PL_heart_hom':       pl_heart_hom,
-            'PL_placenta_ref':    pl_placenta_ref,
-            'PL_placenta_het':    pl_placenta_het,
-            'PL_placenta_hom':    pl_placenta_hom,
+            'TLOD':         _safe_float(v.INFO.get('TLOD')),
+            'NLOD':         _safe_float(v.INFO.get('NLOD')),
+            'POPAF':        _safe_float(v.INFO.get('POPAF')),
         })
 
     vcf.close()

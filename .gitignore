@@ -1,5 +1,7 @@
 # Nextflow
-figures/
+figures
+figures/*
+./figures/
 .nextflow/
 .nextflow.log*
 work/
