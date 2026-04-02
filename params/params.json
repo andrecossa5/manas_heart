@@ -13,6 +13,6 @@
     "mmq_min":           20,
     "mbq_min":           20,
     "sb_pval_min":       0.001,
-    "mpos_min":          5,
-    "alt2_ad_ratio_max": 0.2
+    "mpos_min":          3,
+    "alt2_ad_ratio_max": 0.5
 }
