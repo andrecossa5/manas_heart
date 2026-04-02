@@ -15,7 +15,7 @@ process GATHER_TABLE {
 
     script:
     """
-    gather_tables.py --mode muts --output ALL_FILTERED.tsv.gz *.tsv
+    gather_tables.py --mode muts --output ALL_FILTERED.tsv.gz *.tsv.gz
     """
 
 }
