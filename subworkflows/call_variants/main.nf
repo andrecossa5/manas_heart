@@ -1,8 +1,9 @@
-include { CREATE_INTERVALS } from './modules/create_intervals'
-include { MUTECT2          } from './modules/mutect2'
-include { FILTER_MUTS      } from './modules/filter_muts'
-include { GATHER_TABLE     } from './modules/gather_table'
-include { GATHER_STATS     } from './modules/gather_stats'
+include { CREATE_INTERVALS  } from './modules/create_intervals'
+include { MUTECT2           } from './modules/mutect2'
+include { FILTER_MUTS       } from './modules/filter_muts'
+include { GATHER_TABLE      } from './modules/gather_table'
+include { GATHER_STATS      } from './modules/gather_stats'
+include { COMPUTE_3NT_CTX   } from './modules/compute_3nt_ctx'
 
 workflow call_variants {
 
@@ -60,8 +61,10 @@ workflow call_variants {
     GATHER_TABLE(all_tsvs)
     GATHER_STATS(all_stats)
 
+    COMPUTE_3NT_CTX(GATHER_TABLE.out, ref_ch)
+
     emit:
-    filtered_tsv    = GATHER_TABLE.out
+    filtered_tsv    = COMPUTE_3NT_CTX.out
     filtered_stats  = GATHER_STATS.out
 
 }

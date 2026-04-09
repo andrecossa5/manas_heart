@@ -32,7 +32,7 @@ def parse_args():
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('vcf', help='Input unfiltered VCF (.vcf.gz)')
     p.add_argument('--chunk', help='Chunk name (inferred from filename if omitted)')
-    p.add_argument('--ad-placenta-max', type=int,   default=1000,     metavar='N',
+    p.add_argument('--ad-placenta-max', type=int,   default=1000,  metavar='N',
                    help='Max alt AD allowed in placenta [%(default)s]')
     p.add_argument('--ad-heart-min',    type=int,   default=3,     metavar='N',
                    help='Min alt AD in heart [%(default)s]')
@@ -46,10 +46,14 @@ def parse_args():
                    help='Min alt allele median base quality [%(default)s]')
     p.add_argument('--sb-pval-min',     type=float, default=0.001, metavar='P',
                    help='Min Fisher strand bias p-value — discard if < this [%(default)s]')
-    p.add_argument('--alt2-ad-ratio-max', type=float, default=0.5,  metavar='F',
+    p.add_argument('--alt2-ad-ratio-max', type=float, default=0.5, metavar='F',
                    help='Max ALT2/ALT1 AD ratio in heart for multiallelic records [%(default)s]')
     p.add_argument('--mpos-min',        type=int,   default=3,     metavar='N',
                    help='Min median distance from read end [%(default)s]')
+    p.add_argument('--orientation-max', type=float, default=0.95,  metavar='F',
+                   help='Max orientation ratio (alt_F1R2 / alt_F1R2+alt_F2R1) [%(default)s]')
+    p.add_argument('--orientation-min', type=float, default=0.05,  metavar='F',
+                   help='Min orientation ratio [%(default)s]')
     p.add_argument('--output', '-o', default=None,
                    help='Output TSV path (default: <chunk>_filtered.tsv.gz)')
     return p.parse_args()
@@ -68,13 +72,15 @@ def main():
     chunk = args.chunk or infer_chunk(args.vcf)
 
     counters = dict(total=0, multiallelic=0, mmq=0, mbq=0, mpos=0,
-                    ad_placenta=0, ad_heart=0, af_heart=0, dp=0, sb=0, passed=0)
+                    ad_placenta=0, ad_heart=0, af_heart=0, dp=0, sb=0,
+                    orientation=0, passed=0)
 
     cols = ['chunk', 'CHROM', 'POS', 'REF', 'ALT',
             'AD_placenta', 'AD_heart',
             'DP_heart', 'DP_placenta', 'AF_placenta', 'AF_heart',
             'median_MQ', 'median_BQ', 'SB_pval', 'MPOS',
-            'TLOD', 'NLOD', 'POPAF']
+            'orientation_ratio',
+            'TLOD', 'NLOD', 'NALOD', 'POPAF']
 
     out_tsv   = args.output or f'{chunk}_filtered.tsv.gz'
     out_stats = out_tsv.replace('_filtered.tsv.gz', '_filtered.stats')
@@ -89,7 +95,7 @@ def main():
 
         counters['total'] += 1
 
-        # --- discard multiallelic only if ALT2 AD > 1/5 of ALT1 AD in heart ---
+        # --- discard multiallelic only if ALT2 AD > ratio threshold in heart ---
         if len(v.ALT) > 1:
             _ad = v.format('AD')
             if int(_ad[0, 2]) > int(_ad[0, 1]) * args.alt2_ad_ratio_max:
@@ -150,6 +156,21 @@ def main():
             counters['dp'] += 1
             continue
 
+        # --- Read orientation bias: F1R2/F2R1 for heart alt allele ---
+        # Number=R → shape (n_samples, n_alleles): alt is index 1
+        f1r2 = v.format('F1R2')
+        f2r1 = v.format('F2R1')
+        alt_f1r2 = int(f1r2[0, 1])
+        alt_f2r1 = int(f2r1[0, 1])
+        total_oriented = alt_f1r2 + alt_f2r1
+        if total_oriented > 0:
+            orientation_ratio = alt_f1r2 / total_oriented
+            if orientation_ratio > args.orientation_max or orientation_ratio < args.orientation_min:
+                counters['orientation'] += 1
+                continue
+        else:
+            orientation_ratio = None
+
         # --- Strand bias: Fisher's exact on heart FORMAT SB ---
         # SB  Number=4 → shape (n_samples, 4): ref_fwd, ref_rev, alt_fwd, alt_rev
         sb = v.format('SB')[0]
@@ -162,24 +183,26 @@ def main():
 
         counters['passed'] += 1
         writer.writerow({
-            'chunk':        chunk,
-            'CHROM':        v.CHROM,
-            'POS':          v.POS,
-            'REF':          v.REF,
-            'ALT':          v.ALT[0],
-            'AD_placenta':  ad_placenta_alt,
-            'AD_heart':     ad_heart_alt,
-            'DP_heart':     dp_heart,
-            'DP_placenta':  dp_placenta,
-            'AF_placenta':  af_placenta,
-            'AF_heart':     af_heart,
-            'median_BQ':    int(alt_mbq),
-            'median_MQ':    int(alt_mmq),
-            'SB_pval':      sb_pval,
-            'MPOS':         int(alt_mpos),
-            'TLOD':         _safe_float(v.INFO.get('TLOD')),
-            'NLOD':         _safe_float(v.INFO.get('NLOD')),
-            'POPAF':        _safe_float(v.INFO.get('POPAF')),
+            'chunk':             chunk,
+            'CHROM':             v.CHROM,
+            'POS':               v.POS,
+            'REF':               v.REF,
+            'ALT':               v.ALT[0],
+            'AD_placenta':       ad_placenta_alt,
+            'AD_heart':          ad_heart_alt,
+            'DP_heart':          dp_heart,
+            'DP_placenta':       dp_placenta,
+            'AF_placenta':       af_placenta,
+            'AF_heart':          af_heart,
+            'median_BQ':         int(alt_mbq),
+            'median_MQ':         int(alt_mmq),
+            'SB_pval':           sb_pval,
+            'MPOS':              int(alt_mpos),
+            'orientation_ratio': orientation_ratio,
+            'TLOD':              _safe_float(v.INFO.get('TLOD')),
+            'NLOD':              _safe_float(v.INFO.get('NLOD')),
+            'NALOD':             _safe_float(v.INFO.get('NALOD')),
+            'POPAF':             _safe_float(v.INFO.get('POPAF')),
         })
 
     vcf.close()
@@ -187,17 +210,18 @@ def main():
 
     # --- stats file ---
     stats = pd.DataFrame([
-        ('total',          counters['total']),
-        ('multiallelic',   counters['multiallelic']),
-        ('failed_mmq',     counters['mmq']),
-        ('failed_mbq',     counters['mbq']),
-        ('failed_mpos',    counters['mpos']),
+        ('total',              counters['total']),
+        ('multiallelic',       counters['multiallelic']),
+        ('failed_mmq',         counters['mmq']),
+        ('failed_mbq',         counters['mbq']),
+        ('failed_mpos',        counters['mpos']),
         ('failed_ad_placenta', counters['ad_placenta']),
         ('failed_ad_heart',    counters['ad_heart']),
         ('failed_af_heart',    counters['af_heart']),
-        ('failed_dp',      counters['dp']),
-        ('failed_sb',      counters['sb']),
-        ('passed',         counters['passed']),
+        ('failed_dp',          counters['dp']),
+        ('failed_orientation', counters['orientation']),
+        ('failed_sb',          counters['sb']),
+        ('passed',             counters['passed']),
     ], columns=['filter', 'n_records'])
     stats.to_csv(out_stats, sep='\t', index=False)
 

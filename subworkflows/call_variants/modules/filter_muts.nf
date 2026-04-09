@@ -31,6 +31,8 @@ process FILTER_MUTS {
         --sb-pval-min       ${params.sb_pval_min} \\
         --mpos-min          ${params.mpos_min} \\
         --alt2-ad-ratio-max ${params.alt2_ad_ratio_max} \\
+        --orientation-max   ${params.orientation_max} \\
+        --orientation-min   ${params.orientation_min} \\
         -o ${heart_chunk}.${interval_name}_filtered.tsv.gz
     """
 

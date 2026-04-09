@@ -14,5 +14,7 @@
     "mbq_min":           20,
     "sb_pval_min":       0.001,
     "mpos_min":          3,
-    "alt2_ad_ratio_max": 0.5
+    "alt2_ad_ratio_max": 0.5,
+    "orientation_max":   0.95,
+    "orientation_min":   0.05
 }
