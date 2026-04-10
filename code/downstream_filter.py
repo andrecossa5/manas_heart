@@ -140,7 +140,7 @@ df['mutation_id'] = df.apply(lambda x: f"{x['CHROM']}_{x['POS']}_{x['REF']}_{x['
 
 # ALL FILTERED stats
 stats = pd.read_csv(os.path.join(path_filtered, 'ALL_FILTERED.stats'), sep='\t')
-# stats.query('filter=="passed"')['n_records'].sum()
+# stats.query('filter=="total"')['n_records'].sum()
 
 # Original muts
 df_LCM = pd.read_csv(os.path.join(path_data, 'Heart_metadata.csv'))
@@ -287,7 +287,6 @@ df_ = pd.concat([
     df_present.groupby('mutation_id')['Sample_ID'].nunique().to_frame('n_samples').reset_index().assign(status='Present')
 ])
 df_.groupby('status')['n_samples'].describe()
-
 np.sum(df_missing.groupby('mutation_id')['Sample_ID'].nunique()>2)
 
 fig, axs = plt.subplots(1,3,figsize=(9,3))
@@ -332,13 +331,13 @@ df['PASS'] = (df['SB_pval']>0.1) & \
              (df['AD_placenta']<2) & \
              (df['NLOD']>10) & \
              (df['TLOD']>25) & \
-             (df['POPAF']>3)
+             (df['POPAF']>2) & \
+             ((df['orientation_ratio']>0.3) & (df['orientation_ratio']<0.7))
 
 # Filter
 df.loc[lambda x: x['PASS']]['mutation_id'].nunique()
 df_filtered = df[df['PASS']].copy()
 df_filtered['mutation_id'].nunique()
-
 df_filtered['DP_placenta'].describe()
 
 ##
@@ -506,19 +505,5 @@ df_filtered.to_csv(os.path.join(path_filtered, 'FILTER.1.tsv'), sep='\t', index=
 
 # FILTER.2
 df = pd.read_csv(os.path.join(path_filtered, 'FILTER.1.tsv'), sep='\t')
-df.columns
-
-df['PASS'] = False
-df['PASS'] = (df['SB_pval']>0.75)
-
-df_filtered = df[df['PASS']].copy()
-df_filtered['mutation_id'].nunique()
-
-df_unique = df_filtered.drop_duplicates('mutation_id').dropna(subset=['SBS6'])
-counts = calculate_sbs96(df_unique, context='SBS96')
-fig = mut_profile(counts=counts, context='SBS96', figsize=(12, 3))
-fig.savefig(os.path.join(path_figures, 'spectrum_FILTER.2.pdf'))
 
 
-
-df_unique.groupby('SBS6').size()
