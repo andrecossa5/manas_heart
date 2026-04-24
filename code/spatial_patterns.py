@@ -58,7 +58,8 @@ path_figures = os.path.join(path_main, 'figures')
 
 
 # Read fitlered muts
-df = pd.read_csv(os.path.join(path_filtered, 'FILTER.1.tsv'), sep='\t')
+df = pd.read_csv(os.path.join(path_filtered, 'FILTER.2.tsv'), sep='\t')
+df['mutation_id'].nunique()
 
 
 ##
@@ -99,18 +100,71 @@ D = rescale_distances(D)
 D = pd.DataFrame(D, index=X.index, columns=X.index)
 
 fig, ax = plt.subplots(figsize=(3.5,3.5))
-ax.imshow(D.iloc[order, order], cmap='Spectral', vmin=0.1, vmax=.9)
+ax.imshow(D.iloc[order, order], cmap='Spectral', vmin=0, vmax=1)
 plu.format_ax(ax, xticks=D.columns[order], yticks=D.index[order], rotx=90)
 plu.add_cbar(D.values.flatten(), ax=ax, 
-             label='Cosine distance', palette='Spectral', vmin=0.1, vmax=0.9)
+             label='Cosine distance', palette='Spectral', vmin=0, vmax=1)
 
 fig.tight_layout()
 fig.savefig(os.path.join(path_figures, 'cosine_distance_regions.pdf'))
 
 
+##
 
 
-# (df.pivot(index='chunk', columns='mutation_id', values='AF_heart').fillna(0)>0).sum(axis=1)
-# (df.pivot(index='chunk', columns='mutation_id', values='AF_heart').fillna(0)>0).sum(axis=0).sort_values(ascending=False).head(20)
+# Clonal structure
+order = D.index[order]
+REGION_ORDER = ['Centre_septum', 'Right_Ventricle', 'Left_Ventricle', 'Left_septum', 'Right_septum']
 
-df.query('mutation_id=="chr18_37006496_T_A"')[['region', 'mutation_id', 'AF_heart', 'AD_heart', 'DP_heart']]
+##
+
+
+# AF per chunks
+X = (
+    df
+    .pivot(index='chunk', columns='mutation_id', values='AF_heart')
+    .fillna(0)
+)
+
+# --- Row order: chunks grouped by region, within region by total AF descending ---
+chunk_region = (
+    df[['chunk', 'region']].drop_duplicates()
+    .set_index('chunk')['region']
+)
+chunk_region = chunk_region[chunk_region.isin(REGION_ORDER)]
+chunk_total_af = X.sum(axis=1)
+row_order = (
+    pd.DataFrame({'region': chunk_region, 'total_af': chunk_total_af}, index=chunk_region.index)
+    .assign(region_rank=lambda d: pd.Categorical(d['region'], categories=REGION_ORDER, ordered=True).codes)
+    .sort_values(['region_rank', 'total_af'], ascending=[True, False])
+    .index
+)
+row_order = [c for c in row_order if c in X.index]
+X = X.loc[row_order]
+
+# --- Column order: block diagonal — dominant region per mutation, then AF descending ---
+X_region = X.copy()
+X_region.index = chunk_region.loc[X_region.index]
+X_region = X_region.groupby(level=0).mean().reindex(REGION_ORDER).fillna(0)
+
+dom_region = X_region.idxmax(axis=0)
+dom_af     = X_region.max(axis=0)
+col_order = (
+    pd.DataFrame({'dom_region': dom_region, 'dom_af': dom_af})
+    .assign(region_rank=lambda d: pd.Categorical(d['dom_region'], categories=REGION_ORDER, ordered=True).codes)
+    .sort_values(['region_rank', 'dom_af'], ascending=[True, False])
+    .index
+)
+X = X[col_order]
+
+##
+
+vmax = np.percentile(X.values[X.values > 0], 99) if (X.values > 0).any() else 1
+
+fig, ax = plt.subplots(figsize=(8,3))
+ax.imshow(X.values, aspect='auto', cmap='afmhot_r', vmin=0, vmax=vmax)
+plu.format_ax(ax, yticks=X.index, xticks=[], ylabel='Chunk', xlabel=f'SNV (n={X.shape[1]})', rotx=90)
+plu.add_cbar(X.values.flatten(), ax=ax, palette='afmhot_r', vmin=0, vmax=vmax, label='Allelic frequency')
+fig.tight_layout()
+plu.save_best_pdf_quality(fig, (8,3), path_figures, 'af_chunks.pdf')
+plt.show()

@@ -1,4 +1,5 @@
 # Nextflow
+resources/
 figures
 figures/*
 ./figures/

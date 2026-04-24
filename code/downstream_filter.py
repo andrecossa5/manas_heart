@@ -5,6 +5,7 @@ FILTER.1.
 import os
 import numpy as np
 import pandas as pd
+import pysam
 import matplotlib
 import plotting_utils as plu
 import matplotlib.pyplot as plt
@@ -117,12 +118,101 @@ def mut_profile(df=None, counts=None, context='SBS96', figsize=(12, 3), legend_k
 ##
 
 
+def get_extended_ctx(df, n=5, ref_path=None):
+    """
+    Extract ±n bp reference context around each SNV.
+    Returns a pd.Series of strings (length 2n+1), indexed like df.
+    Indels and positions too close to contig boundaries return None.
+    """
+    if ref_path is None:
+        raise ValueError("Reference path must be provided")
+    
+    fasta = pysam.FastaFile(ref_path)
+
+    def _fetch(row):
+        if len(row['REF']) != 1 or len(row['ALT']) != 1:
+            return None
+        try:
+            seq = fasta.fetch(row['CHROM'], int(row['POS']) - n - 1, int(row['POS']) + n).upper()
+        except Exception:
+            return None
+        if len(seq) != 2 * n + 1:
+            return None
+        return seq
+
+    ctx = df.apply(_fetch, axis=1)
+    fasta.close()
+
+    return ctx
+
+
+##
+
+
+def flag_recurrent_ctx(df, n=10, ref_path=None, hamming=3, max_cumulative_frac=0.5, min_n_mutations=10):
+    """
+    For each SBS96 channel, find the two most abundant extended contexts (±n bp).
+    If sequences within `hamming` distance of those motifs (and their reverse
+    complements) account for > max_cumulative_frac of mutations in that channel,
+    set PASS=False for those mutations.
+
+    Returns the modified df and a summary DataFrame (one row per SBS96 channel).
+    """
+    _dist   = lambda s1, s2: sum(c1 != c2 for c1, c2 in zip(s1, s2))
+    _rc     = lambda s: s.translate(str.maketrans('ACGT', 'TGCA'))[::-1]
+    _near   = lambda s, seeds: any(_dist(s, seed) <= hamming for seed in seeds)
+
+    df = df.copy()
+
+    if 'extended_ctx' not in df.columns:
+        df['extended_ctx'] = get_extended_ctx(df, n=n, ref_path=ref_path)
+
+    rows = []
+
+    for channel, grp in df.groupby('SBS96'):
+
+        ctx = grp['extended_ctx'].dropna()
+        if len(ctx) < min_n_mutations:
+            continue
+
+        counts    = ctx.value_counts()
+        top       = counts.index[:5].tolist()
+        seeds     = {m for t in top for m in (t, _rc(t))}
+
+        near_mask = ctx.apply(lambda s: _near(s, seeds))
+        frac      = near_mask.sum() / len(ctx)
+        flagged   = frac > max_cumulative_frac
+
+        if flagged:
+            flagged_ctx = set(ctx[near_mask].unique())
+            flag_idx    = grp.index[grp['extended_ctx'].isin(flagged_ctx)]
+            df.loc[flag_idx, 'PASS'] = False
+
+        rows.append({
+            'SBS96':            channel,
+            'top_motif_1':      top[0] if len(top) > 0 else None,
+            'top_motif_2':      top[1] if len(top) > 1 else None,   
+            'n_near':           int(near_mask.sum()),
+            'n_total':          len(ctx),
+            'cumulative_frac':  round(frac, 3),
+            'flagged':          flagged,
+        })
+
+    summary = pd.DataFrame(rows).sort_values('cumulative_frac', ascending=False)
+    
+    return df, summary
+
+
+##
+
+
 # Paths
 path_main = '/Users/cossa/Desktop/projects/manas_heart'
 path_data = os.path.join(path_main, 'data')
 path_input = os.path.join(path_main, 'data/input')
 path_filtered = os.path.join(path_main, 'results')
 path_figures = os.path.join(path_main, 'figures')
+REF_PATH = os.path.join(path_main, 'resources', 'GRCh38.d1.vd1.fa')
 
 
 ##
@@ -136,11 +226,11 @@ df_samples = df_samples.rename(columns={'Chunk': 'chunk', 'Sample': 'Sample_ID'}
 
 # ALL FILTERED mutations
 df = pd.read_csv(os.path.join(path_filtered, 'ALL_FILTERED_ctx.tsv.gz'), sep='\t')
-df['mutation_id'] = df.apply(lambda x: f"{x['CHROM']}_{x['POS']}_{x['REF']}_{x['ALT']}", axis=1)
+df['mutation_id'] = df['CHROM'] + '_' + df['POS'].astype(str) + '_' + df['REF'] + '_' + df['ALT']
 
 # ALL FILTERED stats
 stats = pd.read_csv(os.path.join(path_filtered, 'ALL_FILTERED.stats'), sep='\t')
-# stats.query('filter=="total"')['n_records'].sum()
+stats.query('filter=="total"')['n_records'].sum()
 
 # Original muts
 df_LCM = pd.read_csv(os.path.join(path_data, 'Heart_metadata.csv'))
@@ -292,11 +382,11 @@ np.sum(df_missing.groupby('mutation_id')['Sample_ID'].nunique()>2)
 fig, axs = plt.subplots(1,3,figsize=(9,3))
 
 ax = axs[0]
-colors = {'Missing': 'grey', 'Present': 'darkorange'}
+status_colors = {'Missing': 'grey', 'Present': 'darkorange'}
 plu.dist(df_missing, x='NV', ax=ax, color='grey')
 plu.dist(df_present, x='NV', ax=ax, color='darkorange')
 plu.format_ax(ax, xlabel='AD', ylabel='Density', reduced_spines=True)
-plu.add_legend(ax=ax, colors=colors, 
+plu.add_legend(ax=ax, colors=status_colors,
                loc='upper right', bbox_to_anchor=(1,1))
 
 ax = axs[1]
@@ -309,7 +399,7 @@ df_ = pd.concat([
     df_missing.groupby('mutation_id')['Sample_ID'].nunique().to_frame('n_samples').reset_index().assign(status='Missing'),
     df_present.groupby('mutation_id')['Sample_ID'].nunique().to_frame('n_samples').reset_index().assign(status='Present')
 ])
-plu.dist(df_, x='n_samples', ax=ax, by='status', categorical_cmap=colors)
+plu.dist(df_, x='n_samples', ax=ax, by='status', categorical_cmap=status_colors)
 plu.format_ax(ax, xlabel='N samples', ylabel='Density', reduced_spines=True)
 
 plt.tight_layout()
@@ -340,6 +430,7 @@ df_filtered = df[df['PASS']].copy()
 df_filtered['mutation_id'].nunique()
 df_filtered['DP_placenta'].describe()
 
+
 ##
 
 
@@ -348,7 +439,6 @@ df_ = df['PASS'].value_counts(normalize=True).to_frame('fraction').reset_index()
 plu.bar(df_, x='PASS', y='fraction', ax=ax, color='steelblue')
 plu.format_ax(ax, xlabel='', ylabel='Fraction of records', reduced_spines=True)
 fig.tight_layout()
-plt.show()
 fig.savefig(os.path.join(path_figures, 'frac_FILTER.1.pdf'))
 
 
@@ -505,5 +595,30 @@ df_filtered.to_csv(os.path.join(path_filtered, 'FILTER.1.tsv'), sep='\t', index=
 
 # FILTER.2
 df = pd.read_csv(os.path.join(path_filtered, 'FILTER.1.tsv'), sep='\t')
+df, summary = flag_recurrent_ctx(
+    df, n=10, ref_path=REF_PATH, hamming=3, 
+    max_cumulative_frac=0.3, min_n_mutations=5
+)
+df_filtered = df[df['PASS']].copy()
+
+# Save
+df_filtered.to_csv(os.path.join(path_filtered, 'FILTER.2.tsv'), sep='\t', index=False)
+
+
+##
+
+
+# New spectrum
+df_unique = df_filtered.drop_duplicates('mutation_id').dropna(subset=['SBS6'])
+counts = calculate_sbs96(df_unique, context='SBS96')
+fig = mut_profile(counts=counts, context='SBS96', figsize=(12, 3))
+fig.savefig(os.path.join(path_figures, 'spectrum_FILTER.2.pdf'))
+
+
+##
+
+
+
+
 
 
