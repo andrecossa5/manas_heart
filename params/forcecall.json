@@ -1,0 +1,11 @@
+{
+    "heart_csv":           "/Users/cossa/Desktop/projects/manas_heart/data/heart_samples_test.csv",
+    "placenta_csv":        "/Users/cossa/Desktop/projects/manas_heart/data/placenta_samples_test.csv",
+    "bam_folder":          "/Users/cossa/Desktop/projects/manas_heart/data/bams",
+    "ref":                 "/Users/cossa/Desktop/projects/manas_heart/data/resources/ref.fa",
+    "output_folder":       "/Users/cossa/Desktop/projects/manas_heart/results",
+    "sites":               "/Users/cossa/Desktop/projects/manas_heart/data/input/known_sites.tsv",
+    "sites_scatter_count": 20,
+    "min_mq_forcecall":    20,
+    "min_bq_forcecall":    20
+}
