@@ -618,7 +618,22 @@ fig.savefig(os.path.join(path_figures, 'spectrum_FILTER.2.pdf'))
 ##
 
 
+# FORCECALL prep:
+df_LCM = df_LCM.query('NV>0 and Sample_ID in @common')
+df_filtered = pd.read_csv(os.path.join(path_filtered, 'FILTER.1.tsv'), sep='\t')
+
+# Expand
+df_LCM[['CHROM', 'POS', 'REF', 'ALT']] = df_LCM['mutation_id'].str.split('_', expand=True)
+df_filtered[['CHROM', 'POS', 'REF', 'ALT']] = df_filtered['mutation_id'].str.split('_', expand=True)
+
+# Reduce
+df_forcecall = pd.concat([
+    df_LCM[['CHROM', 'POS', 'REF', 'ALT']].drop_duplicates().reset_index(drop=True),
+    df_filtered[['CHROM', 'POS', 'REF', 'ALT']].drop_duplicates().reset_index(drop=True),
+]).reset_index(drop=True)
+
+# Save
+df_forcecall.to_csv(os.path.join(path_filtered, 'forcecall.tsv.gz'), sep='\t', index=False)
 
 
-
-
+##
