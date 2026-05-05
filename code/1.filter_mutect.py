@@ -1,5 +1,5 @@
 """
-FILTER.1.
+FILTER.1 and FILTER.2 from Mutect2 calls. Prepare forcecall set with CAVEMAN + Shearwater muts from Manas.
 """
 
 import os

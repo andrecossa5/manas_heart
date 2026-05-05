@@ -38,11 +38,9 @@ workflow force_call {
     // → [tissue, chunk, sample_id, bam, bai, shard_name, shard_tsv]
 
     MPILEUP_FORCECALL(scattered_ch, ref_ch)
-
     PARSE_PILEUP(MPILEUP_FORCECALL.out.vcf)
-
+    
     all_allelic = PARSE_PILEUP.out.collect()
-
     GATHER_ALLELIC_TABLE(all_allelic)
 
     emit:
