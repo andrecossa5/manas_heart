@@ -9,7 +9,12 @@ import matplotlib
 import plotting_utils as plu
 import matplotlib.pyplot as plt
 from sklearn.metrics import pairwise_distances
-from scipy.cluster.hierarchy import linkage, leaves_list
+from scipy.cluster.hierarchy import linkage, leaves_list, cophenet
+from scipy.cluster.hierarchy import linkage as _link, cophenet
+from sklearn.decomposition import NMF
+from scipy.spatial.distance import squareform
+from scipy.stats import mannwhitneyu, fisher_exact, chi2_contingency
+from statsmodels.stats.multitest import multipletests
 matplotlib.use('macOSX')
 plu.set_rcParams()
 
@@ -96,6 +101,78 @@ def DA_muts(df, groupby: str, groups: list[str]|str):
     results = results.sort_values('pseudobulk_AF_group', ascending=False)
     
     return results
+
+
+##
+
+
+def fisher_asymmetry(df, regions, region_col='region', muts=None):
+    """
+    Per-mutation Fisher's exact test on pseudobulk read counts across `regions`.
+
+    H0: P(read=alt | region) is equal across all `regions` => clone contributes equally.
+    H1: contribution is asymmetric.
+
+    For K=2 regions: 2x2 test; effect size AI = (AF_0 - AF_1)/(AF_0 + AF_1).
+    For K=3 regions: 2x3 test; effect sizes AI_LR (first vs last) and f_C (centre fraction).
+
+    Caveat: pseudobulk pools chunks within a region, ignoring chunk-level overdispersion.
+    """
+
+    if muts is not None:
+        df = df[df['mutation_id'].isin(muts)]
+    df = df[df[region_col].isin(regions)]
+
+    AD = (
+        df.pivot_table(index='mutation_id', columns=region_col, values='AD_alt', aggfunc='sum')
+        .reindex(columns=regions).fillna(0)
+    )
+    DP = (
+        df.pivot_table(index='mutation_id', columns=region_col, values='DP', aggfunc='sum')
+        .reindex(columns=regions).fillna(0)
+    )
+    REF = DP - AD
+    AF = AD / DP.replace(0, np.nan)
+
+    pvals, ors = [], []
+    K = len(regions)
+    for mut in AD.index:
+        table = np.vstack([AD.loc[mut].values, REF.loc[mut].values])
+        if table.sum() == 0 or (table.sum(axis=1) == 0).any() or (table.sum(axis=0) == 0).any():
+            pvals.append(1.0); ors.append(np.nan); continue
+        if K == 2:
+            res = fisher_exact(table)
+            pvals.append(res.pvalue); ors.append(res.statistic)
+        else:
+            # scipy<1.15 fisher_exact supports only 2x2; use chi-square for 2xK.
+            # Pseudobulk read counts are large => asymptotics are fine.
+            chi2_res = chi2_contingency(table, correction=False)
+            pvals.append(chi2_res.pvalue); ors.append(np.nan)
+
+    out = pd.DataFrame(index=AD.index)
+    for r in regions:
+        out[f'AF_{r}'] = AF[r]
+        out[f'AD_{r}'] = AD[r]
+        out[f'DP_{r}'] = DP[r]
+
+    eps = 1e-12
+    if len(regions) == 2:
+        a, b = regions
+        out['AI'] = (AF[a].fillna(0) - AF[b].fillna(0)) / (AF[a].fillna(0) + AF[b].fillna(0) + eps)
+        out['odds_ratio'] = ors
+    else:
+        a, b = regions[0], regions[-1]
+        out['AI_LR'] = (AF[a].fillna(0) - AF[b].fillna(0)) / (AF[a].fillna(0) + AF[b].fillna(0) + eps)
+        if len(regions) == 3:
+            c = regions[1]
+            total = AF[a].fillna(0) + AF[b].fillna(0) + AF[c].fillna(0)
+            out['f_C'] = AF[c].fillna(0) / (total + eps)
+
+    out['pval'] = pvals
+    out['qval'] = multipletests(pvals, method='fdr_bh')[1]
+    out = out.sort_values('qval')
+
+    return out
 
 
 ##
@@ -324,7 +401,38 @@ path_figures = os.path.join(path_main, 'figures')
 df = pd.read_csv(os.path.join(path_filtered, 'ALLELIC_TABLE_NO_ARTIFACTS.tsv.gz'), sep='\t')
 df['mutation_id'].nunique()
 
+
 ##
+
+
+# Regional burdens
+fig, ax = plt.subplots(figsize=(2.5,3.5))
+plu.counts_plot(df.drop_duplicates(['mutation_id', 'region']).query('tissue=="heart"'), 'region', ax=ax)
+plu.format_ax(ax=ax, xlabel='', ylabel='Number of SNVs', rotx=90, reduced_spines=True)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'regional_burdens.pdf'))
+
+##
+
+fig, ax = plt.subplots(figsize=(2.5,3.5))
+df_ = (
+    df
+    .query('tissue=="heart"')
+    .groupby(['Sample_ID', 'region'])
+    ['mutation_id'].nunique().to_frame('n')
+    .reset_index()
+)
+x_order = df_.groupby('region')['n'].mean().sort_values(ascending=False).index
+
+plu.box(df_, x='region', y='n', color='white', ax=ax, x_order=x_order)
+plu.strip(df_, x='region', y='n', ax=ax, x_order=x_order)
+plu.format_ax(ax=ax, xlabel='', ylabel='Number of SNVs', rotx=90, reduced_spines=True)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'regional_burdens_box.pdf'))
+
+
+##
+
 
 # Whole heart Differential Abundance (DA)
 results = DA_muts(df, 'tissue', groups='heart')
@@ -369,7 +477,7 @@ AD = df.pivot_table(index='Sample_ID', columns='mutation_id', values='AD_alt').f
 
 # Cluster regions by their pseudobulk muts profiles
 X = (
-    df# .query('mutation_id in @muts')
+    df.query('mutation_id in @muts')
     .groupby(['mutation_id', 'region'])
     [['AD_alt', 'DP']].sum()
     .reset_index()
@@ -392,6 +500,7 @@ plu.add_cbar(D.values.flatten(), ax=ax,
 fig.tight_layout()
 fig.savefig(os.path.join(path_figures, 'region_clustering.pdf'))
 
+
 ##
 
 fig, ax = plt.subplots(figsize=(10,4))
@@ -401,6 +510,242 @@ plu.save_best_pdf_quality(
     fig, (10,4), path_figures, 'heatmap_AF.pdf', 1000
 
 )
+
+
+## 
+
+
+# Contribution Ventricles to septum sections
+
+# Stage 1: ventricular origin per mutation (LV vs RV, 2x2 Fisher)
+vent = fisher_asymmetry(df, ['Left_Ventricle', 'Right_Ventricle'], muts=None)
+
+# Stage 2: septal asymmetry across the three septum sections (2x3 Fisher)
+sept = fisher_asymmetry(
+    df, ['Left_septum', 'Centre_septum', 'Right_septum'], muts=None
+)
+sept = (
+    sept[['AF_Left_septum', 'AF_Centre_septum', 'AF_Right_septum', 'pval']]
+    .query('pval <= 0.05')
+)
+sept
+
+# Get ventriculars
+(
+    vent.loc[vent.index.isin(sept.index)]
+    [['AF_Left_Ventricle', 'AF_Right_Ventricle', 'pval']]
+    .sort_values('pval')
+)
+
+
+
+##
+
+
+# Clonal decomposition via Poisson-NMF (KL-loss) on AD counts.
+# X (regions x mutations) of alt-read counts factorized as W (regions x K) @ H (K x mutations).
+# Biology:  W[r,k] = abundance of clone k in region r;  H[k,m] = mutation m's loading on clone k.
+# KL-loss is the Poisson model on counts: high-coverage entries naturally weigh more.
+# Per-region coverage differences end up in W magnitudes and are normalized away by W_frac.
+# L1 sparsity on H concentrates each clone's fingerprint on a few mutations.
+
+# Region-level pseudobulk alt-read counts
+pb = df.groupby(['Sample_ID', 'mutation_id'])[['AD_alt', 'DP']].sum().reset_index()
+AD_mat = pb.pivot(index='Sample_ID', columns='mutation_id', values='AD_alt').fillna(0)
+X_counts = AD_mat.values.astype(float)
+
+# Pick K by cophenetic correlation of consensus W-clustering (Brunet et al. 2004).
+# Idea: for each K, run NMF n_runs times with different seeds. For each run, assign
+# each sample to its dominant clone (argmax over W row) and build a connectivity matrix
+# C (1 if two samples share a clone, else 0). Average C across runs -> consensus matrix.
+# Stable K -> consensus is near-binary -> cophenetic correlation of (1 - consensus) is high.
+# Pick the largest K before the cophenetic drop.
+
+Ks = list(range(2, 30))
+n_runs = 100
+n_samples = X_counts.shape[0]
+coph = []
+for K in Ks:
+    C = np.zeros((n_samples, n_samples))
+    for seed in range(n_runs):
+        nmf = NMF(
+            n_components=K, init='random', max_iter=2000, random_state=seed,
+            beta_loss='kullback-leibler', solver='mu',
+            alpha_H=0.1, alpha_W=0.0, l1_ratio=1.0,
+        )
+        W_run = nmf.fit_transform(X_counts)
+        assign = np.argmax(W_run, axis=1)
+        C += (assign[:, None] == assign[None, :]).astype(float)
+    C /= n_runs
+    # Cophenetic correlation of (1 - consensus) as distance
+    dist = 1.0 - C
+    np.fill_diagonal(dist, 0.0)
+    Z = _link(squareform(dist, checks=False), method='average')
+    coph_corr, _ = cophenet(Z, squareform(dist, checks=False))
+    coph.append(coph_corr)
+    print(f'K={K}  cophenetic={coph_corr:.3f}')
+
+# Diagnose
+print(np.argmax(coph), Ks[np.argmax(coph)], coph[np.argmax(coph)])
+
+# Choose more stable K
+fig, ax = plt.subplots(figsize=(3.5, 2.5))
+ax.plot(Ks, coph, marker='o')
+plu.format_ax(
+    ax=ax, xlabel='K (n clones)', ylabel='Cophenetic correlation'
+)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'nmf_K_selection.pdf'))
+
+
+##
+
+
+# Refit at chosen K with multiple seeds; keep the best
+K = Ks[np.argmax(coph)]
+best = None
+for seed in range(100):
+    nmf = NMF(
+        n_components=K, init='random', max_iter=4000, random_state=seed,
+        beta_loss='kullback-leibler', solver='mu',
+        alpha_H=0.1, alpha_W=0.0, l1_ratio=1.0,
+    )
+    W = nmf.fit_transform(X_counts)
+    if best is None or nmf.reconstruction_err_ < best[0]:
+        best = (nmf.reconstruction_err_, W, nmf.components_)
+
+_, W, H = best
+W = pd.DataFrame(W, index=AD_mat.index, columns=[f'C{i+1}' for i in range(K)])
+H = pd.DataFrame(H, index=W.columns, columns=AD_mat.columns)
+W_frac = W.div(W.sum(axis=1), axis=0)
+
+
+##
+
+
+# Plot clonal mutational fingerprints
+D = pairwise_distances(H.values, metric='cosine')
+order = leaves_list(linkage(D, method='average'))
+clone_order = H.index[order].tolist()
+
+muts = []
+for clone in clone_order:
+    top_muts = H.loc[clone].sort_values(ascending=False).head(5).index.tolist()
+    muts.extend(top_muts)
+muts_ = []
+for m in muts:
+    if m not in muts_:
+        muts_.append(m)
+
+fig, ax = plt.subplots(figsize=(6,4.5))
+ax.imshow(
+    H.loc[clone_order, muts_], 
+    aspect='auto', cmap='afmhot_r',
+    vmax=np.percentile(H.loc[:, muts_].values, 98),
+    vmin=np.percentile(H.loc[:, muts_].values, 2)
+)
+plu.format_ax(ax, xlabel='SNVs', ylabel='Clone', 
+              xticks=muts_, yticks=clone_order, rotx=90)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'clonal_mutational_fingerprints.pdf'))
+
+
+##
+
+
+# Plot clonal composition across regions
+region_order = [
+    'Right_Ventricle', 'Right_septum', 'Centre_septum', 
+    'Left_septum', 'Left_Ventricle'
+]
+W_mean = (
+    W.reset_index()
+    .merge(df[['Sample_ID', 'region']].drop_duplicates(), on='Sample_ID')
+    .groupby('region')[W.columns].mean()
+    .loc[region_order]
+)
+
+# Order clones by weighted center-of-mass along region_order (0..n-1).
+r_idx = np.arange(len(region_order))
+clone_com = (W_mean.values * r_idx[:, None]).sum(axis=0) / \
+            W_mean.values.sum(axis=0).clip(min=1e-12)
+clone_order = W_mean.columns[np.argsort(clone_com)].tolist()
+W_show = W_mean.loc[region_order, clone_order]
+
+fig, ax = plt.subplots(figsize=(5,3))
+ax.imshow(
+    W_show.values, aspect='auto', cmap='Blues',
+    vmax=np.percentile(W_mean.values, 99),
+    vmin=np.percentile(W_mean.values, 1)
+)
+plu.format_ax(ax, xticks=W_show.columns, yticks=W_show.index, xlabel='Clone', ylabel='Region')
+plu.add_cbar(
+    W_mean.values.flatten(), ax=ax, palette='Blues',
+    vmin=np.percentile(W_mean.values, 1),
+    vmax=np.percentile(W_mean.values, 99),
+    label='Mean W (clone abundance)'
+)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'clonal_composition_across_regions.pdf'))
+
+
+##
+
+
+# Per-clone left-vs-right imbalance test.
+# Left  = Left_Ventricle + Left_septum samples
+# Right = Right_Ventricle + Right_septum samples  (Centre_septum excluded)
+# Test: Mann-Whitney U on per-sample W[:, k] between Left and Right groups.
+# Effect size: AI = (mean_W_right - mean_W_left) / (mean_W_right + mean_W_left)
+#   AI > 0 -> right-biased; AI < 0 -> left-biased; |AI| in [0, 1].
+
+sample_to_region = (
+    df[['Sample_ID', 'region']].drop_duplicates().set_index('Sample_ID')['region']
+)
+left_regions  = ['Left_Ventricle',  'Left_septum']
+right_regions = ['Right_Ventricle', 'Right_septum']
+reg = sample_to_region.reindex(W.index)
+left_samples  = W.index[reg.isin(left_regions)]
+right_samples = W.index[reg.isin(right_regions)]
+
+rows = []
+eps = 1e-12
+for k in W.columns:
+    wL = W.loc[left_samples, k].values
+    wR = W.loc[right_samples, k].values
+    mL, mR = wL.mean(), wR.mean()
+    AI = (mR - mL) / (mR + mL + eps)
+    if wL.size == 0 or wR.size == 0 or (np.all(wL == 0) and np.all(wR == 0)):
+        pval = np.nan
+    else:
+        pval = mannwhitneyu(wR, wL, alternative='two-sided').pvalue
+    rows.append(
+        {'clone': k, 'mean_W_left': mL, 
+         'mean_W_right': mR,
+        'AI': AI, 'pval': pval}
+    )
+
+# Refactor and plot as volcano plot
+clone_LR = pd.DataFrame(rows).set_index('clone')
+clone_LR['qval'] = multipletests(clone_LR['pval'].fillna(1.0), method='fdr_bh')[1]
+clone_LR = clone_LR.loc[clone_order].sort_values('AI')
+clone_LR['-log10(pval)'] = -np.log10(clone_LR['pval'] + 1e-12)
+
+fig, ax = plt.subplots(figsize=(3,3))
+plu.volcano(
+    clone_LR, x='AI', y='-log10(pval)', xlim=(-1.5, 1.5), ax=ax, fig=fig, labels=clone_LR.index
+)
+ax.axvline(0, color='red', linestyle='--', lw=0.5)
+ax.axhline(-np.log10(0.05), color='red', linestyle='--', lw=0.5)
+plu.format_ax(
+    ax=ax, reduced_spines=True, 
+    xlabel='Asymmetry Index (AI)', ylabel='-log10(p-value)'
+)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'clonal_LR_bias.pdf'))
+
+
+##
 
 
 

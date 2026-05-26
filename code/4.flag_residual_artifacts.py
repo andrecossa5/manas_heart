@@ -270,6 +270,14 @@ fig = mut_profile(df.query('artifact_flag == "Artefact"'), context='SBS96', figs
 fig.tight_layout()
 fig.savefig(os.path.join(path_figures, 'forcecall_artifact_spectrum.pdf'))
 
+fig = mut_profile(df.query('artifact_flag == "No artefact"'), context='SBS96', figsize=(12, 3))
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'forcecall_no_artifact_spectrum.pdf'))
+
+fig = mut_profile(df, context='SBS96', figsize=(12, 3))
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'forcecall_all_spectrum.pdf'))
+
 # Write
 (
     df.query('artifact_flag == "No artefact"')
@@ -280,3 +288,10 @@ fig.savefig(os.path.join(path_figures, 'forcecall_artifact_spectrum.pdf'))
 ##
 
 
+
+df['artifact_flag'].value_counts()
+
+df['mutation_id'].nunique()
+
+df.query('artifact_flag == "Artefact"')['mutation_id'].nunique()
+df.query('artifact_flag == "No artefact"')['mutation_id'].nunique()
