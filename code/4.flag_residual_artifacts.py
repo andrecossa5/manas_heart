@@ -80,95 +80,6 @@ def annotate_ctx(df, path_ref):
 ##
 
 
-def calculate_sbs96(df, context='SBS96'):
-
-    bases = ['A', 'C', 'G', 'T']
-    total = len(df)
-    groups = ['SBS6', context]
-    counts = (
-        df.groupby(groups)
-        .size()
-        .div(total)
-        .reset_index(name='fraction')
-    )
-
-    # Build complete index of all 96 contexts
-    ctx_per_mut = {}
-    for mut in MUT_ORDER:
-        ref, alt = mut[0], mut[2]
-        if context == 'SBS96':
-            ctx_per_mut[mut] = sorted([f"{p}[{ref}>{alt}]{n}" for p in bases for n in bases])
-        else:
-            ctx_per_mut[mut] = sorted([f"{p}{ref}{n}" for p in bases for n in bases])
-
-    full_idx = pd.MultiIndex.from_tuples(
-        [(mut, ctx) for mut in MUT_ORDER for ctx in ctx_per_mut[mut]],
-        names=['SBS6', context]
-    )
-    counts = (
-        counts.set_index(groups)['fraction']
-        .reindex(full_idx, fill_value=0)
-        .reset_index()
-    )
-
-    return counts
-
-
-##
-
-
-def mut_profile(df=None, counts=None, context='SBS96', figsize=(12, 3), legend_kwargs={}) -> matplotlib.figure.Figure:
-    """
-    Plot raw fraction of MT-SNVs across SBS96 (or 3nt) contexts,
-    stratified by mutation type (one axis each).
-    """
-
-    df = df.drop_duplicates('mutation_id') if df is not None else None
-
-    if counts is None:
-        total = len(df)
-        counts = calculate_sbs96(df, context=context)
-    else:
-        total = None
-
-    fig, axs = plt.subplots(
-        1, len(MUT_ORDER), figsize=figsize, sharey=True,
-        constrained_layout=True
-    )
-
-    for i, mut in enumerate(MUT_ORDER):
-        ax = axs[i]
-        df_ = counts.query('SBS6 == @mut')
-        x_order = sorted(df_[context].unique())
-        plu.bar(
-            df_, x=context, y='fraction',
-            color=sb6_colors[mut],
-            x_order=x_order,
-            width=0.8, alpha=1.0, edgecolor=None,
-            with_label=False, ax=ax
-        )
-        n_mut = int(round(df_['fraction'].sum() * total)) if total is not None else None
-        plu.format_ax(
-            ax, xlabel=mut, rotx=90,
-            title=f'n: {n_mut}' if n_mut is not None else '',
-            ylabel='Fraction of total SBSs' if i == 0 else '',
-            reduced_spines=True, xticks_size=6
-        )
-
-    plu.add_legend(
-        ax=axs[-1],
-        colors={'H': '#444444', 'L': '#bbbbbb'},
-        label='Strand', ncols=1,
-        loc='upper left', bbox_to_anchor=(1, 1),
-        **legend_kwargs
-    )
-
-    return fig
-
-
-##
-
-
 # Paths
 path_main = '/Users/cossa/Desktop/projects/manas_heart'
 path_data = os.path.join(path_main, 'data')
@@ -262,36 +173,9 @@ fig.subplots_adjust(right=0.7, left=.2, top=.8, bottom=.2)
 fig.savefig(os.path.join(path_figures, 'forcecall_artifact_flag.pdf'))
 
 
-##
-
-
-# Viz spectra
-fig = mut_profile(df.query('artifact_flag == "Artefact"'), context='SBS96', figsize=(12, 3))
-fig.tight_layout()
-fig.savefig(os.path.join(path_figures, 'forcecall_artifact_spectrum.pdf'))
-
-fig = mut_profile(df.query('artifact_flag == "No artefact"'), context='SBS96', figsize=(12, 3))
-fig.tight_layout()
-fig.savefig(os.path.join(path_figures, 'forcecall_no_artifact_spectrum.pdf'))
-
-fig = mut_profile(df, context='SBS96', figsize=(12, 3))
-fig.tight_layout()
-fig.savefig(os.path.join(path_figures, 'forcecall_all_spectrum.pdf'))
-
-# Write
-(
-    df.query('artifact_flag == "No artefact"')
-    .to_csv(os.path.join(path_filtered, 'ALLELIC_TABLE_NO_ARTIFACTS.tsv.gz'), sep='\t', index=False)
-)
+# Save assignment 
+df.to_csv(os.path.join(path_filtered, 'ALLELIC_TABLE_FILTERED_ANNOTATED.tsv.gz'), sep='\t', index=False)
 
 
 ##
 
-
-
-df['artifact_flag'].value_counts()
-
-df['mutation_id'].nunique()
-
-df.query('artifact_flag == "Artefact"')['mutation_id'].nunique()
-df.query('artifact_flag == "No artefact"')['mutation_id'].nunique()
