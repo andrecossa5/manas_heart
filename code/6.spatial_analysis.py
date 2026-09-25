@@ -10,7 +10,8 @@ import plotting_utils as plu
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import pairwise_distances
-from scipy.cluster.hierarchy import linkage, leaves_list
+from scipy.cluster.hierarchy import linkage, leaves_list, dendrogram
+from scipy.spatial.distance import squareform
 from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d.proj3d import proj_transform
 matplotlib.use('macOSX')
@@ -119,6 +120,9 @@ septum_df = df.loc[lambda x: x['chunk'].str.contains('ept')]
 centre = set(septum_df.query('in_sensible and region=="Centre_septum"')['mutation_id'].unique())
 left = set(septum_df.query('in_sensible and region=="Left_septum"')['mutation_id'].unique())
 right = set(septum_df.query('in_sensible and region=="Right_septum"')['mutation_id'].unique())
+
+
+len(centre & left & right)
 
 I = np.zeros((3,3))
 J = np.zeros((3,3))
@@ -327,11 +331,12 @@ X = (
 )
 D = pairwise_distances((X.values), metric='cosine')
 D = rescale_distances(D)
-order = leaves_list(linkage(D, method='average'))
+Z = linkage(squareform(D, checks=False), method='average')
+order = leaves_list(Z)
 region_order = X.index[order].tolist()
 D = pd.DataFrame(D, index=X.index, columns=X.index)
 D_muts = pairwise_distances((X.values.T), metric='cosine')
-order = leaves_list(linkage(D_muts, method='average'))
+order = leaves_list(linkage(squareform(D_muts, checks=False), method='average'))
 mut_order = X.columns[order].tolist()
 
 fig, axs = plt.subplots(2,1,figsize=(6,2.75), sharex=True)
@@ -339,16 +344,75 @@ fig, axs = plt.subplots(2,1,figsize=(6,2.75), sharex=True)
 ax = axs[0]
 ax.imshow(X.loc[region_order, mut_order], cmap='afmhot_r', vmin=0, vmax=.2, aspect='auto')
 plu.format_ax(ax, xticks=mut_order, yticks=region_order, rotx=90, xticks_size=6)
-plu.add_cbar(X.values.flatten(), ax=ax, 
+plu.add_cbar(X.values.flatten(), ax=ax,
              label='AF', palette='afmhot_r', vmin=0, vmax=.2)
 
 ax = axs[1]
 ax.imshow(X.loc[region_order, mut_order], cmap='afmhot_r', vmin=0, vmax=.03, aspect='auto')
 plu.format_ax(ax, xticks=mut_order, yticks=region_order, rotx=90, xticks_size=6)
-plu.add_cbar(X.values.flatten(), ax=ax, 
+plu.add_cbar(X.values.flatten(), ax=ax,
              label='AF', palette='afmhot_r', vmin=0, vmax=.03)
 fig.tight_layout()
 fig.savefig(os.path.join(path_figures, 'ventricles_septum_lineages.pdf'))
+
+# Region dendrogram (same linkage Z as heatmap row order)
+fig, ax = plt.subplots(figsize=(3, 2))
+dendrogram(Z, labels=X.index.tolist(), orientation='left', color_threshold=0,
+           above_threshold_color='k', ax=ax)
+ax.invert_yaxis()   # top-to-bottom leaves, as in the heatmap
+plu.format_ax(ax=ax, xlabel='Linkage distance', reduced_spines=True)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'ventricles_septum_lineages_dendrogram.pdf'))
+
+
+##
+
+
+# Region level, no centre
+X = (
+    df
+    .query('mutation_id in @muts_1')
+    .query('tissue!="placenta" and region != "Centre_septum"')
+    .groupby(['mutation_id', 'region'])
+    [['AD_alt', 'DP']].sum()
+    .reset_index()
+    .assign(AF=lambda x: x['AD_alt'] / (x['DP'] + 10**(-18)))
+    .pivot(index='region', columns='mutation_id', values='AF').fillna(0)
+)
+D = pairwise_distances((X.values), metric='cosine')
+D = rescale_distances(D)
+Z = linkage(squareform(D, checks=False), method='average')
+order = leaves_list(Z)
+region_order = X.index[order].tolist()
+D = pd.DataFrame(D, index=X.index, columns=X.index)
+D_muts = pairwise_distances((X.values.T), metric='cosine')
+order = leaves_list(linkage(squareform(D_muts, checks=False), method='average'))
+mut_order = X.columns[order].tolist()
+
+fig, axs = plt.subplots(2,1,figsize=(6,2.75), sharex=True)
+
+ax = axs[0]
+ax.imshow(X.loc[region_order, mut_order], cmap='afmhot_r', vmin=0, vmax=.2, aspect='auto')
+plu.format_ax(ax, xticks=mut_order, yticks=region_order, rotx=90, xticks_size=6)
+plu.add_cbar(X.values.flatten(), ax=ax,
+             label='AF', palette='afmhot_r', vmin=0, vmax=.2)
+
+ax = axs[1]
+ax.imshow(X.loc[region_order, mut_order], cmap='afmhot_r', vmin=0, vmax=.03, aspect='auto')
+plu.format_ax(ax, xticks=mut_order, yticks=region_order, rotx=90, xticks_size=6)
+plu.add_cbar(X.values.flatten(), ax=ax,
+             label='AF', palette='afmhot_r', vmin=0, vmax=.03)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'ventricles_septum_lineages_no_centre.pdf'))
+
+# Region dendrogram (same linkage Z as heatmap row order)
+fig, ax = plt.subplots(figsize=(3, 2))
+dendrogram(Z, labels=X.index.tolist(), orientation='left', color_threshold=0,
+           above_threshold_color='k', ax=ax)
+ax.invert_yaxis()   # top-to-bottom leaves, as in the heatmap
+plu.format_ax(ax=ax, xlabel='Linkage distance', reduced_spines=True)
+fig.tight_layout()
+fig.savefig(os.path.join(path_figures, 'ventricles_septum_lineages_dendrogram_no_centre.pdf'))
 
 
 ##
@@ -361,13 +425,15 @@ X = (
     .query('tissue!="placenta"')
     .pivot_table(index='Sample_ID', columns='mutation_id', values='AF').fillna(0)
 )
+X.to_csv(os.path.join(path_figures, 'sample_x_mutation_AD.csv'))
 D = pairwise_distances((X.values), metric='cosine')
 D = rescale_distances(D)
-order = leaves_list(linkage(D, method='average'))
+Z = linkage(squareform(D, checks=False), method='average')
+order = leaves_list(Z)
 region_order = X.index[order].tolist()
 D = pd.DataFrame(D, index=X.index, columns=X.index)
 D_muts = pairwise_distances((X.values.T), metric='cosine')
-order = leaves_list(linkage(D_muts, method='average'))
+order = leaves_list(linkage(squareform(D_muts, checks=False), method='average'))
 mut_order = X.columns[order].tolist()
 
 # Region annotation for each sample (rows)
@@ -415,6 +481,102 @@ plu.add_cbar(X.values.flatten(), ax=ax,
 
 fig.subplots_adjust(left=0.1, right=0.7, top=0.85, bottom=0.3)
 fig.savefig(os.path.join(path_figures, 'single_samples_septum_relationships.pdf'))
+
+# Sample dendrogram (same linkage Z as heatmap row order), leaves colored by region
+fig, ax = plt.subplots(figsize=(3.5, 6))
+dendrogram(Z, labels=X.index.tolist(), orientation='left', color_threshold=0,
+           above_threshold_color='k', leaf_font_size=5, ax=ax)
+ax.invert_yaxis()   # top-to-bottom leaves, as in the heatmap
+for label in ax.get_yticklabels():
+    label.set_color(region_colors[sample_region[label.get_text()]])
+plu.format_ax(ax=ax, xlabel='Linkage distance', reduced_spines=True)
+plu.add_legend(colors=region_colors, label='Region', ax=ax,
+               ticks_size=6, artists_size=6, label_size=7,
+               loc='upper left', bbox_to_anchor=(1.5, 1))
+fig.subplots_adjust(left=0.05, right=0.5, top=0.98, bottom=0.08)
+fig.savefig(os.path.join(path_figures, 'single_samples_ventricles_septum_dendrogram.pdf'))
+
+
+##
+
+
+# Single-samples heatmap
+X = (
+    df
+    .query('in_sensible and mutation_id in @muts_1')
+    .query('tissue!="placenta" and region != "Centre_septum"')
+    .pivot_table(index='Sample_ID', columns='mutation_id', values='AF').fillna(0)
+)
+# X.to_csv(os.path.join(path_figures, 'sample_x_mutation_AD.csv'))
+D = pairwise_distances((X.values), metric='cosine')
+D = rescale_distances(D)
+Z = linkage(squareform(D, checks=False), method='average')
+order = leaves_list(Z)
+region_order = X.index[order].tolist()
+D = pd.DataFrame(D, index=X.index, columns=X.index)
+D_muts = pairwise_distances((X.values.T), metric='cosine')
+order = leaves_list(linkage(squareform(D_muts, checks=False), method='average'))
+mut_order = X.columns[order].tolist()
+
+# Region annotation for each sample (rows)
+sample_region = (
+    df
+    .query('tissue!="placenta" and region != "Centre_septum"')
+    .drop_duplicates('Sample_ID')
+    .set_index('Sample_ID')['region']
+)
+region_colors = {
+    'Left_septum':   '#4C78A8',
+    # 'Centre_septum': '#F58518',
+    'Right_septum':  '#54A24B',
+    'Left_Ventricle':  '#E45756',
+    'Right_Ventricle': '#B279A2',
+}
+# Per-sample region colors, in clustered row order
+row_colors = [region_colors[sample_region[s]] for s in region_order]
+
+# Fig
+fig, ax = plt.subplots(figsize=(6, 3.7))
+
+# Heatmap
+ax.imshow(X.loc[region_order, mut_order], cmap='afmhot_r', vmin=0, vmax=.1, aspect='auto')
+plu.format_ax(ax, xticks=mut_order, yticks=[], rotx=90, xticks_size=6)
+
+# Row annotation strip (left)
+axins_row = ax.inset_axes((-0.055, 0, 0.05, 1))
+cb_row = plt.colorbar(
+    matplotlib.cm.ScalarMappable(
+    cmap=matplotlib.colors.ListedColormap(row_colors[::-1])),
+    cax=axins_row, orientation='vertical'
+)
+cb_row.ax.set(xticks=[], yticks=[])
+cb_row.outline.set_linewidth(0.1)
+
+# Region legend
+plu.add_legend(colors=region_colors, label='Region', ax=ax,
+               ticks_size=8, artists_size=7, label_size=8,
+               loc='upper left', bbox_to_anchor=(0, 1.3), ncols=3)
+
+# AF colorbar
+plu.add_cbar(X.values.flatten(), ax=ax,
+             label='AF', palette='afmhot_r', vmin=0, vmax=.1)
+
+fig.subplots_adjust(left=0.1, right=0.7, top=0.85, bottom=0.3)
+fig.savefig(os.path.join(path_figures, 'single_samples_septum_relationships_no_Centre_septum.pdf'))
+
+# Sample dendrogram (same linkage Z as heatmap row order), leaves colored by region
+fig, ax = plt.subplots(figsize=(3.5, 6))
+dendrogram(Z, labels=X.index.tolist(), orientation='left', color_threshold=0,
+           above_threshold_color='k', leaf_font_size=5, ax=ax)
+ax.invert_yaxis()   # top-to-bottom leaves, as in the heatmap
+for label in ax.get_yticklabels():
+    label.set_color(region_colors[sample_region[label.get_text()]])
+plu.format_ax(ax=ax, xlabel='Linkage distance', reduced_spines=True)
+plu.add_legend(colors=region_colors, label='Region', ax=ax,
+               ticks_size=6, artists_size=6, label_size=7,
+               loc='upper left', bbox_to_anchor=(1.5, 1))
+fig.subplots_adjust(left=0.05, right=0.5, top=0.98, bottom=0.08)
+fig.savefig(os.path.join(path_figures, 'single_samples_ventricles_septum_dendrogram_no_Centre_septum.pdf'))
 
 
 ##
