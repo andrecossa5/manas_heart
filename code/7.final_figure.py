@@ -1,7 +1,10 @@
 """
-Final figure (FINAL_FIGURE.md), A4, and its supplementary panels. Reads results tables only.
+Final figure on an A4 page, and its supplementary panels. Reads results tables only:
+results/GENOTYPES_TRUE.tsv.gz, LINEAGE_SUMMARY.tsv, REGION_ENRICHMENT.tsv (5.lineage_analysis.py),
+SEPTUM_LV_CUTS.tsv, SEPTUM_LV_CUTS_TESTS.tsv (6.septum_ventricle.py), and the sample coordinates.
+Enriched = BH q < 0.1 of the region-vs-rest test; its permutation test is run here.
 
-Main (figures/final/main_figure.pdf, and each panel alone as main_<letter>.pdf, cut from the
+Main (figures/main_figure.pdf, and each panel alone as main_<letter>.pdf, cut from the
 same render so sizes and fonts are identical):
   a  placeholder for the experimental-design cartoon
   b  sampling in 3D: analysed samples by region, the other heart samples in grey
@@ -15,7 +18,6 @@ Supplementary: supp_c, supp_d, supp_fi, supp_fii, supp_fiii, supp_fiv.
 """
 
 import os
-import itertools
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -32,7 +34,7 @@ import plotting_utils as plu
 
 matplotlib.use('Agg')
 plu.set_rcParams()
-FS, FS_SMALL, FS_TINY = 10, 8, 7            # plu defaults: labels / titles, ticks; annotations
+FS_SMALL, FS_TINY = 8, 7                    # plu defaults for ticks; annotations
 
 
 ##
@@ -114,9 +116,9 @@ def p_text(p):
 ##
 
 
-path_main = '/Users/cossa/Desktop/projects/manas_heart'
+path_main = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))     # repository root
 path_results = os.path.join(path_main, 'results')
-path_out = os.path.join(path_main, 'figures', 'final')
+path_out = os.path.join(path_main, 'figures')
 os.makedirs(path_out, exist_ok=True)
 
 geno = pd.read_csv(os.path.join(path_results, 'GENOTYPES_TRUE.tsv.gz'), sep='\t')
@@ -138,10 +140,9 @@ reg = meta['reg'].values
 present = (STATE == 'present').values
 coords = xyz_all.loc[cuts, ['x', 'y', 'z']]
 analysed = xyz_all.index.isin(cuts)
-rng = np.random.default_rng(0)
 
 # SNV categories: tree assignment; unassigned SNVs with placenta reads above error (rule of
-# 8.lineage_analysis.py: binomial at error 5e-4, p < 0.01, placenta VAF > 20% of heart VAF) are Placenta
+# 5.lineage_analysis.py: binomial at error 5e-4, p < 0.01, placenta VAF > 20% of heart VAF) are Placenta
 heart_af = (AD_df.sum() / DP_df.sum()).reindex(muts).values
 s = summary.reindex(muts)
 placenta_af = s['placenta_AD'] / s['placenta_DP'].replace(0, np.nan)
@@ -157,7 +158,6 @@ assert cat_counts.sum() == len(muts) == 123
 region_tab = lambda col: enrich.pivot_table(index='region', columns='mutation_id', values=col).reindex(REGIONS)[muts]
 region_af = region_tab('AF')
 region_p = region_tab('p_binom')
-region_n_alt = region_tab('n_cuts_alt')
 region_frac = region_tab('frac_cuts_alt')
 ENRICH_Q = .1
 region_call = (region_tab('q_binom') < ENRICH_Q).fillna(False)              # enriched: BH q < 0.1
@@ -367,19 +367,6 @@ def septum_scatter(ax, set_name, legend=True, x_text=.44):
         plu.add_legend(colors={r: COLORS[r] for r in ['LS', 'CS', 'RS']}, label='Septal section', ax=ax,
                        ticks_size=FS_TINY - 1, artists_size=FS_TINY - 2, label_size=FS_TINY - 1, loc='lower right' if physical else 'upper left',
                        bbox_to_anchor=(1, .02) if physical else (0, .98))
-
-
-def box_strip(ax, values, groups, order, colors, size=10):
-    data = [values[groups == g] for g in order]
-    bp = ax.boxplot(data, positions=range(len(order)), widths=.55, showfliers=False, patch_artist=True,
-                    medianprops=dict(color='k', linewidth=1), whiskerprops=dict(linewidth=.6),
-                    capprops=dict(linewidth=.6), boxprops=dict(linewidth=.6))
-    for patch, g in zip(bp['boxes'], order):
-        patch.set(facecolor=colors[g], alpha=.35, edgecolor=colors[g])
-    for i, (g, v) in enumerate(zip(order, data)):
-        ax.scatter(i + rng.uniform(-.16, .16, len(v)), v, s=size, color=colors[g], edgecolor='k',
-                   linewidth=.2, zorder=3)
-    return data
 
 
 def panel_g(axs):
