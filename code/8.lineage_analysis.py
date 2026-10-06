@@ -7,6 +7,7 @@ Supersedes 7.genotyping.py for the TRUE mutation definition fixed in PLAN.md:
 such a cut; pericentromeric sites dropped.
 
 Outputs (results/): TRUE_MUTATIONS.tsv, GENOTYPES_TRUE.tsv.gz, AF_MATRIX.tsv.gz,
+ENRICHMENT_PERMUTATION.tsv, HIERARCHY.tsv, REGION_DISTANCES.tsv,
 LINEAGE_SUMMARY.tsv, REGION_ENRICHMENT.tsv, REGION_CONTRASTS.tsv,
 VENTRICULAR_LEAN.tsv, VENTRICULAR_LEAN_LOO.tsv.
 """
@@ -15,7 +16,7 @@ import os
 import itertools
 import numpy as np
 import pandas as pd
-from scipy.stats import binom, betabinom, fisher_exact, wilcoxon, mannwhitneyu
+from scipy.stats import binom, betabinom, norm, wilcoxon, mannwhitneyu
 from scipy.optimize import minimize_scalar
 from scipy.cluster.hierarchy import linkage
 from scipy.spatial.distance import squareform
@@ -55,10 +56,13 @@ AF_EXCLUDE = [0.05, 0.10, 0.20]     # absence stringencies carried through
 AF_MAIN = 0.10                      # headline threshold
 N_PERM = 2000
 N_PERM_JOINT = 20000    # permutations of the three septal labels
-N_PERM_FISHER = 200     # fewer: each permutation costs 620 Fisher tests
 N_BOOT = 1000
 CHAR_FRACTION = 0.8     # characters resampled per bootstrap replicate
 PLOIDY = 2              # donor is female (chrX depth ratio 1.02), so 2 everywhere
+
+# Excluded from every analysis: total depth 20,085 reads over the 62 heart cuts, about ten
+# times any other site (median 1,643), so most likely a collapsed repeat / mapping artefact
+EXCLUDED = ['chr1_143233282_C_T']
 
 REGION_ABBR = {
     'Left_septum': 'LS', 'Centre_septum': 'CS', 'Right_septum': 'RS',
@@ -179,9 +183,9 @@ for m in AD_all.columns:
         passing.append(m)
 
 peri = pd.Series({m: is_pericentromeric(m) for m in passing})
-true_muts = pd.Index([m for m in passing if not peri[m]])
+true_muts = pd.Index([m for m in passing if not peri[m] and m not in EXCLUDED])
 print(f'TRUE rule: {len(passing)} of {AD_all.shape[1]} | after dropping '
-      f'{int(peri.sum())} pericentromeric: {len(true_muts)}')
+      f'{int(peri.sum())} pericentromeric and {len(EXCLUDED)} excluded: {len(true_muts)}')
 
 AD = AD_all[true_muts]
 DP = DP_all[true_muts]
@@ -307,19 +311,24 @@ print(f'  sensitivity: iterative background would leave {lost} mutations with no
 ##
 
 
-# 3. 1a Pre-existing vs heart-specific
-tree_assigned = muts['desc_samples_orgin'].reindex(true_muts).ne('Unassigned')
-pre_existing = (placenta['AD_alt'].values >= 2) | tree_assigned.values
-print(f'\n1a Pre-existing (>=2 placenta reads or tree-assigned): {int(pre_existing.sum())} '
-      f'({100 * pre_existing.mean():.0f}%) | heart-specific: {int((~pre_existing).sum())} '
-      f'({100 * (~pre_existing).mean():.0f}%)')
-print('  by evidence: placenta only %d | tree only %d | both %d' % (
-    int(((placenta['AD_alt'].values >= 2) & ~tree_assigned.values).sum()),
-    int(((placenta['AD_alt'].values < 2) & tree_assigned.values).sum()),
-    int(((placenta['AD_alt'].values >= 2) & tree_assigned.values).sum())))
+# 3. 1a Pre-gastrulation vs heart-specific
+# A mutation shared with gut (endoderm) as well as heart (mesoderm) arose before the
+# germ layers split. Blood-only sharing is not enough: blood and heart are both
+# mesoderm. Placenta reads are not used: at ~210x the number of sites with >=2
+# placenta reads is what background noise alone gives (11 vs 9.3 expected).
+CROSS_LAYER = ['Blood_Gut', 'Gut']
+tree = muts['desc_samples_orgin'].reindex(true_muts)
+lineage_class = np.select(
+    [tree.isin(CROSS_LAYER).values, tree.eq('Unassigned').values],
+    ['Pre-gastrulation', 'Heart-specific'], default='Other shared')
+pre_gastrulation = lineage_class == 'Pre-gastrulation'
+heart_specific = lineage_class == 'Heart-specific'
+print('\n1a Lineage class (tree assignment): ' + ' | '.join(
+    f'{k} {int((lineage_class == k).sum())}'
+    for k in ['Pre-gastrulation', 'Heart-specific', 'Other shared']))
 n_present = present.sum(0)
-print('  cuts with a present call: pre-existing median %.0f | heart-specific median %.0f' % (
-    np.median(n_present[pre_existing]), np.median(n_present[~pre_existing])))
+print('  cuts with a present call: pre-gastrulation median %.0f | heart-specific median %.0f' % (
+    np.median(n_present[pre_gastrulation]), np.median(n_present[heart_specific])))
 
 
 ##
@@ -338,76 +347,182 @@ covered_reads = np.array([
 print(f'\n1b Detected in all five regions: {int(covered.sum())} by genotype | '
       f'{int(covered_reads.sum())} by >=1 raw read')
 
-# Test A: Fisher on determinate genotypes, region vs rest
+global_af = ((A.sum(0) + placenta['AD_alt'].values)
+             / (D.sum(0) + placenta['DP'].values))
+
+# Region vs rest of the heart, on read counts (hard genotype calls are not used).
+# For every SNV x region:
+#   - read-level binomial: region AD/DP against the rest-of-heart VAF (floored at the
+#     site background). Descriptive: every read counts as a replicate.
+#   - beta-binomial likelihood-ratio test with tissue blocks as the units (primary), and
+#     with cuts as the units (sensitivity). Null: one VAF for the whole heart; alternative:
+#     the region's VAF differs from the rest; one-sided via the signed root of the LR.
+#     VAFs are bounded below by the site background. Dispersion is not estimated per test:
+#     per-SNV estimates are shrunk to a trend on abundance, fitted across SNVs.
+#   - enriched (a hit): read-level q < ENRICH_Q, and alternate reads in >= MIN_FRAC_CUTS_ALT of
+#     the region's cuts, so a single-cut spike does not count. A SNV is enriched with >=1 hit.
+#     Global significance: the whole rule is rerun on N_PERM_ENRICH shuffles of region labels
+#     across cuts; statistic = number of enriched SNVs (global p and empirical FDR).
+#   - replicated (reported, not used for the call): alternate reads in >=2 region blocks and
+#     block-level p < 0.05 after dropping each region block in turn.
+LOG_S_BOUNDS = (np.log(1.0), np.log(1e5))
+MU_MAX = 0.5
+ENRICH_Q = 0.1
+MIN_FRAC_CUTS_ALT = 0.3
+N_PERM_ENRICH = 1000
+N_SIM_NULL = 20
+reg = region.values
+chunk_of_cut = chunk.values
+blocks = np.array(sorted(set(chunk_of_cut)))
+block_region = pd.Series(reg, index=chunk_of_cut).groupby(level=0).first().reindex(blocks).values
+A_blk = np.vstack([A[chunk_of_cut == b].sum(0) for b in blocks])
+D_blk = np.vstack([D[chunk_of_cut == b].sum(0) for b in blocks])
+
+
+def fit_mu(a, d, s, floor):
+    """
+    MLE of the beta-binomial mean for counts a/d at fixed concentration s.
+    Returns (mu, log-likelihood).
+    """
+    if len(a) == 0:
+        return np.nan, 0.0
+    f = lambda mu: -betabinom.logpmf(a, d, mu * s, (1 - mu) * s).sum()
+    res = minimize_scalar(f, bounds=(floor, MU_MAX), method='bounded')
+    return float(res.x), -float(res.fun)
+
+
+def fit_log_s(a, d, floor):
+    """
+    Per-SNV concentration under the single-mean (null) model, profiled over the mean.
+    """
+    f = lambda ls: -fit_mu(a, d, np.exp(ls), floor)[1]
+    return float(minimize_scalar(f, bounds=LOG_S_BOUNDS, method='bounded').x)
+
+
+def shrunk_concentration(Au, Du):
+    """
+    Per-SNV log concentration regressed on logit(pooled VAF) across SNVs (estimates at the
+    bounds excluded from the fit); each SNV takes its trend value.
+    """
+    ls = np.array([fit_log_s(Au[:, j], Du[:, j], site_bg[j]) for j in range(Au.shape[1])])
+    mu = np.clip(Au.sum(0) / Du.sum(0), 1e-4, None)
+    x = np.log(mu / (1 - mu))
+    ok = (ls > LOG_S_BOUNDS[0] + .05) & (ls < LOG_S_BOUNDS[1] - .05)
+    slope, icpt = np.polyfit(x[ok], ls[ok], 1)
+    return np.exp(np.clip(icpt + slope * x, *LOG_S_BOUNDS)), ls, (icpt, slope, int(ok.sum()))
+
+
+def bb_region_test(a, d, in_r, s, floor):
+    """
+    One-sided beta-binomial LRT, region (in_r) vs rest, at fixed concentration s.
+    """
+    _, ll0 = fit_mu(a, d, s, floor)
+    mu_r, ll_r = fit_mu(a[in_r], d[in_r], s, floor)
+    mu_o, ll_o = fit_mu(a[~in_r], d[~in_r], s, floor)
+    stat = max(2 * (ll_r + ll_o - ll0), 0.0)
+    return norm.sf(np.sign(mu_r - mu_o) * np.sqrt(stat))
+
+
+s_blk, ls_blk_raw, trend_blk = shrunk_concentration(A_blk, D_blk)
+s_cut, ls_cut_raw, trend_cut = shrunk_concentration(A, D)
+print(f'  block-level concentration trend: log s = {trend_blk[0]:.2f} + {trend_blk[1]:.2f} logit(VAF) '
+      f'({trend_blk[2]} SNVs off the bounds); median s {np.median(s_blk):.0f}')
+print(f'  cut-level concentration trend:   log s = {trend_cut[0]:.2f} + {trend_cut[1]:.2f} logit(VAF) '
+      f'({trend_cut[2]} SNVs off the bounds); median s {np.median(s_cut):.0f}')
+
+rng = np.random.default_rng(0)
 rows = []
 for j, m in enumerate(true_muts):
     for r in REGIONS:
-        sel = in_region[r] & determinate[:, j]
-        oth = (~in_region[r]) & determinate[:, j]
-        a = int((main_state[sel, j] == 'present').sum())
-        b = int((main_state[sel, j] == 'absent').sum())
-        c = int((main_state[oth, j] == 'present').sum())
-        d_ = int((main_state[oth, j] == 'absent').sum())
-        if a + b == 0 or c + d_ == 0:
-            continue
-        rows.append(dict(mutation_id=m, region=r, present=a, absent=b,
-                         present_rest=c, absent_rest=d_,
-                         p=fisher_exact([[a, b], [c, d_]])[1]))
-fisher_tab = pd.DataFrame(rows)
-fisher_tab['q'] = np.nan
-for m, g in fisher_tab.groupby('mutation_id'):
-    fisher_tab.loc[g.index, 'q'] = multipletests(g['p'], method='fdr_bh')[1]
-obs_hits = int((fisher_tab['q'] < 0.1).sum())
+        rb = block_region == r
+        rc = reg == r
+        a_r, d_r = A[rc, j].sum(), D[rc, j].sum()
+        a_o, d_o = A[~rc, j].sum(), D[~rc, j].sum()
+        af_o = a_o / d_o
+        blk_af = A_blk[rb, j] / D_blk[rb, j]
+        # leave-one-block-out, block level
+        lobo = []
+        if rb.sum() >= 2:
+            for b in np.where(rb)[0]:
+                keep = np.arange(len(blocks)) != b
+                lobo.append(bb_region_test(A_blk[keep, j], D_blk[keep, j], rb[keep], s_blk[j], site_bg[j]))
+        rows.append(dict(
+            mutation_id=m, region=r,
+            AD=int(a_r), DP=int(d_r), AF=a_r / d_r,
+            AD_rest=int(a_o), DP_rest=int(d_o), AF_rest=af_o,
+            AF_diff=a_r / d_r - af_o,
+            block_mean_AF=blk_af.mean(), n_blocks=int(rb.sum()),
+            n_blocks_alt=int((A_blk[rb, j] > 0).sum()),
+            n_cuts=int(rc.sum()), n_cuts_alt=int((A[rc, j] > 0).sum()),
+            frac_cuts_alt=(A[rc, j] > 0).mean(),
+            top_block_share=A_blk[rb, j].max() / a_r if a_r else np.nan,
+            p_binom=binom.sf(a_r - 1, d_r, max(af_o, site_bg[j])),
+            p_bb_block=bb_region_test(A_blk[:, j], D_blk[:, j], rb, s_blk[j], site_bg[j]),
+            p_bb_cut=bb_region_test(A[:, j], D[:, j], rc, s_cut[j], site_bg[j]),
+            p_lobo_max=max(lobo) if lobo else np.nan,
+        ))
+enrichment = pd.DataFrame(rows)
+for col in ['binom', 'bb_block', 'bb_cut']:
+    enrichment[f'q_{col}'] = multipletests(enrichment[f'p_{col}'], method='fdr_bh')[1]
+enrichment['replicated'] = (enrichment['n_blocks_alt'] >= 2) & (enrichment['p_lobo_max'] < 0.05)
+enrichment['enriched'] = (enrichment['q_binom'] < ENRICH_Q) & \
+    (enrichment['frac_cuts_alt'] >= MIN_FRAC_CUTS_ALT)
 
 
-def count_hits(labels):
+def enrichment_calls(labels):
     """
-    Number of mutation x region Fisher tests at p<0.05 under a labelling.
+    The hit rule on a labelling of the cuts: regions x SNVs boolean matrix.
     """
-    n = 0
-    for j in range(len(true_muts)):
-        det = determinate[:, j]
-        for r in REGIONS:
-            sel = (labels == r) & det
-            oth = (labels != r) & det
-            a = int((main_state[sel, j] == 'present').sum())
-            b = int((main_state[sel, j] == 'absent').sum())
-            c = int((main_state[oth, j] == 'present').sum())
-            d_ = int((main_state[oth, j] == 'absent').sum())
-            if a + b == 0 or c + d_ == 0:
-                continue
-            if fisher_exact([[a, b], [c, d_]])[1] < 0.05:
-                n += 1
-    return n
-
-
-rng = np.random.default_rng(0)
-obs_nominal = int((fisher_tab['p'] < 0.05).sum())
-null_hits = np.array([count_hits(rng.permutation(reg)) for _ in range(N_PERM_FISHER)])
-print(f'  Fisher (determinate calls only): {obs_hits} region hits at FDR<0.1; '
-      f'{obs_nominal} at p<0.05 vs permuted mean {null_hits.mean():.1f} '
-      f'(95th pct {np.percentile(null_hits, 95):.0f}), p = {(null_hits >= obs_nominal).mean():.3f}')
-
-# Test B: density against the site's global AF
-global_af = ((A.sum(0) + placenta['AD_alt'].values)
-             / (D.sum(0) + placenta['DP'].values))
-dens_rows = []
-for j, m in enumerate(true_muts):
+    p, frac = [], []
     for r in REGIONS:
-        a = A[in_region[r], j].sum()
-        d_ = D[in_region[r], j].sum()
-        dens_rows.append(dict(mutation_id=m, region=r, AD=int(a), DP=int(d_),
-                              AF=a / d_ if d_ else np.nan, global_AF=global_af[j],
-                              p=binom.sf(a - 1, d_, global_af[j])))
-dens_tab = pd.DataFrame(dens_rows)
-dens_tab['q'] = multipletests(dens_tab['p'], method='fdr_bh')[1]
-print(f'  Density vs global AF: {int((dens_tab["q"] < 0.1).sum())} mutation x region '
-      f'hits at FDR<0.1, over {len(dens_tab)} tests')
+        k = labels == r
+        a, d = A[k].sum(0), D[k].sum(0)
+        rest = np.maximum((A.sum(0) - a) / (D.sum(0) - d), site_bg)
+        p.append(binom.sf(a - 1, d, rest))
+        frac.append((A[k] > 0).mean(0))
+    q = multipletests(np.ravel(p), method='fdr_bh')[1].reshape(len(REGIONS), -1)
+    return (q < ENRICH_Q) & (np.array(frac) >= MIN_FRAC_CUTS_ALT)
 
-enrichment = fisher_tab.merge(
-    dens_tab[['mutation_id', 'region', 'AD', 'DP', 'AF', 'global_AF', 'p', 'q']],
-    on=['mutation_id', 'region'], suffixes=('_fisher', '_density'), how='outer'
-)
+
+calls = enrichment_calls(reg)
+assert calls.sum() == enrichment['enriched'].sum()
+n_obs = int(calls.any(0).sum())
+perm_rng = np.random.default_rng(1)
+n_null = np.array([enrichment_calls(perm_rng.permutation(reg)).any(0).sum()
+                   for _ in range(N_PERM_ENRICH)])
+enrich_perm = pd.Series({
+    'n_enriched_snvs': n_obs, 'n_hits': int(calls.sum()), 'n_tests': calls.size,
+    'n_permutations': N_PERM_ENRICH, 'expected_by_chance': n_null.mean(),
+    'null_95th': np.percentile(n_null, 95),
+    'p_global': (np.sum(n_null >= n_obs) + 1) / (N_PERM_ENRICH + 1),
+    'empirical_FDR': n_null.mean() / max(n_obs, 1),
+})
+enrich_perm.to_csv(os.path.join(path_results, 'ENRICHMENT_PERMUTATION.tsv'), sep='\t', header=False)
+
+hits = enrichment.query('enriched')
+print(f'  {len(enrichment)} SNV x region tests | q<{ENRICH_Q}: read-level binomial '
+      f'{int((enrichment.q_binom < ENRICH_Q).sum())}, beta-binomial cut level '
+      f'{int((enrichment.q_bb_cut < ENRICH_Q).sum())}, block level '
+      f'{int((enrichment.q_bb_block < ENRICH_Q).sum())}')
+print(f'  hits (read-level q<{ENRICH_Q}, alt reads in >={MIN_FRAC_CUTS_ALT:.0%} of region cuts): '
+      f'{len(hits)} | enriched SNVs {n_obs} | by region '
+      f'{hits.region.value_counts().reindex(REGIONS).fillna(0).astype(int).to_dict()}')
+print(f'  cut-label permutation ({N_PERM_ENRICH}): {n_obs} enriched SNVs vs {n_null.mean():.1f} expected '
+      f'(95th pct {np.percentile(n_null, 95):.0f}) | global p = {enrich_perm.p_global:.4f} | '
+      f'empirical FDR {enrich_perm.empirical_FDR:.2f}')
+
+# Calibration of the block-level test: data simulated under each SNV's fitted null
+sim_p = []
+for j in range(len(true_muts)):
+    mu0, _ = fit_mu(A_blk[:, j], D_blk[:, j], s_blk[j], site_bg[j])
+    for _ in range(N_SIM_NULL):
+        a_sim = betabinom.rvs(D_blk[:, j].astype(int), mu0 * s_blk[j], (1 - mu0) * s_blk[j], random_state=rng)
+        for r in REGIONS:
+            sim_p.append(bb_region_test(a_sim, D_blk[:, j], block_region == r, s_blk[j], site_bg[j]))
+sim_p = np.array(sim_p)
+print(f'  null calibration, block level ({N_SIM_NULL} simulations per SNV, discovery filter not '
+      f'applied): p<0.05 {np.mean(sim_p < .05):.3f}, p<0.01 {np.mean(sim_p < .01):.3f}')
+
 enrichment.to_csv(os.path.join(path_results, 'REGION_ENRICHMENT.tsv'), sep='\t', index=False)
 
 
@@ -482,7 +597,7 @@ print('  chunk-pooled AF where present (not conditioned on per-cut detection):')
 print('    median %.3f (IQR %.3f-%.3f) -> carrier cells %.0f%%' % (
     np.nanmedian(local_af), np.nanpercentile(local_af, 25), np.nanpercentile(local_af, 75),
     100 * PLOIDY * np.nanmedian(local_af)))
-for name, sel in [('pre-existing', pre_existing), ('heart-specific', ~pre_existing),
+for name, sel in [('pre-gastrulation', pre_gastrulation), ('heart-specific', heart_specific),
                   ('diffuse', klass == 'diffuse'), ('scattered', klass == 'scattered')]:
     if sel.sum():
         print('    %-14s n=%3d | chunk-pooled AF median %.3f | max cut AF median %.3f' % (
@@ -505,7 +620,7 @@ summary = pd.DataFrame({
     'placenta_AD': placenta['AD_alt'].values.astype(int),
     'placenta_DP': placenta['DP'].values.astype(int),
     'tree_assignment': muts['desc_samples_orgin'].reindex(true_muts).values,
-    'pre_existing': pre_existing,
+    'lineage_class': lineage_class,
     'site_background': site_bg,
     'global_AF': global_af,
     'mean_AF_present': mean_af,
@@ -515,7 +630,7 @@ summary = pd.DataFrame({
 summary.to_csv(os.path.join(path_results, 'LINEAGE_SUMMARY.tsv'), sep='\t')
 
 summary.reset_index()[['mutation_id', 'n_cuts_3reads', 'placenta_AD', 'placenta_DP',
-                       'tree_assignment', 'pre_existing', 'site_background']].to_csv(
+                       'tree_assignment', 'lineage_class', 'site_background']].to_csv(
     os.path.join(path_results, 'TRUE_MUTATIONS.tsv'), sep='\t', index=False)
 
 genotypes = pd.DataFrame({
@@ -540,62 +655,86 @@ pd.DataFrame(AF, index=AD.index, columns=true_muts).to_csv(
 ##
 
 
-# 7. 2a Region-level hierarchy, with character and cut bootstraps
-def region_profiles(rows, cols):
-    """
-    Per-region mean of per-cut AF (averaging cuts, not pooling reads).
-    """
-    out = np.vstack([AF[np.ix_(rows[r], cols)].mean(0) for r in REGIONS])
-    return out
+# 7. 2a Region-level hierarchy of lineage composition, from read counts.
+# Regional VAF profiles are built three ways: pooled AD/DP over the region (primary),
+# equal-weight average of block VAFs, and mean of per-cut VAFs. Each is clustered by cosine
+# distance and average linkage, for all SNVs and for each lineage class. Clade support comes
+# from two resamplings: SNVs (80% without replacement) and whole blocks (with replacement
+# within each region; CS has one block, so it never varies). A clade enters the consensus
+# tree only with block support >= CONSENSUS_MIN; weaker branches are left unresolved.
+CONSENSUS_MIN = 0.5
+PROFILE_KINDS = ['pooled', 'equal_block', 'mean_cut']
+blocks_of = {r: np.where(block_region == r)[0] for r in REGIONS}
+cuts_of_block = [np.where(chunk_of_cut == b)[0] for b in blocks]
 
 
-def region_presence(rows, cols):
+def build_profiles(kind, cols, blk=None):
     """
-    Region x mutation binary matrix: 1 if at least one present call.
+    Region x SNV VAF profile. blk maps each region to the block indices to use (with
+    repeats under the block bootstrap); default all its blocks.
     """
-    return np.vstack([present[np.ix_(rows[r], cols)].any(0) for r in REGIONS]).astype(bool)
+    blk = blk or blocks_of
+    out = []
+    for r in REGIONS:
+        b = blk[r]
+        if kind == 'pooled':
+            out.append(A_blk[np.ix_(b, cols)].sum(0) / D_blk[np.ix_(b, cols)].sum(0))
+        elif kind == 'equal_block':
+            out.append((A_blk[np.ix_(b, cols)] / D_blk[np.ix_(b, cols)]).mean(0))
+        else:
+            c = np.concatenate([cuts_of_block[k] for k in b])
+            out.append(AF[np.ix_(c, cols)].mean(0))
+    return np.vstack(out)
+
+
+def tree_of(P):
+    D_ = pairwise_distances(P, metric='cosine')
+    return D_, linkage(squareform(D_, checks=False), method='average')
 
 
 row_idx = {r: np.where(in_region[r])[0] for r in REGIONS}
-all_cols = np.arange(len(true_muts))
+snv_sets = {'All': np.arange(len(true_muts))}
+snv_sets.update({k: np.where(lineage_class == k)[0]
+                 for k in ['Pre-gastrulation', 'Heart-specific', 'Other shared']})
 
-D_cos = pairwise_distances(region_profiles(row_idx, all_cols), metric='cosine')
-D_jac = pairwise_distances(region_presence(row_idx, all_cols), metric='jaccard')
+print('\n2a Region-level hierarchy (cosine, average linkage)')
+tree_rows, dist_rows = [], []
+for kind in PROFILE_KINDS:
+    for set_name, cols in snv_sets.items():
+        D_, Z = tree_of(build_profiles(kind, cols))
+        observed = clade_set(Z, REGIONS)
+        n_char = int(CHAR_FRACTION * len(cols))
+        hits_snv, hits_blk = {}, {}
+        for _ in range(N_BOOT):
+            for grp, _h in clade_set(tree_of(build_profiles(
+                    kind, rng.choice(cols, n_char, replace=False)))[1], REGIONS):
+                hits_snv[grp] = hits_snv.get(grp, 0) + 1
+            blk = {r: rng.choice(b, len(b), replace=True) for r, b in blocks_of.items()}
+            for grp, _h in clade_set(tree_of(build_profiles(kind, cols, blk))[1], REGIONS):
+                hits_blk[grp] = hits_blk.get(grp, 0) + 1
+        for grp in set(dict(observed)) | {g for g, v in hits_blk.items() if v / N_BOOT >= .2}:
+            tree_rows.append(dict(
+                profile=kind, snv_set=set_name, n_snvs=len(cols), clade='+'.join(sorted(grp)),
+                in_tree=grp in dict(observed), height=dict(observed).get(grp, np.nan),
+                support_snv=hits_snv.get(grp, 0) / N_BOOT, support_block=hits_blk.get(grp, 0) / N_BOOT))
+        for a, b in itertools.combinations(range(len(REGIONS)), 2):
+            dist_rows.append(dict(profile=kind, snv_set=set_name, region_a=REGIONS[a],
+                                  region_b=REGIONS[b], cosine_distance=D_[a, b]))
+hierarchy = pd.DataFrame(tree_rows)
+hierarchy['consensus'] = hierarchy['in_tree'] & (hierarchy['support_block'] >= CONSENSUS_MIN)
+hierarchy.to_csv(os.path.join(path_results, 'HIERARCHY.tsv'), sep='\t', index=False)
+pd.DataFrame(dist_rows).to_csv(os.path.join(path_results, 'REGION_DISTANCES.tsv'), sep='\t', index=False)
 
-print('\n2a Region-level structure')
-print('  region x region cosine distance on mean AF profiles:')
-print(pd.DataFrame(D_cos, index=REGIONS, columns=REGIONS).round(3).to_string()
-      .replace('\n', '\n    '))
-print('  mean distance to the other four regions: ' + ', '.join(
-    f'{r} {np.delete(D_cos[i], i).mean():.3f} ({len(row_idx[r])} cuts)'
-    for i, r in enumerate(REGIONS)))
-
-# Regions are fixed; support comes from resampling characters (mutations) at
-# CHAR_FRACTION without replacement, the usual jackknife of phylogenetics.
-n_char = int(CHAR_FRACTION * len(true_muts))
-for name, metric, builder in [('AF cosine', 'cosine', region_profiles),
-                              ('Jaccard on region presence', 'jaccard', region_presence)]:
-    Z = linkage(squareform(pairwise_distances(builder(row_idx, all_cols), metric=metric),
-                           checks=False), method='average')
-    observed = clade_set(Z, REGIONS)
-    hits = {}
-    for _ in range(N_BOOT):
-        cols = rng.choice(len(true_muts), n_char, replace=False)
-        Zb = linkage(squareform(pairwise_distances(builder(row_idx, cols), metric=metric),
-                                checks=False), method='average')
-        for grp, _h in clade_set(Zb, REGIONS):
-            hits[grp] = hits.get(grp, 0) + 1
-    print(f'  {name} ({n_char} of {len(true_muts)} characters per replicate, '
-          f'{N_BOOT} replicates):')
-    for grp, height in observed:
-        print(f'    {"+".join(sorted(grp)):14s} merge height {height:.3f} | '
-              f'support {100 * hits.get(grp, 0) / N_BOOT:3.0f}%')
-    competing = {'+'.join(sorted(k)): round(100 * v / N_BOOT)
-                 for k, v in sorted(hits.items(), key=lambda x: -x[1])
-                 if k not in dict(observed)}
-    print('    competing groups: ' + str(dict(list(competing.items())[:4])))
-print('  regions are held fixed here, so this measures character support only, '
-      'not how much the topology depends on which cuts were sampled')
+show = hierarchy.query('in_tree').copy()
+show['support'] = (100 * show.support_snv).round().astype(int).astype(str) + ' / ' + \
+    (100 * show.support_block).round().astype(int).astype(str)
+print('  clades in each tree, support % (SNV jackknife / block bootstrap); '
+      f'consensus needs block support >= {CONSENSUS_MIN:.0%}:')
+print(show.pivot_table(index='clade', columns=['profile', 'snv_set'], values='support', aggfunc='first')
+      .reindex(columns=[(k, s_) for k in PROFILE_KINDS for s_ in snv_sets]).fillna('')
+      .to_string().replace('\n', '\n    '))
+prim = hierarchy.query('profile == "pooled" and snv_set == "All" and in_tree')
+print('  consensus (pooled, all SNVs): ' + (', '.join(prim.query('consensus').clade) or 'none resolved'))
 
 
 ##
