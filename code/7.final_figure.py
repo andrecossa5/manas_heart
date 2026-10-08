@@ -423,11 +423,22 @@ for letter, (x, top) in LETTERS.items():
 fig.savefig(os.path.join(path_out, 'main_figure.pdf'))
 fig.savefig(os.path.join(path_out, 'main_figure.png'), dpi=200)
 
-# Each panel alone: the same render, cropped to the panel's artists
-renderer = fig.canvas.get_renderer()
+# Each panel alone: the same render with the other panels and the letters hidden, cropped to the
+# drawn pixels (a 3D axes' tight bbox is far larger than its content and overlaps its neighbours)
+def drawn_bbox(fig):
+    fig.canvas.draw()
+    img = np.asarray(fig.canvas.buffer_rgba())[..., :3]
+    ys, xs = np.where((img < 250).any(-1))
+    h = img.shape[0]
+    return Bbox([[xs.min(), h - ys.max() - 1], [xs.max() + 1, h - ys.min()]]).transformed(fig.dpi_scale_trans.inverted())
+
+
+for t in fig.texts:
+    t.set_visible(False)
 for letter, axs in panels.items():
-    bb = Bbox.union([ax.get_tightbbox(renderer) for ax in axs]).transformed(fig.dpi_scale_trans.inverted())
-    fig.savefig(os.path.join(path_out, f'main_{letter}.pdf'), bbox_inches=bb.padded(.05))
+    for ax in fig.axes:
+        ax.set_visible(ax in axs)
+    fig.savefig(os.path.join(path_out, f'main_{letter}.pdf'), bbox_inches=drawn_bbox(fig).padded(.05))
 plt.close(fig)
 
 
