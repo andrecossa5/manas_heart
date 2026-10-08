@@ -7,14 +7,14 @@ Enriched = BH q < 0.1 of the region-vs-rest test; its permutation test is run he
 Main (figures/main_figure.pdf, and each panel alone as main_<letter>.pdf, cut from the
 same render so sizes and fonts are identical):
   a  placeholder for the experimental-design cartoon
-  b  sampling in 3D: analysed samples by region, the other heart samples in grey
-  c  SNV categories from the tree assignment (+ placenta reads)
+  b  sampling in 3D: analysed samples by region
+  c  SNV categories from the tree assignment
   d  SNVs ranked by their strongest region enrichment (-log10 p), size = that region's VAF
-  e  one example per region and one across the heart, read-count 3D view
+  e  two SNVs almost exclusive to one region (not CS), 3D view of the samples with >= 1 alt read
   f  septal samples, cosine similarity to pooled LV vs RV (all SNVs)
-  g  two SNVs, cell fraction per sample by region
+  g  three SNVs (LS-LV, RS-LV, CS-RV), cell fraction per sample by region
 
-Supplementary: supp_c, supp_d, supp_fi, supp_fii, supp_fiii, supp_fiv.
+Supplementary: supp_ci, supp_cii, supp_d, supp_fi, supp_fii, supp_fiii, supp_fiv.
 """
 
 import os
@@ -49,15 +49,13 @@ COLORS = {
     'LS': '#4C78A8', 'CS': '#F58518', 'RS': '#54A24B',
     'LV': '#E45756', 'RV': '#B279A2',
 }
-OTHER_COLOR = '#d9d9d9'                      # heart samples not analysed
-CATEGORIES = ['Heart', 'Gut+Blood', 'Blood', 'Placenta', 'Gut']      # most to least abundant
-CAT_COLORS = {'Heart': '#FF0000', 'Gut+Blood': '#00A08A', 'Blood': '#F2AD00', 'Placenta': '#F98400',
-              'Gut': '#5BBCD6'}                  # Darjeeling1
+CATEGORIES = ['Heart', 'Gut+Blood', 'Blood', 'Gut']      # most to least abundant
+CAT_COLORS = {'Heart': '#FF0000', 'Gut+Blood': '#00A08A', 'Blood': '#F2AD00', 'Gut': '#5BBCD6'}                  # Darjeeling1
 TREE_TO_CAT = {'Gut': 'Gut', 'Blood': 'Blood', 'Blood_shared': 'Blood', 'Blood_Gut': 'Gut+Blood'}
-E_ORDER = ['All heart', 'LV', 'RV', 'LS', 'RS', 'CS']
 G_ORDER = ['LV', 'LS', 'RS', 'CS', 'RV']
-E_OVERRIDE = {}                              # slot -> mutation_id, replaces the automatic pick
-G_OVERRIDE = {}                              # 'LV-LS/RS' or 'RV-CS' -> mutation_id
+E_OVERRIDE = {'RS': 'chr5_132654211_G_A',    # region -> mutation_id, replaces the automatic pick
+              'LV': 'chr11_81734373_G_A'}    # (and its regions); picks of the former genotype calls
+G_OVERRIDE = {}                              # 'LV-LS', 'LV-RS' or 'RV-CS' -> mutation_id
 B_POINT = 22                                 # 3D point sizes: panel b, panel e
 E_POINT = 10
 VAF_MAX_3D = .2
@@ -132,25 +130,17 @@ geno['reg'] = geno['region'].map(REGION_ABBR)
 AF_df = geno.pivot(index='Sample_ID', columns='mutation_id', values='AF')
 AD_df = geno.pivot(index='Sample_ID', columns='mutation_id', values='AD_alt')
 DP_df = geno.pivot(index='Sample_ID', columns='mutation_id', values='DP')
-STATE = geno.pivot(index='Sample_ID', columns='mutation_id', values='state_af10')
 cuts, muts = AF_df.index, AF_df.columns
 AF = AF_df.values
 meta = geno.drop_duplicates('Sample_ID').set_index('Sample_ID').loc[cuts]
 reg = meta['reg'].values
-present = (STATE == 'present').values
+present = AD_df.values > 0                  # carrier = any alt read
 coords = xyz_all.loc[cuts, ['x', 'y', 'z']]
-analysed = xyz_all.index.isin(cuts)
 
-# SNV categories: tree assignment; unassigned SNVs with placenta reads above error (rule of
-# 5.lineage_analysis.py: binomial at error 5e-4, p < 0.01, placenta VAF > 20% of heart VAF) are Placenta
+# SNV categories: tree assignment; unassigned SNVs are Heart
 heart_af = (AD_df.sum() / DP_df.sum()).reindex(muts).values
 s = summary.reindex(muts)
-placenta_af = s['placenta_AD'] / s['placenta_DP'].replace(0, np.nan)
-placenta_signal = ((binom.sf(s['placenta_AD'] - 1, s['placenta_DP'], 5e-4) < .01)
-                   & (placenta_af.fillna(0).values > .2 * heart_af))
-category = np.where(s['tree_assignment'] == 'Unassigned',
-                    np.where(placenta_signal, 'Placenta', 'Heart'),
-                    s['tree_assignment'].map(TREE_TO_CAT).values)
+category = np.where(s['tree_assignment'] == 'Unassigned', 'Heart', s['tree_assignment'].map(TREE_TO_CAT).values)
 cat_counts = pd.Series(category).value_counts().reindex(CATEGORIES).fillna(0).astype(int)
 assert cat_counts.sum() == len(muts) == 123
 
@@ -165,10 +155,10 @@ logp = -np.log10(region_p.clip(lower=1e-30))
 is_enriched = region_call.any().values
 
 # Global significance of the number of enriched SNVs: the same rule (read-level binomial of each
-# region against the rest of the heart, rest VAF floored at the site background, BH over the
+# region against the rest of the heart, rest VAF floored at ERROR_FLOOR, BH over the
 # 5 x 123 tests) rerun on sample-label permutations across regions
 A_c, D_c = AD_df.values.astype(float), DP_df.values.astype(float)
-site_bg = summary['site_background'].reindex(muts).values
+ERROR_FLOOR = 2e-3                         # as in 5.lineage_analysis.py
 N_PERM = 1000
 
 
@@ -177,7 +167,7 @@ def enrichment_calls(labels):
     for r in REGIONS:
         k = labels == r
         a, d = A_c[k].sum(0), D_c[k].sum(0)
-        p.append(binom.sf(a - 1, d, np.maximum((A_c.sum(0) - a) / (D_c.sum(0) - d), site_bg)))
+        p.append(binom.sf(a - 1, d, np.maximum((A_c.sum(0) - a) / (D_c.sum(0) - d), ERROR_FLOOR)))
     return multipletests(np.ravel(p), method='fdr_bh')[1].reshape(len(REGIONS), -1) < ENRICH_Q
 
 
@@ -198,18 +188,22 @@ print(f'  enriched SNVs: {int(is_enriched.sum())}/{len(muts)} ({enrich_perm.expe
 ##
 
 
-# Example picks. e: per region, the SNV enriched there with the lowest p among those with alt
-# reads in > 30% of the region's samples; All heart, the non-enriched SNV with alt reads in most
-# samples (ties: higher heart VAF). g: SNVs whose pooled VAF is high in one set of regions and
-# low in the other, score = min over the high set - max over the low set.
-n_carriers = (AD_df.values > 0).sum(0)
-by_carriers = np.lexsort((-heart_af, -n_carriers))
-e_candidates = {'All heart': list(muts[by_carriers][~is_enriched[by_carriers]])}
-for r in REGIONS:
-    i = REGIONS.index(r)
-    sel = np.where(region_call.values[i] & (region_frac.values[i] > .3))[0]
-    e_candidates[r] = list(muts[sel[np.argsort(-logp.values[i, sel])]])
-G_SETS = {'LV-LS/RS': (['LV', 'LS', 'RS'], ['RV', 'CS']), 'RV-CS': (['RV', 'CS'], ['LV', 'LS', 'RS'])}
+# Example picks. e: per region (not CS), the SNV enriched there that maximises (share of its
+# carrier samples falling in the region, >= 70%) x (share of the region's samples carrying it),
+# with >= 4 carrier samples in the region; the two best regions are shown. g: SNVs whose pooled VAF is
+# high in one set of regions and low in the other, score = min over the high set - max over the low set.
+n_present_all = np.maximum(present.sum(0), 1)
+e_candidates, e_best = {}, {}
+for r in ['LS', 'RS', 'LV', 'RV']:
+    k = reg == r
+    n_r = present[k].sum(0)
+    purity = n_r / n_present_all
+    score = np.where((n_r >= 4) & (purity >= .7) & region_call.loc[r].values, purity * n_r / k.sum(), 0)
+    e_candidates[r] = list(muts[np.argsort(-score)])
+    e_best[r] = score.max()
+E_ORDER = list(E_OVERRIDE) or sorted(e_best, key=e_best.get, reverse=True)[:2]
+G_SETS = {'LV-LS': (['LV', 'LS'], ['RV', 'CS', 'RS']), 'LV-RS': (['LV', 'RS'], ['RV', 'CS', 'LS']),
+          'RV-CS': (['RV', 'CS'], ['LV', 'LS', 'RS'])}
 g_candidates = {}
 for k, (high, low) in G_SETS.items():
     score = (region_af.loc[high].min(0) - region_af.loc[low].max(0)).values
@@ -237,16 +231,13 @@ def panel_placeholder(ax):
 
 def panel_b(ax):
     """
-    Analysed samples by region, the other heart samples in grey behind them.
+    Analysed samples by region.
     """
     ax.computed_zorder = False
-    o = xyz_all.loc[~analysed]
-    ax.scatter(o['x'], o['y'], o['z'], s=B_POINT, c=OTHER_COLOR, edgecolor='white', linewidth=.25,
-               depthshade=False, zorder=4)
     ax.scatter(coords['x'], coords['y'], coords['z'], s=B_POINT, c=[COLORS[r] for r in reg],
                edgecolor='white', linewidth=.25, depthshade=False, zorder=5)
-    style_3d(ax, xyz_all[['x', 'y', 'z']])
-    plu.add_legend(colors={**COLORS, 'Other': OTHER_COLOR}, label='Region', ax=ax, ticks_size=FS_TINY,
+    style_3d(ax, coords)
+    plu.add_legend(colors=COLORS, label='Region', ax=ax, ticks_size=FS_TINY,
                    artists_size=FS_TINY - 1, label_size=FS_TINY, loc='center left', bbox_to_anchor=(.97, .5), ncols=1)
 
 
@@ -304,9 +295,9 @@ def panel_d(ax):
 
 def draw_counts_3d(ax, j):
     """
-    Samples with >=1 alternate read filled by VAF, others open.
+    Samples with >= 1 alt read filled by VAF, others open.
     """
-    carries = AD_df.values[:, j] > 0
+    carries = present[:, j]
     ax.scatter(coords['x'][~carries], coords['y'][~carries], coords['z'][~carries], s=E_POINT,
                facecolor='white', edgecolor='k', linewidth=.3, depthshade=False, zorder=4)
     ax.scatter(coords['x'][carries], coords['y'][carries], coords['z'][carries], s=E_POINT,
@@ -320,10 +311,10 @@ def panel_e(axs):
         ax.computed_zorder = False
         j = list(muts).index(E_PICK[slot])
         draw_counts_3d(ax, j)
-        carries = AD_df.values[:, j] > 0
-        ax.set_title(f'{site(muts[j])} ({slot})\nVAF {100 * AF[carries, j].mean():.1f}%, n={int(carries.sum())} samples',
-                     fontsize=FS_TINY, pad=0)
-    plu.add_cbar(np.array([0, VAF_MAX_3D]), ax=axs[5], label='VAF', palette='afmhot_r', vmin=0, vmax=VAF_MAX_3D,
+        carries = present[:, j]
+        ax.set_title(f'{site(muts[j])} ({slot})\nMean VAF {100 * AF[carries, j].mean():.1f}% (n={int(carries.sum())} samples)',
+                     fontsize=FS_TINY - 1, pad=0)
+    plu.add_cbar(np.array([0, VAF_MAX_3D]), ax=axs[1], label='VAF', palette='afmhot_r', vmin=0, vmax=VAF_MAX_3D,
                  label_size=FS_TINY, ticks_size=FS_TINY - 1)
 
 
@@ -373,8 +364,25 @@ def panel_g(axs):
     for k, (ax, key) in enumerate(zip(axs, G_SETS)):
         j = list(muts).index(G_PICK[key])
         df = pd.DataFrame({'region': reg, 'cf': 2 * AF[:, j]})
-        plu.box(df, x='region', y='cf', x_order=G_ORDER, color='white', width=.6, ax=ax)
-        plu.strip(df, x='region', y='cf', x_order=G_ORDER, categorical_cmap=COLORS, size=5, ax=ax)
+        plu.violin(df, x='region', y='cf', x_order=G_ORDER, categorical_cmap=COLORS, linewidth=.8, ax=ax,
+                   kwargs={'cut': 0, 'inner': None, 'density_norm': 'width', 'width': .85, 'bw_adjust': 1.2})
+        for body in ax.collections:                         # light fill, opaque region-coloured outline
+            fc = body.get_facecolor()[0]
+            body.set_facecolor((*fc[:3], .3))
+            body.set_edgecolor((*fc[:3], 1))
+            body.set_linewidth(.9)
+        plu.strip(df, x='region', y='cf', x_order=G_ORDER, categorical_cmap=COLORS, size=3, ax=ax)
+        for pts in ax.collections[len(G_ORDER):]:
+            pts.set_zorder(5)
+        for i, r in enumerate(G_ORDER):                     # IQR bar, median line and dot
+            q1, med, q3 = np.percentile(df.cf[df.region == r], [25, 50, 75])
+            ax.plot([i, i], [q1, q3], color='#333333', linewidth=1.1, solid_capstyle='round', zorder=4)
+            ax.plot([i - .3, i + .3], [med, med], color='#333333', linewidth=1.3, solid_capstyle='butt', zorder=6)
+            ax.scatter(i, med, s=18, color='white', edgecolor='#333333', linewidth=.9, zorder=7)
+        pooled = 2 * heart_af[j]                            # heart-level AD / DP x 2
+        ax.axhline(pooled, color='k', linestyle='--', linewidth=.6, zorder=2)
+        ax.text(1, pooled, f'pooled {pooled:.2f}', transform=ax.get_yaxis_transform(), ha='right', va='bottom',
+                fontsize=FS_TINY - 1)
         plu.format_ax(ax=ax, xticks=G_ORDER, xlabel='', ylabel='Cell fraction (2 x VAF)' if k == 0 else '',
                       title=site(muts[j]), reduced_spines=True)
 
@@ -398,9 +406,9 @@ panels = {
     'b': [add_ax(fig, 1.95, T1 - .15, 3.5, 2.85, projection='3d')],
     'c': [add_ax(fig, 6.45, T1 + .15, 1.5, 1.55)],
     'd': [add_ax(fig, .8, T2 + .4, 2.1, 2.4)],
-    'e': [add_ax(fig, 3.12 + 1.5 * (k % 3), T2 + .2 + 1.6 * (k // 3), 1.5, 1.4, projection='3d') for k in range(6)],
-    'f': [add_ax(fig, .8, T3 + .3, 2.0, 2.0)],
-    'g': [add_ax(fig, 3.9, T3 + .3, 1.85, 2.0), add_ax(fig, 6.1, T3 + .3, 1.85, 2.0)],
+    'e': [add_ax(fig, 3.18, T2 + .2 + 1.6 * k, 1.5, 1.4, projection='3d') for k in range(2)],
+    'f': [add_ax(fig, 5.6, T2 + .4, 2.3, 2.3)],
+    'g': [add_ax(fig, .8 + 2.55 * k, T3 + .3, 2.0, 1.6) for k in range(3)],
 }
 panel_placeholder(*panels['a'])
 panel_b(*panels['b'])
@@ -409,7 +417,7 @@ panel_d(*panels['d'])
 panel_e(panels['e'])
 septum_scatter(*panels['f'], 'All SNVs')
 panel_g(panels['g'])
-LETTERS = {'a': (.2, T1), 'b': (2.3, T1), 'c': (5.85, T1), 'd': (.2, T2), 'e': (3.12, T2), 'f': (.2, T3), 'g': (3.2, T3)}
+LETTERS = {'a': (.2, T1), 'b': (2.3, T1), 'c': (5.85, T1), 'd': (.2, T2), 'e': (3.0, T2), 'f': (4.95, T2), 'g': (.2, T3)}
 for letter, (x, top) in LETTERS.items():
     fig.text(x / W, 1 - top / H, letter, fontsize=12, fontweight='bold', va='top')
 fig.savefig(os.path.join(path_out, 'main_figure.pdf'))
@@ -426,7 +434,22 @@ plt.close(fig)
 ##
 
 
-# Supp c. Carrier samples and pooled VAF per category: box (white) and strip as in main g, colours as c
+# Supp ci. VAF of all calls with alt reads (AD > 0) and DP > 20, pooled over the 123 SNVs, median annotated
+calls_af = AF[(AD_df.values > 0) & (DP_df.values > 20)]
+med = np.median(calls_af)
+fig, ax = plt.subplots(figsize=(3.4, 2.8))
+plu.dist(pd.DataFrame({'AF': calls_af}), x='AF', color='k', alpha=.3, ax=ax)
+ax.axvline(med, color='k', linestyle='--', linewidth=.6)
+ax.text(med, ax.get_ylim()[1] * .95, f' median = {med:.3f}', ha='left', va='top', fontsize=FS_TINY)
+ax.set_xlim(left=0)
+plu.format_ax(ax=ax, xlabel='VAF', ylabel='Density', title=f'Calls with AD > 0, DP > 20 (n={len(calls_af)})',
+              reduced_spines=True)
+fig.subplots_adjust(left=.2, right=.95, top=.88, bottom=.17)
+fig.savefig(os.path.join(path_out, 'supp_ci.pdf'))
+plt.close(fig)
+
+
+# Supp cii. Pooled VAF and carrier samples per category: box (white) and strip, colours as c
 n_present = present.sum(0).astype(float)
 
 
@@ -441,9 +464,9 @@ def category_box(ax, values, ylabel, first):
 W_C, H_C = 6.2, 3.2
 fig = plt.figure(figsize=(W_C, H_C))
 axs = [fig.add_axes([x / W_C, .85 / H_C, 2.3 / W_C, 2.1 / H_C]) for x in (.75, 3.75)]
-category_box(axs[0], n_present, 'n carrier samples', True)
-category_box(axs[1], heart_af, 'Pooled VAF, all heart', False)
-fig.savefig(os.path.join(path_out, 'supp_c.pdf'))
+category_box(axs[0], heart_af, 'Pooled VAF, all heart', True)
+category_box(axs[1], n_present, 'n carrier samples', False)
+fig.savefig(os.path.join(path_out, 'supp_cii.pdf'))
 plt.close(fig)
 
 
@@ -478,16 +501,41 @@ fig.savefig(os.path.join(path_out, 'supp_d.pdf'))
 plt.close(fig)
 
 
-# Supp fi. Shared and heart-specific SNVs, as panel f
-fig, axs = plt.subplots(1, 2, figsize=(6, 3))
-septum_scatter(axs[0], 'Pre-gastrulation + Other shared', legend=False, x_text=.5)
-septum_scatter(axs[1], 'Heart-specific', x_text=.5)
-fig.subplots_adjust(left=.09, right=.98, top=.92, bottom=.14, wspace=.3)
+# Supp fi. Samples x SNVs VAF, both clustered (average linkage, cosine)
+row_order = leaves_list(linkage(squareform(pairwise_distances(AF, metric='cosine'), checks=False), method='average'))
+col_order = leaves_list(linkage(squareform(pairwise_distances(AF.T, metric='cosine'), checks=False), method='average'))
+fig, ax = plt.subplots(figsize=(8.27, 4.6))
+im = ax.imshow(AF[np.ix_(row_order, col_order)], cmap='afmhot_r', aspect='auto', vmin=0, vmax=np.nanpercentile(AF, 99))
+for k, i in enumerate(row_order):
+    ax.add_patch(plt.Rectangle((-4.2, k - .5), 3, 1, color=COLORS[reg[i]], clip_on=False, linewidth=0))
+for k, j in enumerate(col_order):
+    ax.add_patch(plt.Rectangle((k - .5, -4.2), 1, 3, color=CAT_COLORS[category[j]], clip_on=False, linewidth=0))
+plu.format_ax(ax=ax, xticks=[], yticks=[], xlabel=f'SNVs (n={len(muts)})', ylabel=f'LCM samples (n={len(cuts)})')
+ax.yaxis.labelpad = 22
+plu.add_legend(colors=COLORS, label='Region', ax=ax, ticks_size=FS_SMALL, artists_size=FS_SMALL - 1, label_size=FS_SMALL,
+               loc='upper left', bbox_to_anchor=(1.01, 1))
+plu.add_legend(colors=CAT_COLORS, label='SNV category', ax=ax, ticks_size=FS_SMALL, artists_size=FS_SMALL - 1,
+               label_size=FS_SMALL, loc='upper left', bbox_to_anchor=(1.01, .55))
+fig.subplots_adjust(left=.07, right=.86, top=.92, bottom=.17)
+pos = ax.get_position()                         # small horizontal VAF bar, right edge on the heatmap's
+cax = fig.add_axes([pos.x1 - .14, pos.y0 - .085, .14, .022])
+cb = fig.colorbar(im, cax=cax, orientation='horizontal')
+cb.set_label('VAF', fontsize=FS_TINY, labelpad=1)
+cb.ax.tick_params(labelsize=FS_TINY - 1, length=2, pad=1)
 fig.savefig(os.path.join(path_out, 'supp_fi.pdf'))
 plt.close(fig)
 
 
-# Supp fii. Share of septal samples closer to LV / RV, per SNV set
+# Supp fii. Shared and heart-specific SNVs, as panel f
+fig, axs = plt.subplots(1, 2, figsize=(6, 3))
+septum_scatter(axs[0], 'Pre-gastrulation + Other shared', legend=False, x_text=.5)
+septum_scatter(axs[1], 'Heart-specific', x_text=.5)
+fig.subplots_adjust(left=.09, right=.98, top=.92, bottom=.14, wspace=.3)
+fig.savefig(os.path.join(path_out, 'supp_fii.pdf'))
+plt.close(fig)
+
+
+# Supp fiii. Share of septal samples closer to LV / RV, per SNV set
 STACK_SETS = ['All SNVs', 'Heart-specific', 'Pre-gastrulation + Other shared']
 fig, axs = plt.subplots(1, 3, figsize=(6.5, 2.6), sharey=True)
 for c, set_name in enumerate(STACK_SETS):
@@ -511,41 +559,16 @@ for c, set_name in enumerate(STACK_SETS):
                   reduced_spines=True)
 axs[0].legend(frameon=False, fontsize=FS_SMALL, loc='lower left', bbox_to_anchor=(0, 1.1), ncols=2)
 fig.subplots_adjust(left=.09, right=.98, top=.8, bottom=.17, wspace=.1)
-fig.savefig(os.path.join(path_out, 'supp_fii.pdf'))
-plt.close(fig)
-
-
-# Supp fiii. Physical distance
-fig, ax = plt.subplots(figsize=(3.8, 3.6))
-septum_scatter(ax, 'Physical space')
-fig.subplots_adjust(left=.22, right=.96, top=.92, bottom=.17)
 fig.savefig(os.path.join(path_out, 'supp_fiii.pdf'))
 plt.close(fig)
 
 
-# Supp fiv. Samples x SNVs VAF, both clustered (average linkage, cosine)
-row_order = leaves_list(linkage(squareform(pairwise_distances(AF, metric='cosine'), checks=False), method='average'))
-col_order = leaves_list(linkage(squareform(pairwise_distances(AF.T, metric='cosine'), checks=False), method='average'))
-fig, ax = plt.subplots(figsize=(8.27, 4.6))
-im = ax.imshow(AF[np.ix_(row_order, col_order)], cmap='afmhot_r', aspect='auto', vmin=0, vmax=np.nanpercentile(AF, 99))
-for k, i in enumerate(row_order):
-    ax.add_patch(plt.Rectangle((-4.2, k - .5), 3, 1, color=COLORS[reg[i]], clip_on=False, linewidth=0))
-for k, j in enumerate(col_order):
-    ax.add_patch(plt.Rectangle((k - .5, -4.2), 1, 3, color=CAT_COLORS[category[j]], clip_on=False, linewidth=0))
-plu.format_ax(ax=ax, xticks=[], yticks=[], xlabel=f'SNVs (n={len(muts)})', ylabel=f'LCM samples (n={len(cuts)})')
-ax.yaxis.labelpad = 22
-plu.add_legend(colors=COLORS, label='Region', ax=ax, ticks_size=FS_SMALL, artists_size=FS_SMALL - 1, label_size=FS_SMALL,
-               loc='upper left', bbox_to_anchor=(1.01, 1))
-plu.add_legend(colors=CAT_COLORS, label='SNV category', ax=ax, ticks_size=FS_SMALL, artists_size=FS_SMALL - 1,
-               label_size=FS_SMALL, loc='upper left', bbox_to_anchor=(1.01, .55))
-fig.subplots_adjust(left=.07, right=.86, top=.92, bottom=.17)
-pos = ax.get_position()                         # small horizontal VAF bar, right edge on the heatmap's
-cax = fig.add_axes([pos.x1 - .14, pos.y0 - .085, .14, .022])
-cb = fig.colorbar(im, cax=cax, orientation='horizontal')
-cb.set_label('VAF', fontsize=FS_TINY, labelpad=1)
-cb.ax.tick_params(labelsize=FS_TINY - 1, length=2, pad=1)
+# Supp fiv. Physical distance
+fig, ax = plt.subplots(figsize=(3.8, 3.6))
+septum_scatter(ax, 'Physical space')
+fig.subplots_adjust(left=.22, right=.96, top=.92, bottom=.17)
 fig.savefig(os.path.join(path_out, 'supp_fiv.pdf'))
 plt.close(fig)
 
 print('\nwritten to figures/final: main_figure (+ main_a..g), '
-      'supp_c, supp_d, supp_fi, supp_fii, supp_fiii, supp_fiv')
+      'supp_ci, supp_cii, supp_d, supp_fi, supp_fii, supp_fiii, supp_fiv')

@@ -1,7 +1,7 @@
 """
 Lineage inputs of the final figure, from the final callset (results/ALLELIC_TABLE_FINAL.tsv.gz and
-results/ALLELIC_TABLE.tsv.gz): TRUE mutation set, per-site background from the placenta, genotypes,
-lineage classes, and the read-level region-vs-rest enrichment test.
+results/ALLELIC_TABLE.tsv.gz): TRUE mutation set, placenta counts, per-cell read counts, lineage
+classes, and the read-level region-vs-rest enrichment test.
 
 TRUE mutation: >=3 alt reads in >=2 LCM cuts, with >=5 alt reads summed over one chunk holding
 such a cut; pericentromeric sites dropped.
@@ -12,8 +12,7 @@ Outputs (results/): LINEAGE_SUMMARY.tsv, GENOTYPES_TRUE.tsv.gz, REGION_ENRICHMEN
 import os
 import numpy as np
 import pandas as pd
-from scipy.stats import binom, betabinom
-from scipy.optimize import minimize_scalar
+from scipy.stats import binom
 from statsmodels.stats.multitest import multipletests
 
 
@@ -38,14 +37,9 @@ PAD = 2.0
 MIN_READS_CUT = 3       # alt reads making a cut count towards the TRUE rule
 MIN_CUTS = 2            # cuts with MIN_READS_CUT needed
 MIN_CHUNK_READS = 5     # alt reads summed over a chunk holding such a cut
-ERR_INIT = 5e-4         # error rate used only to flag placenta-carrying sites
-PRIOR_BASES = 1000      # shrinkage weight of the class rate, in bases
-CLASS_PRIOR_BASES = 1000   # shrinkage of a class rate toward the pooled rate
-MIN_DP_PRESENT = 10        # a present call needs this depth
-PLACENTA_AF_FRACTION = 0.2
-P_PRESENT = 0.01
-MIN_AD_PRESENT = 2
-AF_MAIN = 0.10          # absent = no alt read at a depth that detects a clone at this AF
+ERROR_FLOOR = 2e-3      # minimum rest-of-heart VAF in the enrichment test: about the sequencing
+                        # error rate (pooled placenta alt-read rate 1.99e-3); without it a region
+                        # scores p = 0 when the rest of the heart has no alt read
 
 # Excluded from every analysis: total depth 20,085 reads over the 62 heart cuts, about ten
 # times any other site (median 1,643), so most likely a collapsed repeat / mapping artefact
@@ -68,35 +62,6 @@ def is_pericentromeric(mutation_id):
     chrom, pos = mutation_id.split('_')[0], int(mutation_id.split('_')[1]) / 1e6
     start, end = CENTROMERES.get(chrom, (-9, -9))
     return start - PAD <= pos <= end + PAD
-
-
-def detection_limit(dp, power=0.95):
-    """
-    AF detectable with `power` probability by >=1 read at depth dp.
-    """
-    return 1 - (1 - power) ** (1 / np.maximum(dp, 1))
-
-
-def fit_concentration(alt, depth, mu):
-    """
-    MLE of the beta-binomial concentration s (alpha = mu*s, beta = (1-mu)*s)
-    for one substitution class. Large s means no overdispersion beyond binomial.
-    """
-    alt, depth = np.asarray(alt, float), np.asarray(depth, float)
-
-    def nll(log_s):
-        s = np.exp(log_s)
-        return -betabinom.logpmf(alt, depth, mu * s, (1 - mu) * s).sum()
-
-    res = minimize_scalar(nll, bounds=(np.log(10), np.log(1e7)), method='bounded')
-    return float(np.exp(res.x))
-
-
-def tail_p(alt, depth, mu, s):
-    """
-    P(X >= alt) under beta-binomial with mean mu and concentration s, per cell.
-    """
-    return betabinom.sf(alt - 1, depth, mu * s, (1 - mu) * s)
 
 
 ##
@@ -158,90 +123,13 @@ AF = np.divide(A, D, out=np.zeros_like(A), where=D > 0)
 ##
 
 
-# 2a. Per-site background: placenta reads shrunk to the substitution-class rate
+# 2. Placenta counts and substitution class, reported in the summary
 placenta = (
     full.query('tissue == "placenta" and mutation_id in @true_muts')
     .groupby('mutation_id').agg(AD_alt=('AD_alt', 'sum'), DP=('DP', 'sum'))
     .reindex(true_muts).fillna(0)
 )
-heart_af = A.sum(0) / D.sum(0)
-placenta_af = (placenta['AD_alt'] / placenta['DP'].replace(0, np.nan)).fillna(0)
-carries = (
-    (binom.sf(placenta['AD_alt'] - 1, placenta['DP'], ERR_INIT) < P_PRESENT)
-    & (placenta_af.values > PLACENTA_AF_FRACTION * heart_af)
-)
 substitution = muts['SBS6'].reindex(true_muts).fillna('NA')
-
-# Two-level shrinkage. C>A and C>G have zero placenta alt reads over ~1,090
-# bases each, so their rate is unmeasured rather than low; a pseudo-count alone
-# would leave them near zero and make a single read significant. Each class rate
-# is therefore shrunk toward the rate pooled over all classes, and each site
-# toward its class.
-grouped = placenta.loc[~carries].groupby(substitution[~carries])
-class_alt, class_dp = grouped['AD_alt'].sum(), grouped['DP'].sum()
-pooled_rate = class_alt.sum() / class_dp.sum()
-class_rate = (class_alt + CLASS_PRIOR_BASES * pooled_rate) / (class_dp + CLASS_PRIOR_BASES)
-class_n = substitution[~carries].value_counts()
-print(f'\nPlacenta background pooled over classes: {pooled_rate:.2e} '
-      f'(classes with no observed alt read: {", ".join(class_alt.index[class_alt == 0]) or "none"})')
-prior = substitution.map(class_rate).fillna(ERR_INIT).values
-site_bg = np.where(
-    carries, prior,
-    (placenta['AD_alt'].values + PRIOR_BASES * prior) / (placenta['DP'].values + PRIOR_BASES)
-).clip(min=1e-5)
-
-print(f'\nBackground: {int(carries.sum())} sites placenta-carrying (class rate used); '
-      f'median {np.median(site_bg):.1e}, max {site_bg.max():.1e}')
-print('  class rates (n sites): ' + ', '.join(
-    f'{k} {class_rate[k]:.1e} (n={class_n.get(k, 0)})' for k in class_rate.index))
-
-# Overdispersion per class, fitted on the placenta counts of non-carrying sites
-concentration = {}
-for cls, idx in substitution[~carries].groupby(substitution[~carries]).groups.items():
-    sub = placenta.loc[idx]
-    if len(sub) >= 5 and sub['DP'].sum() > 0:
-        concentration[cls] = fit_concentration(sub['AD_alt'], sub['DP'], class_rate[cls])
-    else:
-        concentration[cls] = np.inf     # too few sites: stay binomial
-fitted = {k: v for k, v in concentration.items() if np.isfinite(v)}
-print('  beta-binomial concentration: ' + ', '.join(
-    f'{k} {"binomial (too few sites)" if np.isinf(v) else f"{v:.2e}"}'
-    for k, v in concentration.items()))
-if fitted and min(fitted.values()) > 1e6:
-    print('  no overdispersion detectable in the placenta counts (they are mostly 0-2 reads '
-          'per site), so the beta-binomial is numerically identical to the binomial here')
-
-site_s = substitution.map(concentration).fillna(np.inf).values
-
-
-##
-
-
-# 2b. Genotypes. Present is one rule; absent needs the depth to detect a clone at AF_MAIN.
-p_site = np.empty_like(A)
-finite = np.isfinite(site_s)
-if finite.any():
-    cols = np.where(finite)[0]
-    p_site[:, cols] = tail_p(A[:, cols], D[:, cols],
-                             site_bg[cols][None, :], site_s[cols][None, :])
-if (~finite).any():
-    cols = np.where(~finite)[0]
-    p_site[:, cols] = binom.sf(A[:, cols] - 1, D[:, cols], site_bg[cols][None, :])
-
-present = (A >= MIN_AD_PRESENT) & (p_site < P_PRESENT) & (D >= MIN_DP_PRESENT)
-weak = A == 1
-lod = detection_limit(D)
-
-state = np.full(A.shape, 'undetermined', dtype=object)
-state[present] = 'present'
-state[weak & ~present] = 'weak'
-state[(A == 0) & (lod <= AF_MAIN)] = 'absent'
-
-print(f'\nGenotypes ({A.shape[0]} cuts x {A.shape[1]} mutations = {A.size} cells)')
-print(f'  present {int(present.sum())} (p<{P_PRESENT}, AD>={MIN_AD_PRESENT}, DP>={MIN_DP_PRESENT}) | '
-      f'weak {int(weak.sum())} | absent {int((state == "absent").sum())} | '
-      f'undetermined {int((state == "undetermined").sum())}')
-print(f'  mutations with >=1 present call: {int((present.sum(0) > 0).sum())} of {len(true_muts)}')
 
 
 ##
@@ -265,9 +153,9 @@ print('\nLineage class (tree assignment): ' + ' | '.join(
 ##
 
 
-# 4. Region vs rest of the heart, on read counts (hard genotype calls are not used). For every
+# 4. Region vs rest of the heart, on read counts. For every
 # SNV x region, a read-level one-sided binomial: region AD/DP against the rest-of-heart VAF
-# (floored at the site background); BH over all tests. Every read counts as a replicate, so the
+# (floored at ERROR_FLOOR); BH over all tests. Every read counts as a replicate, so the
 # test is descriptive: the figure scripts take q < 0.1 as enriched and test the number of
 # enriched SNVs against sample-label permutations.
 reg = region.values
@@ -285,7 +173,7 @@ for j, m in enumerate(true_muts):
             AF_diff=a_r / d_r - af_o,
             n_cuts=int(rc.sum()), n_cuts_alt=int((A[rc, j] > 0).sum()),
             frac_cuts_alt=(A[rc, j] > 0).mean(),
-            p_binom=binom.sf(a_r - 1, d_r, max(af_o, site_bg[j])),
+            p_binom=binom.sf(a_r - 1, d_r, max(af_o, ERROR_FLOOR)),
         ))
 enrichment = pd.DataFrame(rows)
 enrichment['q_binom'] = multipletests(enrichment['p_binom'], method='fdr_bh')[1]
@@ -305,7 +193,6 @@ summary = pd.DataFrame({
     'placenta_DP': placenta['DP'].values.astype(int),
     'tree_assignment': tree.values,
     'lineage_class': lineage_class,
-    'site_background': site_bg,
 }).set_index('mutation_id')
 summary.to_csv(os.path.join(path_results, 'LINEAGE_SUMMARY.tsv'), sep='\t')
 
@@ -314,12 +201,8 @@ genotypes = pd.DataFrame({
     'mutation_id': np.tile(true_muts.values, len(AD.index)),
     'AD_alt': A.ravel().astype(int), 'DP': D.ravel().astype(int),
     'AF': AF.ravel().round(4),
-    'detection_limit_AF': lod.ravel().round(3),
-    'site_background': np.tile(site_bg, len(AD.index)),
-    'p_presence': p_site.ravel(),
 }).assign(
     region=lambda x: x['Sample_ID'].map(samples['region']),
     chunk=lambda x: x['Sample_ID'].map(samples['chunk']),
 )
-genotypes[f'state_af{int(AF_MAIN * 100)}'] = state.ravel()
 genotypes.to_csv(os.path.join(path_results, 'GENOTYPES_TRUE.tsv.gz'), sep='\t', index=False)
